@@ -1,7 +1,9 @@
-
-$black: #2D2D33;
-$white: white;
-$bg: #ffffff;
+$black: #140E0A;
+$black40: rgba(20, 14, 10, 0.40);
+$black16: rgba(20, 14, 10, 0.16);
+$white: #FFFEF8;
+$white40: #FFFEF8;
+$bg: $white;
 $red: rgba(217, 56, 56, 1);
 $green: rgb(94, 217, 56);
 $sectionGap: 20rem;
@@ -86,21 +88,6 @@ main {
 }
 
 
-.desktop {
-  @include desktop {
-    display: none;
-  }
-
-}
-
-
-
-.mobile {
-  @include mobile {
-    display: none;
-  }
-
-}
 
 
 *,
@@ -199,4 +186,3 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
-

@@ -11,6 +11,9 @@
     &-bg{
         color: $red;
     }
+    &-black40{
+        color: $black40;
+    }
 
 }
 /*  */
@@ -50,4 +53,20 @@
 }
 
 /*  */
-
+.desktop {
+    @include mobile {
+      display: none;
+    }
+  
+  }
+  
+  
+  
+  .mobile {
+   
+    @include desktop {
+      display: none;
+    }
+  }
+  
+/*  */

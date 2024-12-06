@@ -5,19 +5,13 @@ import { Navigation, Pagination, Grid, Autoplay } from 'swiper/modules';
 import Swiper from 'swiper';
 import Form from './utils/Form'
 
-
-/* import './js/main' */
-
+const HTML = $('html')
 $(function () {
+    dropDowns()
 
-    const t = $('header')
-    t.append('<div> jquery hello </div>')
-    console.log(Inputmask);
-    console.log(Swiper);
 })
 
-console.log(Navigation);
-console.log($('header'));
+
 
 
 function initForms() {
@@ -37,15 +31,37 @@ function initForms() {
     }
 }
 function dropDowns() {
-    const ddBtn = $('.drop-down-target')
+    const ddBtn = $('.drop-down-target').toArray()
     if (!ddBtn) return
+    ddBtn.forEach((el) => {
+        el = $(el)
+        if (el.hasClass('drop-down-fs')) {
+            el.on('click', (e) => {
+                e.preventDefault()
+                if (!e.currentTarget.classList.contains('_opened')) {
+                    e.currentTarget.classList.add('_opened')
+                    e.currentTarget.closest('.drop-down-container')
+                        .classList.add('_opened')
+                    HTML.addClass('_lock')
+                } else {
+                    e.currentTarget.classList.remove('_opened')
+                    e.currentTarget.closest('.drop-down-container')
+                        .classList.remove('_opened')
+                    HTML.removeClass('_lock')
+                }
 
-    ddBtn.on('click', (e) => {
-        e.preventDefault()
-        e.currentTarget.classList.toggle('_opened')
-        e.currentTarget.closest('.drop-down-container')
-            .classList.toggle('_opened')
+            })
+        }else{
+            el.on('click', (e) => {
+                e.preventDefault()
+                e.currentTarget.classList.toggle('_opened')
+                e.currentTarget.closest('.drop-down-container')
+                    .classList.toggle('_opened')
+            })
+        }
+       
     })
+
 
 }
 
@@ -83,8 +99,8 @@ function modalsHandler() {
 }
 
 function initSwichers() {
-  /*   const basketDelivery = document.querySelector('.switcher-delivery')
-    if (basketDelivery) {
-        new Switcher(basketDelivery, 0)
-    } */
+    /*   const basketDelivery = document.querySelector('.switcher-delivery')
+      if (basketDelivery) {
+          new Switcher(basketDelivery, 0)
+      } */
 }

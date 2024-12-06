@@ -1,0 +1,141 @@
+.btn-primary {
+
+    &-anchor {
+        position: relative;
+
+    }
+
+    &-c {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        @include mobile {
+            gap: 3.2rem;
+        }
+
+    }
+
+    &-text {
+        //styleName: desktop/label circe 12%;
+        font-family: Circe;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 110%;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        display: block;
+        white-space: nowrap;
+
+        @include mobile {
+            font-size: 2rem;
+        }
+    }
+
+    &-circle {
+        position: absolute;
+        width: 37rem;
+        height: 37rem;
+        background-color: transparent;
+        border: 2px solid $black16;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        transition: width .2s linear, height .2s linear;
+
+        @include hover {
+            width: 32rem;
+            height: 32rem;
+        }
+
+    }
+}
+
+.btn-second {
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+
+    @include mobile {
+        gap: .8rem;
+    }
+
+    @include hover {
+        & .btn-second-circle::after {
+            width: 8.2rem;
+            height: 8.2rem;
+            background-color: $black;
+        }
+
+        & .ui-icon {
+            & svg {
+                stroke: $white;
+
+            }
+        }
+        & .btn-second-text {
+            background-position: 64% 0;
+        }
+    }
+
+    &-text {
+        //styleName: desktop/label circe 12%;
+        font-family: Circe;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 120%;
+        letter-spacing: 0.12em;
+        position: relative;
+        z-index: 2;
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, rgba(0,0,0,1) 67%, rgba(255,255,255,1) 67%);
+        background-size:150% 100% ;
+        background-position: 0% 0;
+        transition: background-position .2s linear;
+        background-clip: text;
+        color: transparent;
+        fill:transparent ;
+        @include mobile {
+            font-size: 2rem;
+        }
+
+    }
+
+    &-circle {
+        position: relative;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            border: 2px solid $black16;
+            transform: translate(-50%, -50%);
+            transition: width .2s linear, height .2s linear, background-color .2s linear;
+            background-color: transparent;
+            z-index: 1;
+
+        }
+    }
+
+    & .ui-icon {
+        position: relative;
+        z-index: 2;
+
+        & svg {
+
+            stroke: $black;
+            transition: stroke .2s linear;
+        }
+    }
+
+
+}

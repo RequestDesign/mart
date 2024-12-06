@@ -1,4 +1,28 @@
 // typography
 @import './typo';
+/*  */
+@import './btns';
+/*  */
+@import './input';
+/*  */
 
+/*  */
+.ui {
+    &-icon {
+        width: 3.2rem;
+        height: 3.2rem;
+        display: flex;
+        flex-shrink: 0;
 
+        @include mobile {
+            width: 4.8rem;
+            height: 4.8rem;
+        }
+
+        & img,
+        & svg {
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+}

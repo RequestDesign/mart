@@ -1,63 +1,27 @@
 
 @font-face {
-  font-family: 'Euclid Circular A';
-  src: url('./assets/fonts/EuclidCircularA-Medium.eot');
-  src: local('Euclid Circular A Medium'), local('EuclidCircularA-Medium'),
-      url('./assets/fonts/EuclidCircularA-Medium.eot?#iefix') format('embedded-opentype'),
-      url('./assets/fonts/EuclidCircularA-Medium.woff2') format('woff2'),
-      url('./assets/fonts/EuclidCircularA-Medium.woff') format('woff'),
-      url('./assets/fonts/EuclidCircularA-Medium.ttf') format('truetype');
-  font-weight: 500;
+  font-family: 'Circe';
+  src: url('./assets/fonts/Circe.eot');
+  src: local('Circe'), local('Circe'),
+      url('./assets/fonts/Circe.eot?#iefix') format('embedded-opentype'),
+      url('./assets/fonts/Circe.woff2') format('woff2'),
+      url('./assets/fonts/Circe.woff') format('woff'),
+      url('./assets/fonts/Circe.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
 }
 
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-ExtraBold.eot');
-  src: local('Gilroy ExtraBold'), local('Gilroy-ExtraBold'),
-      url('./assets/fonts/Gilroy-ExtraBold.eot?#iefix') format('embedded-opentype'),
-      url('./assets/fonts/Gilroy-ExtraBold.woff') format('woff'),
-      url('./assets/fonts/Gilroy-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
+  font-family: 'Forum';
+  src: url('./assets/fonts/Forum.eot');
+  src: local('Forum'), local('Forum'),
+      url('./assets/fonts/Forum.eot?#iefix') format('embedded-opentype'),
+      url('./assets/fonts/Forum.woff') format('woff'),
+      url('./assets/fonts/Forum.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Regular.eot');
-  src: local('Gilroy Regular'), local('Gilroy-Regular'),
-      url('./assets/fonts/Gilroy-Regular.eot?#iefix') format('embedded-opentype'),
-      url('./assets/fonts/Gilroy-Regular.woff') format('woff'),
-      url('./assets/fonts/Gilroy-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Medium.eot');
-  src: local('Gilroy Medium'), local('Gilroy-Medium'),
-      url('./assets/fonts/Gilroy-Medium.eot?#iefix') format('embedded-opentype'),
-      url('./assets/fonts/Gilroy-Medium.woff') format('woff'),
-      url('./assets/fonts/Gilroy-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-
-
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Bold.eot');
-  src: local('Gilroy Bold'), local('Gilroy-Bold'),
-      url('./assets/fonts/Gilroy-Bold.eot?#iefix') format('embedded-opentype'),
-      url('./assets/fonts/Gilroy-Bold.woff') format('woff'),
-      url('./assets/fonts/Gilroy-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
 
 

@@ -1,0 +1,98 @@
+.input-text {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &._error {
+        & .input-text-error {
+            opacity: 1;
+        }
+    }
+
+    & input,
+    & textarea {
+        //styleName: desktop/text circe 0%;
+        font-family: Circe;
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 120%;
+        border-bottom: 2px solid $black16;
+        padding-bottom: 1.6rem;
+
+        @include mobile {
+            font-size: 3.2rem;
+            padding-bottom: 2.4rem;
+        }
+
+        &:focus {
+            border-bottom: 2px solid $black;
+        }
+    }
+
+    &-error {
+        //styleName: desktop/text sm circe 0%;
+        font-family: Circe;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 120%;
+        color: $black40;
+        margin-top: 6px;
+        min-height: 2rem;
+        opacity: 0;
+
+        @include mobile {
+            font-size: 3.2rem;
+        }
+    }
+}
+
+.input-time {
+    position: relative;
+    width: 100%;
+
+    & input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+
+        &:checked {
+            &+.input-time-border {
+                border: 2px solid $black;
+            }
+            &~.input-time-text{
+                color: $black;
+            }
+        }
+    }
+
+    &-border {
+        border: 2px solid $black16;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: block;
+    }
+
+    &-text {
+        padding: 1.2rem 3.3rem;
+        box-sizing: border-box;
+        //styleName: desktop/text sm circe 0%;
+        font-family: Circe;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 110%;
+        display: block;
+        color: $black16;
+
+        @include mobile {
+            padding: 2.4rem;
+            font-size: 2.8rem;
+        }
+
+    }
+}

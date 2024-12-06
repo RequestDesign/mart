@@ -1,0 +1,185 @@
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+
+    &._opened {
+        @include mobile {
+            height: 100dvh;
+            background-color: $bg;
+
+            & .header__c {
+                grid-template-rows: min-content 1fr;
+            }
+            & .header__c-opener{
+                gap: 1.5rem;
+
+                & span {
+                    opacity: 0;
+                    width: 4.7rem;
+                    margin-left: 1.5rem;
+                    background-color: $black;
+    
+                    &:first-of-type {
+                        opacity: 1;
+                        transform: rotate(45deg);
+                        transform-origin: left top;
+                    }
+    
+                    &:last-of-type {
+                        opacity: 1;
+                        transform: rotate(-45deg);
+                        transform-origin: left bottom;
+    
+    
+                    }
+                }
+            }
+                
+           
+        }
+
+    }
+
+    &__c {
+        display: flex;
+        padding-top: 2rem;
+
+        @include mobile {
+            padding: 0;
+            padding-top: 3.2rem;
+            display: grid;
+            grid-template-columns: min-content auto min-content;
+            grid-template-rows: min-content 0fr;
+            height: 100%;
+            &-opener{
+                margin-left: 2rem;
+            
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                width: 5rem;
+                height: 5rem;
+
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                transition: all .5s;
+
+
+
+                & span {
+                    display: block;
+                    width: 3.6rem;
+                    height: 1px;
+                    background-color: $black;
+                    transition: all .5s;
+                }
+            }
+
+
+        }
+
+        & a {
+            height: fit-content;
+        }
+
+        &-modal {
+            @include mobile {
+                height: 100%;
+                overflow: hidden;
+                grid-column: 1 / span 3;
+                grid-row: 2;
+
+                &-wrp {
+                    overflow: auto;
+                    height: 100%;
+                }
+            }
+        }
+
+        &-nav {
+            display: flex;
+            gap: 5rem;
+            margin-top: .9rem;
+
+            @include mobile {
+                flex-direction: column;
+                position: relative;
+                padding: 2rem 2rem 10rem;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 100vw;
+                    left: 0;
+                    bottom: 0;
+                    height: 2px;
+                    background-color: $black16;
+                    display: block;
+                }
+
+                & .btn-primary {
+                    margin-top: 20rem;
+                    margin-left: 20rem;
+                }
+
+                & .header__c-nav-phone {
+                    margin-top: 20rem;
+                }
+
+
+            }
+
+            &-phone {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        &-logo {
+            display: flex;
+            gap: .6rem;
+            flex-direction: column;
+            width: fit-content;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            margin-left: 12rem;
+            &-top {
+                height: 3.5rem;
+            }
+
+            &-middle {
+                height: 1rem;
+            }
+
+            &-bottom {
+                height: 1rem;
+            }
+            @include mobile {
+                margin: auto;
+                &-top {
+                    height: 4.4rem;
+                }
+
+                &-middle {
+                    height: 1.6rem;
+                }
+
+                &-bottom {
+                    height: 1.6rem;
+                }
+            }
+        }
+
+        &-phone {
+            margin-top: .9rem;
+            @include mobile{
+                margin-right: 2rem;
+            }
+        }
+    }
+}

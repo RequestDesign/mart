@@ -10,7 +10,8 @@
 
 <body>
   <div class="wrapper">
-    <main class="disable-margin">
+    <include src="./components/_header.html"></include>
+    <main>
       <section>
 
         <div class="container ">
@@ -21,25 +22,86 @@
             <li class="tl1">tl1</li>
             <li class="tl2">tl2</li>
             <li class="tl3">tl3</li>
-            <li class="txt24">txt24</li>
-            <li class="txt24 txt24_bold">txt24_bold</li>
-            <li class="txt20">txt20</li>
-            <li class="txt18">txt18</li>
-            <li class="txt14">txt14</li>
-
             <li class="clipboard">
               <p class="some tqwe sdg"> dsogajl;fsd</p>
             </li>
-            
+          </ul>
+          <ul>
+            <li class="tl3">image </li>
+            <li class="clipboard">
+              <div class="ui-icon">
+                <img src="./assets/images/icons/arrow-bottom-black.svg" alt="">
+              </div>
+            </li>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <li class="clipboard">
+              <button class="btn-primary">
+                <span class="btn-primary-anchor">
+                  <span class="btn-primary-c">
+                    <span class="btn-primary-text">
+                      наша <br />
+                      хуйня хуй
+                    </span>
+                    <span class="ui-icon">
+                      <img src="./assets/images/icons/arrow-right-black.svg" alt="">
+                    </span>
+                  </span>
+                  <span class="btn-primary-circle"></span>
+                </span>
+              </button>
+            </li>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <li class="clipboard">
+              <button class="btn-second">
+                <span class="btn-second-text">пошел нахуй</span>
+                <span class="btn-second-circle"> </span>
+                <span class="ui-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#140E0A"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.4297 5.92969L20.4997 11.9997L14.4297 18.0697" stroke-width="1.5" stroke-miterlimit="10"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M3.5 12H20.33" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </span>
 
+
+              </button>
+            </li>
+            <li  class="clipboard">
+              <label class="input-text">
+                <input type="text" placeholder="placeholder" required>
+                <span class="input-text-error"> добавь _error на лэйбл</span>
+              </label>
+            </li>
+            <li>
+              <label  class="input-time">
+                <input type="radio">
+                <span class="input-time-border"></span>
+                <span class="input-time-text"> radio value</span>
+              </label>
+            </li>
           </ul>
 
         </div>
       </section>
     </main>
+    <include src="./components/_footer.html"></include>
   </div>
 
- 
+
   <script>
     const info = document.querySelector('.clipboard-info')
     const target = document.querySelectorAll('.clipboard')
@@ -62,6 +124,7 @@
       info.textContent = `copied into clipboard: ${ev.currentTarget.children[0].classList.value}`
 
     }))
+    document.querySelector('.btn-primary').addEventListener('click', () => { console.log('hello') })
 
   </script>
   <style>
