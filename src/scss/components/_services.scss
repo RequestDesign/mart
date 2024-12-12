@@ -1,0 +1,83 @@
+.services {
+    position: relative;
+    & .ui-line{
+        position: absolute;
+        top: 70%;
+        @include mobile{
+            top: 96%;
+        }
+    }
+
+    &__top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        margin-bottom: 5.6rem;
+        @include mobile{
+            grid-template-columns: 100%;
+            gap: 1.6rem;
+        }
+
+        &-body {
+            display: flex;
+            flex-direction: column;
+            gap: 4.4rem;
+            @include mobile{
+                flex-direction: column-reverse;
+                gap: 8rem;
+            }
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4.4rem;
+        @include mobile{
+            grid-template-columns: 1fr 1fr;
+
+
+        }
+        &-el{
+            display: flex;
+            flex-direction: column;
+            gap: 3.2rem;
+            height: 72rem;
+            @include mobile{
+                height: 77rem;
+                & .txt20{
+                    font-size: 2.8rem;
+                }
+               
+                
+            }
+            &._text{
+                @include mobile{
+                    grid-column: 2;
+                    grid-row: 2;
+                    & .tl2{
+                        font-size: 3.2rem;
+                    }
+                   
+                }
+            }
+            &-img{
+                display: flex;
+                height:100%;
+                & img{
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+            & .btn-primary{
+                margin-left: 50%;
+                margin-top: 30rem;
+                @include mobile{
+                    margin-left: 45%;
+                    margin-top: 16rem;
+                }
+            }
+
+        }
+    }
+}

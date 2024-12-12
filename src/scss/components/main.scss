@@ -1,0 +1,51 @@
+.heading-main {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    & .ui-line{
+        position: absolute;
+        top: 54rem;
+        width: 100%;
+    }
+    &__c {
+        width: 113rem;
+        height: 60rem;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: space-between;
+        color: $white;
+        margin-left: auto;
+        @include mobile{
+            height: calc(100% - 35rem);
+            width: 100%;
+            margin-top: 35rem;
+        }
+        & .btn-primary{
+            position: absolute;
+            @include mobile{
+                top: -11rem;
+                right: 22rem;
+
+            }
+        }
+      
+        &-bottom{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            @include mobile{
+                flex-direction: column;
+                gap: 3.2rem;
+                margin-top: auto;
+            }
+            & .txt20{
+                max-width: 51rem;
+                @include mobile{
+                    max-width: 60rem;
+                }
+            }
+        }
+    }
+}

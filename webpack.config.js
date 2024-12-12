@@ -18,8 +18,7 @@ const pages = HTML_FILES.map((page) => {
     template: path.resolve(__dirname, page),
     filename: path.basename(page),
     chunks: [path.basename(page, ".html"), "main"],
-    minify: false,
-
+    minify: false
   });
 });
 
@@ -166,12 +165,12 @@ module.exports = {
             // получает имя, то есть node_modules/packageName/not/this/part.js
             // или node_modules/packageName
             const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-            if (packageName.length){
+            if (packageName.length) {
               return `${packageName[1].replace('@', '')}`;
             }
-              // имена npm-пакетов можно, не опасаясь проблем, использовать
-              // в URL, но некоторые серверы не любят символы наподобие @
-           
+            // имена npm-пакетов можно, не опасаясь проблем, использовать
+            // в URL, но некоторые серверы не любят символы наподобие @
+
           },
         },
       },
@@ -248,7 +247,7 @@ module.exports = {
           },
         ],
       }),
-   
+
   ],
 
 

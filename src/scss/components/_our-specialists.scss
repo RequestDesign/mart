@@ -1,0 +1,98 @@
+.our-specialists {
+    position: relative;
+
+    & .ui-line {
+        position: absolute;
+        top: 30rem;
+    }
+
+    & .container {
+        position: relative;
+        display: grid;
+        grid-template-columns: .3fr .8fr 1fr;
+        gap: 4.4rem;
+        align-items: flex-end;
+
+        @include mobile {
+            grid-template-columns: 100%;
+            gap: 4.8rem;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        & .swiper {
+            width: 100%;
+        }
+    }
+
+    &__top {
+        position: absolute;
+        z-index: 4;
+        top: 20rem;
+        left: 40rem;
+        width: 100%;
+
+
+        @include mobile {
+            position: relative;
+            top: 0;
+            left: 0;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+            box-sizing: border-box;
+        }
+
+    }
+
+    &__small {
+        background-color: green;
+        height: 38.6rem;
+        width: 100%;
+
+    }
+
+    &__info {
+        height: 38.6rem;
+        display: flex;
+        flex-direction: column;
+        width: 22rem;
+
+        @include mobile {
+            grid-column: 1;
+            grid-row: 3;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            box-sizing: border-box;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            & .btn-primary {
+                grid-column: 2;
+                grid-row: 1 / span 2;
+                margin-left: 50%;
+
+            }
+        }
+
+        &-data {
+            background-color: red;
+            margin: auto 0;
+        }
+
+        & .swiper-navigation {
+            margin-top: auto;
+        }
+    }
+
+    &__big {
+        height: 84rem;
+        width: 100%;
+        background-color: blue;
+
+        @include mobile {
+            height: 72.4rem;
+        }
+    }
+
+}

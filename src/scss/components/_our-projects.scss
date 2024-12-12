@@ -1,0 +1,151 @@
+.our-projects {
+    display: flex;
+
+    &__c {
+        flex-grow: 1;
+
+        position: relative;
+        display: flex;
+
+        &-top {
+            transition: transform .5s linear;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: fit-content;
+            padding-bottom: 6rem;
+            background-color: $white;
+
+            & .container {
+                display: flex;
+                gap: 7rem;
+
+                @include mobile {
+                    flex-direction: column;
+                    gap: 4.8rem;
+                }
+
+            }
+
+            &-body {
+                display: flex;
+                flex-direction: column;
+                gap: 1.6rem;
+                width: 60rem;
+
+                @include mobile {
+                    width: 100%;
+                }
+
+                & .btn-second {
+                    margin-top: 1.6rem;
+
+                    @include mobile {
+                        margin-top: 4.8rem;
+                    }
+                }
+            }
+
+        }
+
+        &-main {
+            position: relative;
+            z-index: 4;
+            height: 100%;
+            width: 100%;
+
+            &:hover {
+                &+.our-projects__c-top {
+                    transform: translate(0, -150%);
+                }
+            }
+
+            & .swiper-navigation {
+                position: absolute;
+                bottom: 32.4rem;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                justify-content: flex-end;
+                z-index: 3;
+                height: fit-content;
+
+                @include mobile {
+                    bottom: 16rem;
+                }
+            }
+
+            & .ui-line {
+                position: absolute;
+                bottom: 38.7rem;
+                width: 100%;
+                z-index: 3;
+
+                @include mobile {
+                    bottom: 50%;
+                }
+            }
+
+            &-slide {
+                position: relative;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+
+                &-body {
+                    margin-bottom: 32.4rem;
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5.6rem;
+
+                    @include mobile {
+                        margin-bottom: 16rem;
+                        gap: 40.4rem;
+                    }
+
+
+                    & .btn-primary {
+                        left: 0;
+                        top: -10rem;
+                        position: absolute;
+
+                        @include mobile {
+                            top: -5rem;
+                            left: calc(100% - 20rem);
+
+
+                        }
+                    }
+
+                    &-top {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        @include mobile {
+                            max-width: 50%;
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            gap: 3.6rem;
+                        }
+
+                    }
+
+                    &-values {
+                        display: flex;
+                        gap: 3.2rem;
+                        width: fit-content;
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+}

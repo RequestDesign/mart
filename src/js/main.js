@@ -8,11 +8,66 @@ import Form from './utils/Form'
 const HTML = $('html')
 $(function () {
     dropDowns()
+    iniSwipers()
 
 })
 
 
+function iniSwipers() {
+    const ourProjects = document.querySelector('.our-projects');
 
+    if (ourProjects) {
+        new Swiper(ourProjects.querySelector('.swiper'), {
+            modules: [Navigation],
+            slidesPerView: 1,
+            simulateTouch: false,
+            navigation: {
+                prevEl: ourProjects.querySelector('.swiper-btn-prev'),
+                nextEl: ourProjects.querySelector('.swiper-btn-next')
+            }
+
+        })
+    }
+    const ourSpecialists = document.querySelector('.our-specialists')
+    if (ourSpecialists) {
+        const smallImg = new Swiper(ourSpecialists.querySelector('.our-specialists__small.swiper'), {
+            modules: [Navigation],
+            slidesPerView: 1,
+            simulateTouch: false,
+            navigation: {
+                prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
+                nextEl: ourSpecialists.querySelector('.swiper-btn-next'),
+
+            }
+        })
+        const userInfo = new Swiper(ourSpecialists.querySelector('.our-specialists__info-data.swiper'), {
+            modules: [Navigation],
+            slidesPerView: 1,
+            simulateTouch: false,
+            allowTouchMove: false,
+            navigation: {
+                prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
+                nextEl: ourSpecialists.querySelector('.swiper-btn-next'),
+
+            }
+        })
+        const bigImg = new Swiper(ourSpecialists.querySelector('.our-specialists__big.swiper'), {
+            modules: [Navigation],
+            slidesPerView: 1,
+            navigation: {
+                prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
+                nextEl: ourSpecialists.querySelector('.swiper-btn-next'),
+
+            }
+        })
+
+        bigImg.on('slideChange', (swiper) => {
+            smallImg.slideTo(swiper.activeIndex)
+            userInfo.slideTo(swiper.activeIndex)
+
+        })
+    }
+}
 
 function initForms() {
     function formSubmit(inputData) {
@@ -51,7 +106,7 @@ function dropDowns() {
                 }
 
             })
-        }else{
+        } else {
             el.on('click', (e) => {
                 e.preventDefault()
                 e.currentTarget.classList.toggle('_opened')
@@ -59,7 +114,7 @@ function dropDowns() {
                     .classList.toggle('_opened')
             })
         }
-       
+
     })
 
 

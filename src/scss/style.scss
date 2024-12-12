@@ -2,13 +2,13 @@ $black: #140E0A;
 $black40: rgba(20, 14, 10, 0.40);
 $black16: rgba(20, 14, 10, 0.16);
 $white: #FFFEF8;
-$white40: #FFFEF8;
+$white40: rgba(255, 254, 248, 0.40);
 $bg: $white;
 $red: rgba(217, 56, 56, 1);
 $green: rgb(94, 217, 56);
-$sectionGap: 20rem;
-$sectionGapMobile: 16rem;
-$contentWidth: 148rem;
+$sectionGap: 13.4rem;
+$sectionGapMobile: 13rem;
+$contentWidth: 173rem;
 
 
 html {
@@ -79,10 +79,14 @@ main {
   flex-grow: 1;
 
   section {
-    margin-top: $sectionGap;
+    padding-top: $sectionGap;
+    padding-bottom: $sectionGap;
+    min-height: 100dvh;
+    overflow: hidden;
 
     @include mobile {
-      margin-top: $sectionGapMobile;
+      padding-top: $sectionGapMobile;
+      padding-bottom: $sectionGapMobile;
     }
   }
 }

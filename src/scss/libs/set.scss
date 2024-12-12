@@ -2,3 +2,18 @@
 @import 'swiper/scss/grid';
 @import 'swiper/scss/autoplay';
 @import 'swiper/scss/effect-fade';
+
+
+.swiper-btn {
+    width: 2.4rem;
+    height: 2.4rem;
+    flex-shrink: 0;
+
+    &-prev {
+        background-color: red;
+    }
+
+    &-next {
+        background-color: purple;
+    }
+}

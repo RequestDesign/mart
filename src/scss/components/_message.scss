@@ -1,0 +1,80 @@
+.message {
+    position: relative;
+    padding-top: 26rem;
+
+    & .ui-line {
+        position: absolute;
+        top: 33rem;
+        left: 0;
+    }
+
+    &__c {
+        display: grid;
+        grid-template-columns: .5fr 1fr 1fr .5fr;
+        gap: 3rem 4.4rem;
+        grid-auto-rows: auto;
+        grid-template-areas:
+            'btn heading heading heading'
+            '. exp mission .'
+            'small big text btn-small';
+
+        @include mobile {
+            grid-template-columns: .5fr 1fr;
+            gap: 4.8rem 3.2rem;
+            grid-template-areas: 
+            'heading heading'
+            'exp exp'
+            'mission mission'
+            'small big'
+            'text text'
+            'btn-small btn-small';
+        }
+
+        &-heading {
+            grid-area: heading;
+
+        }
+
+        & .btn-primary {
+            grid-area: btn;
+            width: fit-content;
+            transform: translate(23rem, -11rem);
+            @include mobile{
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: translate(-21rem, 25rem);
+            }
+        }
+
+        &-exp {
+            grid-area: exp;
+        }
+
+        &-mission {
+            grid-area: mission;
+        }
+
+        &-small {
+            grid-area: small;
+            display: flex;
+        }
+
+        &-big {
+            grid-area: big;
+            display: flex;
+        }
+
+        &-text {
+            grid-area: text;
+            display: flex;
+            flex-direction: column;
+            gap: 3.2rem;
+        }
+
+        & .btn-second {
+            grid-area: btn-small;
+            align-self: flex-end;
+        }
+    }
+}

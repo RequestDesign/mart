@@ -1,0 +1,77 @@
+.two-side {
+    position: relative;
+    & .ui-line{
+        bottom: 46.5rem;
+        left: 0;
+        position: absolute;
+        @include mobile{
+            bottom: 10.5rem;
+        }
+    }
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5.6rem;
+        align-items: center;
+        @include mobile{
+            flex-direction: column;
+            gap: 3.2rem;
+            align-items: flex-start;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4.4rem;
+        @include mobile{
+            grid-template-columns: 100%;
+        }
+
+        &-el {
+            display: flex;
+            flex-direction: column;
+            gap: 4.4rem;
+            height: 58rem;
+            position: relative;
+
+            @include mobile{
+                height: auto;
+            }
+
+            &-text {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                @include mobile{
+                   display: grid;
+                   grid-template-columns: 1fr 1fr;
+                }
+
+                & .btn-primary {
+                    margin-top: auto;
+                    margin-left: 50%;
+                    margin-bottom: 10rem;
+                    
+                }
+            }
+
+            &-img {
+                display: flex;
+                height: 100%;
+                @include mobile{
+                    height: 72rem;
+                }
+
+                & img {
+
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+
+        }
+    }
+}

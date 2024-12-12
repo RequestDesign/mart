@@ -9,17 +9,61 @@
 
 <body>
   <div class="wrapper">
-    <include src="./components/_header.html" data-props='{
-      ".container": {
-        "html":  "<h1 class=tl1>header</h1>"
-          }
-       }'></include>
-   
+    <include src="./components/_header.html"></include>
     <main>
+      <section class="heading-main">
+        <div class="ui-bg">
+          <img src="./assets/images/heading-main.png" alt="">
+        </div>
+        <div class="ui-line"></div>
+        <div class="container heading-main__c">
+
+          <button class="btn-primary ">
+            <span class="btn-primary-anchor">
+              <span class="btn-primary-c">
+                <span class="btn-primary-text">
+                  оставить <br />
+                  заявку
+                </span>
+                <span class="ui-icon _arrow-white-right">  
+                </span>
+              </span>
+              <span class="btn-primary-circle"></span>
+            </span>
+          </button>
+
+        
+
+          <div class="heading-main__c-top">
+            <h1 class="tl1 txt-up">
+              Эксклюзивный <br />
+              дизайн под ключ <br />
+              для исключительных<br />
+              клиентов
+            </h1>
+          </div>
+
+          <div class="heading-main__c-bottom">
+            <p class="txt-up txt22">
+              Более 10 лет с вами
+            </p>
+            <p class="txt20">
+              Создадим эксклюзивный интерьер Вашей мечты под Ваш бюджет, в срок, по официальному
+              договору. Воплотим его в точности, пока вы занимаетесь своими делами
+            </p>
+          </div>
+
+        </div>
+      </section>
+      <include src="./components/_our-projects.html"></include>
+      <include src="./components/_message.html"></include>
+      <include src="./components/_services.html"></include>
+      <include src="./components/_two-side.html"></include>
+      <include src="./components/_our-specialists.html"></include>
+
 
 
     </main>
-  
     <include src="./components/_footer.html"></include>
   </div>
 

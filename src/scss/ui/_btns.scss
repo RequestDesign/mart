@@ -35,12 +35,19 @@
         }
     }
 
+    &._black {
+        & .btn-primary-circle {
+            border: 1px solid $black16;
+
+        }
+    }
+
     &-circle {
         position: absolute;
         width: 37rem;
         height: 37rem;
         background-color: transparent;
-        border: 2px solid $black16;
+        border: 1px solid $white40;
         top: 0;
         left: 0;
         transform: translate(-50%, -50%);
@@ -77,6 +84,7 @@
 
             }
         }
+
         & .btn-second-text {
             background-position: 64% 0;
         }
@@ -91,14 +99,15 @@
         letter-spacing: 0.12em;
         position: relative;
         z-index: 2;
-        background: rgb(0,0,0);
-        background: linear-gradient(90deg, rgba(0,0,0,1) 67%, rgba(255,255,255,1) 67%);
-        background-size:150% 100% ;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 67%, rgba(255, 255, 255, 1) 67%);
+        background-size: 150% 100%;
         background-position: 0% 0;
         transition: background-position .2s linear;
         background-clip: text;
         color: transparent;
-        fill:transparent ;
+        fill: transparent;
+        text-transform: uppercase;
         @include mobile {
             font-size: 2rem;
         }
