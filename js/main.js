@@ -24,7 +24,56 @@ var swiper = __webpack_require__(652);
 const HTML = jquery_default()('html');
 jquery_default()(function () {
   dropDowns();
+  iniSwipers();
 });
+function iniSwipers() {
+  const ourProjects = document.querySelector('.our-projects');
+  if (ourProjects) {
+    new swiper/* default */.Z(ourProjects.querySelector('.swiper'), {
+      modules: [modules/* Navigation */.W_],
+      slidesPerView: 1,
+      simulateTouch: false,
+      navigation: {
+        prevEl: ourProjects.querySelector('.swiper-btn-prev'),
+        nextEl: ourProjects.querySelector('.swiper-btn-next')
+      }
+    });
+  }
+  const ourSpecialists = document.querySelector('.our-specialists');
+  if (ourSpecialists) {
+    const smallImg = new swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__small.swiper'), {
+      modules: [modules/* Navigation */.W_],
+      slidesPerView: 1,
+      simulateTouch: false,
+      navigation: {
+        prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
+        nextEl: ourSpecialists.querySelector('.swiper-btn-next')
+      }
+    });
+    const userInfo = new swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__info-data.swiper'), {
+      modules: [modules/* Navigation */.W_],
+      slidesPerView: 1,
+      simulateTouch: false,
+      allowTouchMove: false,
+      navigation: {
+        prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
+        nextEl: ourSpecialists.querySelector('.swiper-btn-next')
+      }
+    });
+    const bigImg = new swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__big.swiper'), {
+      modules: [modules/* Navigation */.W_],
+      slidesPerView: 1,
+      navigation: {
+        prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
+        nextEl: ourSpecialists.querySelector('.swiper-btn-next')
+      }
+    });
+    bigImg.on('slideChange', swiper => {
+      smallImg.slideTo(swiper.activeIndex);
+      userInfo.slideTo(swiper.activeIndex);
+    });
+  }
+}
 function initForms() {
   function formSubmit(inputData) {
     console.log(inputData);
