@@ -9,6 +9,7 @@ $green: rgb(94, 217, 56);
 $sectionGap: 13.4rem;
 $sectionGapMobile: 13rem;
 $contentWidth: 173rem;
+$mobilePadding: 1.6rem;
 
 
 html {
@@ -68,8 +69,8 @@ body {
 
   @include mobile {
     width: 100%;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: $mobilePadding;
+    padding-right: $mobilePadding;
   }
 }
 

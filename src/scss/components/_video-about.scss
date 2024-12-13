@@ -1,0 +1,87 @@
+.video-about {
+    display: flex;
+
+    &__c {
+        flex-grow: 1;
+        position: relative;
+        display: flex;
+
+        &-top {
+            transition: transform .5s linear;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: fit-content;
+            padding-bottom: 6rem;
+            background-color: $white;
+
+            & .container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 7rem;
+
+                @include mobile {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4.8rem;
+                }
+
+            }
+
+            &-cell {
+                display: flex;
+                flex-direction: column;
+                gap: 1.6rem;
+              
+
+                @include mobile {
+                    width: 100%;
+                }
+
+                & .btn-second {
+                    margin-top: 1.6rem;
+
+                    @include mobile {
+                        margin-top: 4.8rem;
+                    }
+                }
+            }
+
+        }
+
+        &-main {
+            flex-grow: 1;
+            display: flex;
+            position: relative;
+            &:hover {
+                &+.video-about__c-top {
+                    transform: translate(0, -150%);
+                }
+            }
+            & .ui-line{
+                position: absolute;
+                bottom: 24rem;
+                width: 100%;
+
+            }
+            & .btn-primary{
+                position: absolute;
+                bottom: 30rem;
+                left: 60%;
+            }
+
+            &-img {
+                display: flex;
+                flex-grow: 1;
+                & img{
+
+                    object-fit: cover;
+                }
+            }
+
+        }
+    }
+
+}

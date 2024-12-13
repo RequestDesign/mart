@@ -28,6 +28,7 @@ function iniSwipers() {
 
         })
     }
+
     const ourSpecialists = document.querySelector('.our-specialists')
     if (ourSpecialists) {
         const smallImg = new Swiper(ourSpecialists.querySelector('.our-specialists__small.swiper'), {
@@ -64,6 +65,36 @@ function iniSwipers() {
         bigImg.on('slideChange', (swiper) => {
             smallImg.slideTo(swiper.activeIndex)
             userInfo.slideTo(swiper.activeIndex)
+
+        })
+    }
+
+    const results = document.querySelector('.results')
+    if (results) {
+        const one = new Swiper(results.querySelector('.results__c-sliders-one.swiper'), {
+            modules: [Navigation],
+            navigation: {
+                prevEl: results.querySelector('.swiper-btn-prev'),
+                nextEl: results.querySelector('.swiper-btn-next')
+            },
+            slidesPerView: 1,
+            simulateTouch: false
+        })
+        const two = new Swiper(results.querySelector('.results__c-sliders-two.swiper'), {
+            modules: [Navigation],
+            navigation: {
+                prevEl: results.querySelector('.swiper-btn-prev'),
+                nextEl: results.querySelector('.swiper-btn-next')
+            },
+            slidesPerView: 1,
+            simulateTouch: false
+        })
+        one.on('slideChange', (swiper) => {
+            two.slideTo(swiper.activeIndex)
+
+        })
+        two.on('slideChange', (swiper) => {
+            one.slideTo(swiper.activeIndex)
 
         })
     }

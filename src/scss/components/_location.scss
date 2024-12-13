@@ -1,0 +1,83 @@
+.location {
+    position: relative;
+    & .ui-line{
+        position: absolute;
+        top: 48rem;
+        left: 0;
+        @include mobile{
+            top: 84rem;
+        }
+    }
+    &__c {
+        margin-top: 5.6rem;
+        display: grid;
+        grid-template-columns: .35fr 1fr .5fr;
+        grid-template-rows:auto 20rem 10rem ;
+        gap: 4.4rem;
+        grid-template-areas: 
+        'year big btn'
+        'small big dnk'
+        'small big object';
+        @include mobile{
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            grid-auto-rows: auto;
+            gap: 8rem 3.2rem;
+            grid-template-areas: 
+            'year btn'
+            'small dnk'
+            'big big'
+            'object object';
+
+        }
+        &-year{
+            grid-area: year;
+            padding-top: 5.6rem;
+            @include mobile{
+                font-size: 2rem;
+                line-height: 2.8rem;
+                padding-bottom: 8rem;
+            }
+        }
+        & .btn-primary{
+            grid-area: btn;
+            transform: translate(19rem, -21rem);
+            width: fit-content;
+            @include mobile{
+                transform: translate(15rem, 0);
+            }
+        }
+        &-small{
+            grid-area: small;
+            display: flex;
+            @include mobile{
+                height: 46rem;
+            }
+            & img{
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        &-big{
+            grid-area: big;
+            height: 100%;
+            display: flex;
+            @include mobile{
+                height: 54rem;
+            }
+            & img{
+                object-fit: cover;
+            }
+        }
+        &-dnk{
+            grid-area: dnk;
+            @include mobile{
+                font-size: 2.8rem;
+            }
+        }
+        &-object{
+            grid-area: object;
+        }
+    }
+
+}

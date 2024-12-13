@@ -1,0 +1,163 @@
+.request-form {
+    @include mobile {
+        & .container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &__top {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        margin-bottom: 8.8rem;
+
+        @include mobile {
+            padding-left: $mobilePadding;
+            padding-right: $mobilePadding;
+        }
+
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: .5fr 1fr .5fr;
+        gap: 4.4rem;
+
+        @include mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 8rem;
+        }
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+
+            @include mobile {
+                padding-left: $mobilePadding;
+                padding-right: $mobilePadding;
+            }
+
+            & form {
+                margin-top: 1.6rem;
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 2rem;
+                justify-content: space-between;
+                border-bottom: 1px solid $black16;
+              
+
+                & input {
+                    border: none !important;
+                    padding-bottom: 0;
+                }
+            }
+
+            &-social {
+                display: grid;
+                grid-template-columns: min-content min-content min-content auto;
+                gap: 1.6rem;
+                margin-top: auto;
+                position: relative;
+
+                & p {
+                    grid-column: 1 / span 4;
+                }
+
+                &-link {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    border: 1px solid $black;
+                    opacity: .3;
+                    padding: 2.2rem;
+                    width: fit-content;
+                    flex-shrink: 0;
+                    transition: opacity .2s linear;
+
+                    @include hover {
+                        opacity: 1;
+                       
+                    }
+
+                    @include mobile {
+                        padding: 3.6rem;
+                    }
+
+
+                    & img {
+                        width: 3.2rem;
+                        height: 3.2rem;
+
+                        @include mobile {
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                    }
+
+                    &._inst {
+                        position: relative;
+
+                        &::after {
+                            content: '*';
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                        }
+                        @include hover{
+                            &~.request-form__grid-form-social-inst{
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+
+                &-inst {
+                    position: absolute;
+                    bottom: -1.6rem;
+                    left: 0;
+                    transform: translateY(100%);
+                    opacity: 0;
+                    transition:  opacity .2s linear;
+                }
+
+            }
+        }
+
+        &-img {
+            display: flex;
+
+            @include mobile {
+                height: 50rem;
+
+            }
+
+            & img {
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        &-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            @include mobile {
+                gap: 5rem;
+                padding-left: $mobilePadding;
+                padding-right: $mobilePadding;
+            }
+
+            & ul {
+                display: flex;
+                flex-direction: column;
+                gap: 1.8rem;
+            }
+        }
+    }
+
+}

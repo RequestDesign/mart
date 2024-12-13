@@ -70,4 +70,14 @@
             object-position: center;
         }
     }
+
+    &-marked-list{
+        & li{
+            list-style: disc;
+            list-style-position: inside;
+            &::marker{
+                color: $black40;
+            }
+        }
+    }
 }

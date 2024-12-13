@@ -1,0 +1,77 @@
+.results {
+    &__c {
+        display: grid;
+        grid-template-columns: .5fr 1fr;
+        gap: 4.4rem;
+
+        @include mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 3.2rem;
+        }
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4.4rem;
+
+            @include mobile {
+                display: grid;
+                grid-template-columns: auto auto;
+                gap: 3.2rem;
+
+                & p {
+                    grid-column: 1 / span 2;
+                }
+
+                & .swiper-navigation {
+                    justify-self: flex-end;
+                }
+            }
+
+            & .btn-second {
+                margin-top: 4rem;
+            }
+
+            & .swiper-navigation {
+                margin-top: auto;
+            }
+        }
+
+        &-sliders {
+            height: 72rem;
+            display: grid;
+            width: 100%;
+            grid-template-columns: 1fr 1fr;
+            gap: 4.4rem;
+
+            @include mobile {
+                height: 60rem;
+                gap: 3.2rem;
+            }
+
+            & .swiper {
+                position: relative;
+                width: 100%;
+
+                & .txt14 {
+                    position: absolute;
+                    z-index: 3;
+                    top: 5.6rem;
+                    right: 5.6rem;
+                    @include mobile{
+                        top: 3.2rem;
+                        right: 3.2rem;
+                    }
+                }
+                &-slide{
+                    display: flex;
+                    & img{
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+            }
+        }
+    }
+}
