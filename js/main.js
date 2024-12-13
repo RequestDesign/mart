@@ -73,6 +73,33 @@ function iniSwipers() {
       userInfo.slideTo(swiper.activeIndex);
     });
   }
+  const results = document.querySelector('.results');
+  if (results) {
+    const one = new swiper/* default */.Z(results.querySelector('.results__c-sliders-one.swiper'), {
+      modules: [modules/* Navigation */.W_],
+      navigation: {
+        prevEl: results.querySelector('.swiper-btn-prev'),
+        nextEl: results.querySelector('.swiper-btn-next')
+      },
+      slidesPerView: 1,
+      simulateTouch: false
+    });
+    const two = new swiper/* default */.Z(results.querySelector('.results__c-sliders-two.swiper'), {
+      modules: [modules/* Navigation */.W_],
+      navigation: {
+        prevEl: results.querySelector('.swiper-btn-prev'),
+        nextEl: results.querySelector('.swiper-btn-next')
+      },
+      slidesPerView: 1,
+      simulateTouch: false
+    });
+    one.on('slideChange', swiper => {
+      two.slideTo(swiper.activeIndex);
+    });
+    two.on('slideChange', swiper => {
+      one.slideTo(swiper.activeIndex);
+    });
+  }
 }
 function initForms() {
   function formSubmit(inputData) {
