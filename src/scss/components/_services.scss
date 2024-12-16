@@ -33,6 +33,10 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4.4rem;
+        @include desktop{
+            
+            padding-bottom: 6.1rem;
+        }
         @include mobile{
             grid-template-columns: 1fr 1fr;
 

@@ -2,6 +2,8 @@
 @import 'swiper/scss/grid';
 @import 'swiper/scss/autoplay';
 @import 'swiper/scss/effect-fade';
+@import 'swiper/scss/mousewheel';
+
 
 
 .swiper-btn {
@@ -15,5 +17,35 @@
 
     &-next {
         background-color: purple;
+    }
+}
+
+.main-swiper {
+    width: 100vw;
+    height: 100dvh;
+}
+
+.page-slide {
+
+
+    @include desktop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &>.container {
+
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    }
+
+    &-scroll {
+
+
+        @include mobile {
+            height: 100%;
+            overflow: auto;
+        }
     }
 }

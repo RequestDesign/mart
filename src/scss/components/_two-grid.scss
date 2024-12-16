@@ -1,6 +1,7 @@
 .two-grid {
     position: relative;
 
+
     & .ui-line {
         position: absolute;
         top: 27.5rem;
@@ -15,6 +16,8 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 8rem 4.4rem;
+        margin-top: 0;
+        padding-top: 13.8rem;
 
         @include mobile {
             display: flex;

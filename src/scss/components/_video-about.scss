@@ -16,6 +16,10 @@
             height: fit-content;
             padding-bottom: 6rem;
             background-color: $white;
+            padding-top: $sectionGap;
+            @include mobile{
+                padding-top: $sectionGapMobile;
+            }
 
             & .container {
                 display: grid;

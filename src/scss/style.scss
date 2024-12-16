@@ -80,14 +80,13 @@ main {
   flex-grow: 1;
 
   section {
-    padding-top: $sectionGap;
-    padding-bottom: $sectionGap;
+  
     min-height: 100dvh;
     overflow: hidden;
 
     @include mobile {
-      padding-top: $sectionGapMobile;
-      padding-bottom: $sectionGapMobile;
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
 }

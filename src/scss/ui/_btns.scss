@@ -116,12 +116,13 @@
 
     &-circle {
         position: relative;
+        height: 10rem;
 
         &::after {
             content: '';
             display: block;
             position: absolute;
-            top: 0;
+            top: 50%;
             left: 0;
             width: 10rem;
             height: 10rem;

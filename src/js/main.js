@@ -1,16 +1,99 @@
 
 import $ from 'jquery'
 import Inputmask from 'inputmask'
-import { Navigation, Pagination, Grid, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Grid, Autoplay, Mousewheel } from 'swiper/modules';
 import Swiper from 'swiper';
 import Form from './utils/Form'
+
 
 const HTML = $('html')
 $(function () {
     dropDowns()
     iniSwipers()
+    mainPageCore()
 
 })
+function mainPageCore() {
+
+    const main = document.querySelector('.main-swiper.swiper')
+    if (!main) return
+    const wrapper = main.querySelector('.swiper-wrapper')
+
+    wrapper.querySelectorAll('section')
+        .forEach((e) => {
+            e.classList.add('page-slide')
+        })
+
+
+    let canSlide = true
+    const swiper = new Swiper(main, {
+        modules: [Mousewheel],
+        direction: 'vertical',
+        slidesPerView: 1,
+        mousewheel: true,
+        simulateTouch: false,
+        slideClass: 'page-slide',
+        noSwipingClass: 'page-slide-stop',
+        speed: 500,
+        on: {
+            /* 
+                        slidePrevTransitionStart: (s) => {
+                            if(canSlide){
+                                canSlide = false
+                                setTimeout(() => {
+                                    canSlide = true
+                                    s.slidePrev()
+                                }, 2000);
+                            }
+                            return false
+                        },
+                        slideNextTransitionStart: (s) => {
+                            if(canSlide){
+                                canSlide = false
+                                setTimeout(() => {
+                                    canSlide = true
+                                    s.slideNext()
+                                }, 2000);
+                            }
+                           swiper.stop()
+                        }, */
+            slideChangeTransitionEnd: (swiper) => {
+console.log('end');
+                const activeSlide = swiper.slides[swiper.activeIndex],
+                    container = activeSlide.querySelector('.page-slide-scroll')
+
+                if (!container) return
+
+                if (container.scrollHeight > (container.clientHeight + 3)) {
+
+                    const scrollDifferenceTop = container.scrollHeight - container.clientHeight;
+
+                    container.scrollTo(0, 0)
+
+                        activeSlide.classList.add('page-slide-stop')
+                    swiper.mousewheel.disable();
+                    swiper.allowTouchMove = false;
+
+
+                    activeSlide.addEventListener('click', (e) => {
+                        console.log(container.scrollHeight, container.clientHeight);
+                    })
+                    console.log('qwe');
+                    container.addEventListener('scroll', () => {
+
+                        if (container.scrollTop <= 0 || scrollDifferenceTop - container.scrollTop <= 1) {
+                            swiper.mousewheel.enable();
+                            swiper.allowTouchMove = true;
+                            activeSlide.classList.remove('page-slide-stop')
+                        }
+                    });
+
+                }
+            }
+        }
+
+    })
+}
 
 
 function iniSwipers() {

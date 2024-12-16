@@ -23,6 +23,9 @@
         display: grid;
         grid-template-columns: .5fr 1fr .5fr;
         gap: 4.4rem;
+        @include desktop{
+            padding-bottom: 3.5rem;
+        }
 
         @include mobile {
             display: flex;

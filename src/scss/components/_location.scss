@@ -1,5 +1,12 @@
 .location {
     position: relative;
+    padding-top: $sectionGap;
+    padding-bottom: $sectionGap;
+    
+    @include mobile{
+        padding-top: $sectionGap;
+        padding-bottom: $sectionGap;
+    }
     & .ui-line{
         position: absolute;
         top: 48rem;

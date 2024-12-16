@@ -1,12 +1,19 @@
 .message {
     position: relative;
-    padding-top: 26rem;
+    
 
+    @include desktop{
+        padding-top: 26rem;
+    }
+    @include mobile{
+        padding-top: $sectionGapMobile;
+    }
     & .ui-line {
         position: absolute;
         top: 33rem;
         left: 0;
     }
+  
 
     &__c {
         display: grid;
@@ -17,8 +24,10 @@
             'btn heading heading heading'
             '. exp mission .'
             'small big text btn-small';
+            
 
         @include mobile {
+         
             grid-template-columns: .5fr 1fr;
             gap: 4.8rem 3.2rem;
             grid-template-areas: 
