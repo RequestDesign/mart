@@ -14,7 +14,7 @@ var inputmask = __webpack_require__(382);
 // EXTERNAL MODULE: ./node_modules/swiper/modules/index.mjs + 25 modules
 var modules = __webpack_require__(217);
 // EXTERNAL MODULE: ./node_modules/swiper/swiper.mjs + 1 modules
-var swiper = __webpack_require__(652);
+var swiper_swiper = __webpack_require__(652);
 ;// CONCATENATED MODULE: ./src/js/main.js
 
 
@@ -25,11 +25,78 @@ const HTML = jquery_default()('html');
 jquery_default()(function () {
   dropDowns();
   iniSwipers();
+  mainPageCore();
 });
+function mainPageCore() {
+  const main = document.querySelector('.main-swiper.swiper');
+  if (!main) return;
+  const wrapper = main.querySelector('.swiper-wrapper');
+  wrapper.querySelectorAll('section').forEach(e => {
+    e.classList.add('page-slide');
+  });
+  let canSlide = true;
+  const swiper = new swiper_swiper/* default */.Z(main, {
+    modules: [modules/* Mousewheel */.Gk],
+    direction: 'vertical',
+    slidesPerView: 1,
+    mousewheel: true,
+    simulateTouch: false,
+    slideClass: 'page-slide',
+    noSwipingClass: 'page-slide-stop',
+    speed: 500,
+    on: {
+      /* 
+                  slidePrevTransitionStart: (s) => {
+                      if(canSlide){
+                          canSlide = false
+                          setTimeout(() => {
+                              canSlide = true
+                              s.slidePrev()
+                          }, 2000);
+                      }
+                      return false
+                  },
+                  slideNextTransitionStart: (s) => {
+                      if(canSlide){
+                          canSlide = false
+                          setTimeout(() => {
+                              canSlide = true
+                              s.slideNext()
+                          }, 2000);
+                      }
+                     swiper.stop()
+                  }, */
+      slideChangeTransitionEnd: swiper => {
+        console.log('end');
+        const activeSlide = swiper.slides[swiper.activeIndex],
+          container = activeSlide.querySelector('.page-slide-scroll');
+        if (!container) return;
+        if (container.scrollHeight > container.clientHeight + 3) {
+          const scrollDifferenceTop = container.scrollHeight - container.clientHeight;
+          container.scrollTo(0, 0);
+          activeSlide.classList.add('page-slide-stop');
+          swiper.mousewheel.disable();
+          swiper.allowTouchMove = false;
+          activeSlide.addEventListener('click', e => {
+            console.log(container.scrollHeight, container.clientHeight);
+          });
+          console.log('qwe');
+          container.addEventListener('scroll', () => {
+            if (container.scrollTop <= 0 || scrollDifferenceTop - container.scrollTop <= 1) {
+              swiper.mousewheel.enable();
+              swiper.allowTouchMove = true;
+              activeSlide.classList.remove('page-slide-stop');
+            }
+          });
+        }
+      }
+    }
+  });
+}
 function iniSwipers() {
   const ourProjects = document.querySelector('.our-projects');
   if (ourProjects) {
-    new swiper/* default */.Z(ourProjects.querySelector('.swiper'), {
+    new swiper_swiper/* default */.Z(ourProjects.querySelector('.swiper'), {
       modules: [modules/* Navigation */.W_],
       slidesPerView: 1,
       simulateTouch: false,
@@ -41,7 +108,7 @@ function iniSwipers() {
   }
   const ourSpecialists = document.querySelector('.our-specialists');
   if (ourSpecialists) {
-    const smallImg = new swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__small.swiper'), {
+    const smallImg = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__small.swiper'), {
       modules: [modules/* Navigation */.W_],
       slidesPerView: 1,
       simulateTouch: false,
@@ -50,7 +117,7 @@ function iniSwipers() {
         nextEl: ourSpecialists.querySelector('.swiper-btn-next')
       }
     });
-    const userInfo = new swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__info-data.swiper'), {
+    const userInfo = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__info-data.swiper'), {
       modules: [modules/* Navigation */.W_],
       slidesPerView: 1,
       simulateTouch: false,
@@ -60,7 +127,7 @@ function iniSwipers() {
         nextEl: ourSpecialists.querySelector('.swiper-btn-next')
       }
     });
-    const bigImg = new swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__big.swiper'), {
+    const bigImg = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__big.swiper'), {
       modules: [modules/* Navigation */.W_],
       slidesPerView: 1,
       navigation: {
@@ -75,7 +142,7 @@ function iniSwipers() {
   }
   const results = document.querySelector('.results');
   if (results) {
-    const one = new swiper/* default */.Z(results.querySelector('.results__c-sliders-one.swiper'), {
+    const one = new swiper_swiper/* default */.Z(results.querySelector('.results__c-sliders-one.swiper'), {
       modules: [modules/* Navigation */.W_],
       navigation: {
         prevEl: results.querySelector('.swiper-btn-prev'),
@@ -84,7 +151,7 @@ function iniSwipers() {
       slidesPerView: 1,
       simulateTouch: false
     });
-    const two = new swiper/* default */.Z(results.querySelector('.results__c-sliders-two.swiper'), {
+    const two = new swiper_swiper/* default */.Z(results.querySelector('.results__c-sliders-two.swiper'), {
       modules: [modules/* Navigation */.W_],
       navigation: {
         prevEl: results.querySelector('.swiper-btn-prev'),
