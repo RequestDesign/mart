@@ -11,8 +11,8 @@ var jquery = __webpack_require__(755);
 var jquery_default = /*#__PURE__*/__webpack_require__.n(jquery);
 // EXTERNAL MODULE: ./node_modules/inputmask/dist/inputmask.js
 var inputmask = __webpack_require__(382);
-// EXTERNAL MODULE: ./node_modules/swiper/modules/index.mjs + 25 modules
-var modules = __webpack_require__(217);
+// EXTERNAL MODULE: ./node_modules/swiper/modules/index.mjs + 26 modules
+var modules = __webpack_require__(11);
 // EXTERNAL MODULE: ./node_modules/swiper/swiper.mjs + 1 modules
 var swiper_swiper = __webpack_require__(652);
 ;// CONCATENATED MODULE: ./src/js/main.js
@@ -47,6 +47,7 @@ function mainPageCore() {
   const swiper = new swiper_swiper/* default */.Z(main, {
     modules: [modules/* Mousewheel */.Gk],
     direction: 'vertical',
+    followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
     simulateTouch: false,
@@ -110,9 +111,14 @@ function iniSwipers() {
   const ourProjects = document.querySelector('.our-projects');
   if (ourProjects) {
     new swiper_swiper/* default */.Z(ourProjects.querySelector('.swiper'), {
-      modules: [modules/* Navigation */.W_],
+      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       slidesPerView: 1,
       simulateTouch: false,
+      effect: 'fade',
+      speed: 100,
+      fadeEffect: {
+        crossFade: false
+      },
       navigation: {
         prevEl: ourProjects.querySelector('.swiper-btn-prev'),
         nextEl: ourProjects.querySelector('.swiper-btn-next')
@@ -122,8 +128,13 @@ function iniSwipers() {
   const ourSpecialists = document.querySelector('.our-specialists');
   if (ourSpecialists) {
     const smallImg = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__small.swiper'), {
-      modules: [modules/* Navigation */.W_],
+      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       slidesPerView: 1,
+      effect: 'fade',
+      speed: 100,
+      fadeEffect: {
+        crossFade: false
+      },
       simulateTouch: false,
       navigation: {
         prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
@@ -131,8 +142,13 @@ function iniSwipers() {
       }
     });
     const userInfo = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__info-data.swiper'), {
-      modules: [modules/* Navigation */.W_],
+      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       slidesPerView: 1,
+      effect: 'fade',
+      speed: 100,
+      fadeEffect: {
+        crossFade: false
+      },
       simulateTouch: false,
       allowTouchMove: false,
       navigation: {
@@ -141,8 +157,13 @@ function iniSwipers() {
       }
     });
     const bigImg = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__big.swiper'), {
-      modules: [modules/* Navigation */.W_],
+      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       slidesPerView: 1,
+      effect: 'fade',
+      speed: 100,
+      fadeEffect: {
+        crossFade: false
+      },
       navigation: {
         prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
         nextEl: ourSpecialists.querySelector('.swiper-btn-next')
@@ -156,7 +177,12 @@ function iniSwipers() {
   const results = document.querySelector('.results');
   if (results) {
     const one = new swiper_swiper/* default */.Z(results.querySelector('.results__c-sliders-one.swiper'), {
-      modules: [modules/* Navigation */.W_],
+      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
+      effect: 'fade',
+      speed: 100,
+      fadeEffect: {
+        crossFade: false
+      },
       navigation: {
         prevEl: results.querySelector('.swiper-btn-prev'),
         nextEl: results.querySelector('.swiper-btn-next')
@@ -165,7 +191,12 @@ function iniSwipers() {
       simulateTouch: false
     });
     const two = new swiper_swiper/* default */.Z(results.querySelector('.results__c-sliders-two.swiper'), {
-      modules: [modules/* Navigation */.W_],
+      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
+      effect: 'fade',
+      speed: 100,
+      fadeEffect: {
+        crossFade: false
+      },
       navigation: {
         prevEl: results.querySelector('.swiper-btn-prev'),
         nextEl: results.querySelector('.swiper-btn-next')
@@ -173,14 +204,15 @@ function iniSwipers() {
       slidesPerView: 1,
       simulateTouch: false
     });
-    one.on('slideChange', swiper => {
-      two.slideTo(swiper.activeIndex);
-    });
-    two.on('slideChange', swiper => {
-      one.slideTo(swiper.activeIndex);
-    });
+    /*  one.on('slideChange', (swiper) => {
+         two.slideTo(swiper.activeIndex)
+       })
+     two.on('slideChange', (swiper) => {
+         one.slideTo(swiper.activeIndex)
+       }) */
   }
 }
+
 function initForms() {
   function formSubmit(inputData) {
     console.log(inputData);
