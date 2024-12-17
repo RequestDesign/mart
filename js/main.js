@@ -79,6 +79,10 @@ function mainPageCore() {
         console.log('end');
         const activeSlide = swiper.slides[swiper.activeIndex],
           container = activeSlide.querySelector('.page-slide-scroll');
+        activeSlide.classList.remove('_opened');
+        activeSlide.querySelectorAll("._opened").forEach(e => {
+          e.classList.remove('_opened');
+        });
         if (!container) return;
         if (container.scrollHeight > container.clientHeight + 3) {
           const scrollDifferenceTop = container.scrollHeight - container.clientHeight;
