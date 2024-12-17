@@ -1,17 +1,30 @@
 
 import $ from 'jquery'
 import Inputmask from 'inputmask'
-import { Navigation, Pagination, Grid, Autoplay, Mousewheel } from 'swiper/modules';
+import { Navigation, Pagination, Grid, Autoplay, Mousewheel, EffectFade } from 'swiper/modules';
 import Swiper from 'swiper';
 import Form from './utils/Form'
 
 
 const HTML = $('html')
 $(function () {
+    document.querySelectorAll('[data-anime-delay],[data-anime-speed]')
+        .forEach((el) => {
+            if (el.dataset.animeDelay) {
+                el.style.transitionDelay = el.dataset.animeDelay
+            }
+
+            if (el.dataset.animeSpeed) {
+                el.style.transitionDuration = el.dataset.animeSpeed
+
+            }
+
+        })
+
     dropDowns()
     iniSwipers()
     mainPageCore()
-
+    sectionTopper()
 })
 function mainPageCore() {
 
@@ -29,12 +42,15 @@ function mainPageCore() {
     const swiper = new Swiper(main, {
         modules: [Mousewheel],
         direction: 'vertical',
+        followFinger: false,
         slidesPerView: 1,
         mousewheel: true,
         simulateTouch: false,
         slideClass: 'page-slide',
         noSwipingClass: 'page-slide-stop',
-        speed: 500,
+        speed: 100,
+
+
         on: {
             /* 
                         slidePrevTransitionStart: (s) => {
@@ -58,9 +74,15 @@ function mainPageCore() {
                            swiper.stop()
                         }, */
             slideChangeTransitionEnd: (swiper) => {
-console.log('end');
+                console.log('end');
                 const activeSlide = swiper.slides[swiper.activeIndex],
-                    container = activeSlide.querySelector('.page-slide-scroll')
+                    container = activeSlide.querySelector('.page-slide-scroll');
+
+                activeSlide.classList.remove('_opened')
+                activeSlide.querySelectorAll("._opened")
+                    .forEach((e) => {
+                        e.classList.remove('_opened')
+                    })
 
                 if (!container) return
 
@@ -70,7 +92,7 @@ console.log('end');
 
                     container.scrollTo(0, 0)
 
-                        activeSlide.classList.add('page-slide-stop')
+                    activeSlide.classList.add('page-slide-stop')
                     swiper.mousewheel.disable();
                     swiper.allowTouchMove = false;
 
@@ -101,9 +123,14 @@ function iniSwipers() {
 
     if (ourProjects) {
         new Swiper(ourProjects.querySelector('.swiper'), {
-            modules: [Navigation],
+            modules: [Navigation, EffectFade],
             slidesPerView: 1,
             simulateTouch: false,
+            effect: 'fade',
+            speed: 100,
+            fadeEffect: {
+                crossFade: false
+            },
             navigation: {
                 prevEl: ourProjects.querySelector('.swiper-btn-prev'),
                 nextEl: ourProjects.querySelector('.swiper-btn-next')
@@ -115,8 +142,13 @@ function iniSwipers() {
     const ourSpecialists = document.querySelector('.our-specialists')
     if (ourSpecialists) {
         const smallImg = new Swiper(ourSpecialists.querySelector('.our-specialists__small.swiper'), {
-            modules: [Navigation],
+            modules: [Navigation, EffectFade],
             slidesPerView: 1,
+            effect: 'fade',
+            speed: 100,
+            fadeEffect: {
+                crossFade: false
+            },
             simulateTouch: false,
             navigation: {
                 prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
@@ -125,8 +157,13 @@ function iniSwipers() {
             }
         })
         const userInfo = new Swiper(ourSpecialists.querySelector('.our-specialists__info-data.swiper'), {
-            modules: [Navigation],
+            modules: [Navigation, EffectFade],
             slidesPerView: 1,
+            effect: 'fade',
+            speed: 100,
+            fadeEffect: {
+                crossFade: false
+            },
             simulateTouch: false,
             allowTouchMove: false,
             navigation: {
@@ -136,8 +173,13 @@ function iniSwipers() {
             }
         })
         const bigImg = new Swiper(ourSpecialists.querySelector('.our-specialists__big.swiper'), {
-            modules: [Navigation],
+            modules: [Navigation, EffectFade],
             slidesPerView: 1,
+            effect: 'fade',
+            speed: 100,
+            fadeEffect: {
+                crossFade: false
+            },
             navigation: {
                 prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
                 nextEl: ourSpecialists.querySelector('.swiper-btn-next'),
@@ -155,7 +197,12 @@ function iniSwipers() {
     const results = document.querySelector('.results')
     if (results) {
         const one = new Swiper(results.querySelector('.results__c-sliders-one.swiper'), {
-            modules: [Navigation],
+            modules: [Navigation, EffectFade],
+            effect: 'fade',
+            speed: 100,
+            fadeEffect: {
+                crossFade: false
+            },
             navigation: {
                 prevEl: results.querySelector('.swiper-btn-prev'),
                 nextEl: results.querySelector('.swiper-btn-next')
@@ -164,7 +211,12 @@ function iniSwipers() {
             simulateTouch: false
         })
         const two = new Swiper(results.querySelector('.results__c-sliders-two.swiper'), {
-            modules: [Navigation],
+            modules: [Navigation, EffectFade],
+            effect: 'fade',
+            speed: 100,
+            fadeEffect: {
+                crossFade: false
+            },
             navigation: {
                 prevEl: results.querySelector('.swiper-btn-prev'),
                 nextEl: results.querySelector('.swiper-btn-next')
@@ -172,14 +224,14 @@ function iniSwipers() {
             slidesPerView: 1,
             simulateTouch: false
         })
-        one.on('slideChange', (swiper) => {
+       /*  one.on('slideChange', (swiper) => {
             two.slideTo(swiper.activeIndex)
 
         })
         two.on('slideChange', (swiper) => {
             one.slideTo(swiper.activeIndex)
 
-        })
+        }) */
     }
 }
 
@@ -234,6 +286,18 @@ function dropDowns() {
 
 }
 
+function sectionTopper() {
+    const t = document.querySelectorAll('.section-with-topper')
+    if (!t) return
+    function click(e) {
+        e.target.closest('.section-with-topper').classList.toggle('_opened')
+
+    }
+    t.forEach((e) => {
+        e.querySelector('.section-with-topper__main')
+            .addEventListener('click', click, { once: true })
+    })
+}
 function modalsHandler() {
     const modalOpeners = $('.modal-opener'),
         modalClosers = $('.modal-closer'),

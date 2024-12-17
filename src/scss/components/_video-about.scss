@@ -7,19 +7,7 @@
         display: flex;
 
         &-top {
-            transition: transform .5s linear;
-            position: absolute;
-            z-index: 5;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: fit-content;
-            padding-bottom: 6rem;
-            background-color: $white;
-            padding-top: $sectionGap;
-            @include mobile{
-                padding-top: $sectionGapMobile;
-            }
+
 
             & .container {
                 display: grid;
@@ -38,7 +26,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 1.6rem;
-              
+
 
                 @include mobile {
                     width: 100%;
@@ -56,21 +44,17 @@
         }
 
         &-main {
-            flex-grow: 1;
             display: flex;
-            position: relative;
-            &:hover {
-                &+.video-about__c-top {
-                    transform: translate(0, -150%);
-                }
-            }
-            & .ui-line{
+           
+
+            & .ui-line {
                 position: absolute;
                 bottom: 24rem;
                 width: 100%;
 
             }
-            & .btn-primary{
+
+            & .btn-primary {
                 position: absolute;
                 bottom: 30rem;
                 left: 60%;
@@ -79,7 +63,9 @@
             &-img {
                 display: flex;
                 flex-grow: 1;
-                & img{
+           
+
+                & img {
 
                     object-fit: cover;
                 }

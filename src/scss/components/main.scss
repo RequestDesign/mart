@@ -8,6 +8,11 @@
         top: 54rem;
         width: 100%;
     }
+    &__bg{
+        top: 50%;
+        transform: translateY(-50%);
+        height: 101%;
+    }
     &__c {
         width: 113rem;
         height: 60rem;

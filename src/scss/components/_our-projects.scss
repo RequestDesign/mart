@@ -1,26 +1,27 @@
 .our-projects {
     display: flex;
 
-    &__c {
-        flex-grow: 1;
+    &._opened {
+        & .swiper-navigation {
+            opacity: 1;
+            transform: translate(-50%, 0);
+            animation: project-body .5s ease-in-out forwards;
+        }
 
-        position: relative;
-        display: flex;
+        & .ui-line {
+            animation: project-line .5s ease-in-out forwards;
+        }
+
+        & .our-projects__c-main-slide-body {
+            animation: project-body .5s ease-in-out forwards;
+        }
+    }
+
+    &__c {
+
 
         &-top {
-            transition: transform .5s linear;
-            position: absolute;
-            z-index: 5;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: fit-content;
-            padding-bottom: 6rem;
-            background-color: $white;
-            padding-top: $sectionGap;
-            @include mobile{
-                padding-top: $sectionGapMobile;
-            }
+
 
 
             & .container {
@@ -56,26 +57,19 @@
         }
 
         &-main {
-            position: relative;
-            z-index: 4;
-            height: 100%;
-            width: 100%;
-
-            &:hover {
-                &+.our-projects__c-top {
-                    transform: translate(0, -150%);
-                }
-            }
 
             & .swiper-navigation {
                 position: absolute;
-                bottom: 32.4rem;
+                margin-bottom: 32.4rem;
+                bottom: 0;
                 left: 50%;
-                transform: translateX(-50%);
                 display: flex;
                 justify-content: flex-end;
                 z-index: 3;
                 height: fit-content;
+                opacity: 0;
+                transform: translateX(-50%);
+                transition: opacity .5s ease-in-out;
 
                 @include mobile {
                     bottom: 16rem;
@@ -84,12 +78,16 @@
 
             & .ui-line {
                 position: absolute;
-                bottom: 38.7rem;
+                left: 0;
+                bottom: 0;
+                margin-bottom: 38.7rem;
+                /* 11.3 */
                 width: 100%;
                 z-index: 3;
 
+
                 @include mobile {
-                    bottom: 50%;
+                    margin-bottom: 50%;
                 }
             }
 
@@ -98,6 +96,14 @@
                 display: flex;
                 align-items: flex-end;
                 justify-content: center;
+              
+
+
+              
+
+
+
+
 
                 &-body {
                     margin-bottom: 32.4rem;
@@ -154,3 +160,24 @@
     }
 
 }
+
+@keyframes project-line {
+    0% {
+        margin-bottom: 38.7rem;
+    }
+
+    100% {
+        margin-bottom: 50rem;
+    }
+}
+
+@keyframes project-body {
+    0% {
+        margin-bottom: 32.4rem;
+    }
+
+    100% {
+        margin-bottom: 43.7rem;
+    }
+}
+

@@ -1,0 +1,55 @@
+.swiper-slide-active {
+    & .section-with-topper__top {
+        height: 50rem;
+    }
+}
+
+.section {
+    &-with-topper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        overflow: hidden;
+
+        &._opened {
+            & .section-with-topper__top {
+                transform: translateY(-150%);
+            }
+
+            & .section-with-topper__main {
+                cursor: default;
+            }
+        }
+
+        &__main {
+            position: relative;
+            z-index: 4;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        &__top {
+            transition: transform 0.5s linear;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            left: 0;
+            width: 100%;
+           /*  height: 100%; */
+            padding-bottom: 6rem;
+            background-color: #FFFEF8;
+            padding-top: 13.4rem;
+            display: grid;
+            grid-template-rows: 100%;
+            transition: transform .5s ease-in-out;
+
+
+            @include mobile {
+                padding-top: $sectionGapMobile;
+            }
+        }
+
+    }
+}
