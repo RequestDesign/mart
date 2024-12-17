@@ -23,9 +23,18 @@ var swiper_swiper = __webpack_require__(652);
 
 const HTML = jquery_default()('html');
 jquery_default()(function () {
+  document.querySelectorAll('[data-anime-delay],[data-anime-speed]').forEach(el => {
+    if (el.dataset.animeDelay) {
+      el.style.transitionDelay = el.dataset.animeDelay;
+    }
+    if (el.dataset.animeSpeed) {
+      el.style.transitionDuration = el.dataset.animeSpeed;
+    }
+  });
   dropDowns();
   iniSwipers();
   mainPageCore();
+  sectionTopper();
 });
 function mainPageCore() {
   const main = document.querySelector('.main-swiper.swiper');
@@ -43,7 +52,7 @@ function mainPageCore() {
     simulateTouch: false,
     slideClass: 'page-slide',
     noSwipingClass: 'page-slide-stop',
-    speed: 500,
+    speed: 100,
     on: {
       /* 
                   slidePrevTransitionStart: (s) => {
@@ -208,6 +217,18 @@ function dropDowns() {
         e.currentTarget.closest('.drop-down-container').classList.toggle('_opened');
       });
     }
+  });
+}
+function sectionTopper() {
+  const t = document.querySelectorAll('.section-with-topper');
+  if (!t) return;
+  function click(e) {
+    e.target.closest('.section-with-topper').classList.toggle('_opened');
+  }
+  t.forEach(e => {
+    e.querySelector('.section-with-topper__main').addEventListener('click', click, {
+      once: true
+    });
   });
 }
 function modalsHandler() {
