@@ -55,27 +55,26 @@ function mainPageCore() {
     noSwipingClass: 'page-slide-stop',
     speed: 100,
     on: {
-      /* 
-                  slidePrevTransitionStart: (s) => {
-                      if(canSlide){
-                          canSlide = false
-                          setTimeout(() => {
-                              canSlide = true
-                              s.slidePrev()
-                          }, 2000);
-                      }
-                      return false
-                  },
-                  slideNextTransitionStart: (s) => {
-                      if(canSlide){
-                          canSlide = false
-                          setTimeout(() => {
-                              canSlide = true
-                              s.slideNext()
-                          }, 2000);
-                      }
-                     swiper.stop()
-                  }, */
+      /*  slidePrevTransitionStart: (s) => {
+           if (canSlide) {
+               canSlide = false
+               setTimeout(() => {
+                   canSlide = true
+                   s.slidePrev()
+               }, 2000);
+           }
+          return false
+       },
+       slideNextTransitionStart: (s) => {
+           if (canSlide) {
+               canSlide = false
+               setTimeout(() => {
+                   canSlide = true
+                   s.slideNext()
+               }, 2000);
+           }
+          swiper.update()
+       }, */
       slideChangeTransitionEnd: swiper => {
         console.log('end');
         const activeSlide = swiper.slides[swiper.activeIndex],
@@ -206,10 +205,10 @@ function iniSwipers() {
     });
     /*  one.on('slideChange', (swiper) => {
          two.slideTo(swiper.activeIndex)
-       })
+        })
      two.on('slideChange', (swiper) => {
          one.slideTo(swiper.activeIndex)
-       }) */
+        }) */
   }
 }
 
