@@ -56,6 +56,9 @@
                     border: none !important;
                     padding-bottom: 0;
                 }
+                & .btn-second{
+                    margin-right: 1rem;
+                }
             }
 
             &-social {
@@ -65,7 +68,7 @@
                 margin-top: auto;
                 position: relative;
 
-                & p {
+                &-text {
                     grid-column: 1 / span 4;
                 }
 

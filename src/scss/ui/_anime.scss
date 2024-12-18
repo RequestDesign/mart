@@ -13,6 +13,7 @@
             transition-duration: .5s;
             transition-timing-function: ease-in-out;
             transition-property: clip-path;
+           
         }
 
         &-top {
@@ -53,6 +54,14 @@
 
             }
         }
+        &-left{
+            overflow: hidden;
+
+            & .anime-translate-t {
+                transform: translateX(150%);
+
+            }   
+        }
 
         &-t {
          
@@ -64,7 +73,7 @@
 }
 
 
-.swiper-slide-active {
+.core-slide-active {
 
     & .anime-height,
     & .anime-width-right,
@@ -78,5 +87,10 @@
         & .anime-translate-t {
             transform: translateY(0);
         }
+    }
+    & .anime-translate-left{
+        & .anime-translate-t {
+            transform: translateX(0);
+        }   
     }
 }

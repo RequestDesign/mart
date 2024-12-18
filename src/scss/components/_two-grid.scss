@@ -1,3 +1,9 @@
+.swiper-slide-active {
+    & .two-grid__c-cell-list-el {
+        border-bottom: 1px solid $black16;
+    }
+}
+
 .two-grid {
     position: relative;
 
@@ -75,10 +81,11 @@
 
                 &-el {
                     padding-bottom: 3.2rem;
-                    border-bottom: 1px solid $black16;
+border-bottom: 1px solid transparent;
                     display: flex;
                     flex-direction: column;
                     gap: 1.6rem;
+                    transition: border .5s .8s linear;
 
                     &:last-of-type {
                         border: none;
