@@ -54,6 +54,7 @@ function mainPageCore() {
     slideClass: 'page-slide',
     noSwipingClass: 'page-slide-stop',
     speed: 100,
+    slideActiveClass: 'core-slide-active',
     on: {
       /*  slidePrevTransitionStart: (s) => {
            if (canSlide) {
