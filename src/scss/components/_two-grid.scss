@@ -58,6 +58,9 @@
                 grid-template-rows: auto;
                 gap: 0;
             }
+            &-subhead{
+                height: fit-content;
+            }
 
             & .btn-primary {
                 margin-top: 5rem;
@@ -81,7 +84,7 @@
 
                 &-el {
                     padding-bottom: 3.2rem;
-border-bottom: 1px solid transparent;
+                    border-bottom: 1px solid transparent;
                     display: flex;
                     flex-direction: column;
                     gap: 1.6rem;

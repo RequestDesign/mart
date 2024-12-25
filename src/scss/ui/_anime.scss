@@ -1,33 +1,18 @@
-
-
 .anime {
     &-height {
         clip-path: inset(50% 0 50% 0);
 
-        transition-duration: .5s;
-        transition-timing-function: ease-in-out;
-        transition-property: clip-path;
-
         &-bottom {
             clip-path: inset(0% 0 100% 0);
-            transition-duration: .5s;
-            transition-timing-function: ease-in-out;
-            transition-property: clip-path;
-           
         }
 
         &-top {
             clip-path: inset(100% 0 0% 0);
-            transition-duration: .5s;
-            transition-timing-function: ease-in-out;
-            transition-property: clip-path;
         }
     }
 
     &-width {
         &-right {
-
-            transition: clip-path 0.5s ease-in-out;
             clip-path: inset(0% 100% 0% 0);
         }
 
@@ -54,25 +39,311 @@
 
             }
         }
-        &-left{
+
+        &-left {
             overflow: hidden;
 
             & .anime-translate-t {
                 transform: translateX(150%);
 
-            }   
+            }
         }
 
-        &-t {
-         
-            transition-duration: .5s;
-            transition-timing-function: ease-in-out;
-            transition-property: transform;
+        &-t {}
+    }
+}
+
+.anime-start {
+    & .anime-height {
+        animation: height 1s ease-in-out forwards;
+    }
+
+    & .anime-height-top {
+        animation: height-top 1s ease-in-out forwards;
+    }
+
+    & .anime-height-bottom {
+        animation: height-bottom 1s ease-in-out forwards;
+    }
+
+    /* ----------------------------------------------------- */
+    & .anime-width-right {
+        animation: width-right 1s ease-in-out forwards;
+    }
+
+    /* ----------------------------------------------------- */
+    & .anime-translate-bottom {
+        & .anime-translate-t {
+            animation: translate-bottom 1s ease-in-out forwards;
+        }
+    }
+
+    & .anime-translate-top {
+        & .anime-translate-t {
+            animation: translate-top 1s ease-in-out forwards;
+        }
+    }
+
+    & .anime-translate-left {
+        & .anime-translate-t {
+            animation: translate-left 1s ease-in-out forwards;
+        }
+    }
+
+    & .anime-translate-right {
+        & .anime-translate-t {
+            animation: translate-right 1s ease-in-out forwards;
         }
     }
 }
 
+.anime-over {
 
+    & .anime-height {
+        animation: height-rev 1s ease-in-out;
+        animation-duration: .5s !important;
+        animation-delay: 0s !important;
+    }
+
+    & .anime-height-top {
+        animation: height-top-rev 1s ease-in-out;
+        animation-duration: .5s !important;
+        animation-delay: 0s !important;
+    }
+
+    & .anime-height-bottom {
+        animation: height-bottom-rev 1s ease-in-out;
+        animation-duration: .5s !important;
+        animation-delay: 0s !important;
+    }
+     /* ----------------------------------------------------- */
+     & .anime-width-right {
+        animation: width-right-rev 1s ease-in-out forwards;
+        animation-duration: .5s !important;
+        animation-delay: 0s !important;
+    }
+
+    /* ----------------------------------------------------- */
+
+    & .anime-translate-bottom {
+        & .anime-translate-t {
+            animation: translate-bottom-rev 1s ease-in-out;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+    }
+
+    & .anime-translate-top {
+        & .anime-translate-t {
+            animation: translate-top-rev 1s ease-in-out;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+    }
+
+    & .anime-translate-left {
+        & .anime-translate-t {
+            animation: translate-left-rev 1s ease-in-out;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+    }
+
+    & .anime-translate-right {
+        & .anime-translate-t {
+            animation: translate-right-rev 1s ease-in-out;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+    }
+}
+
+/* --------------------------height------------------------------------- */
+@keyframes height {
+    0% {
+        clip-path: inset(50% 0 50% 0);
+    }
+
+    100% {
+        clip-path: inset(0% 0 0% 0);
+    }
+
+}
+
+@keyframes height-rev {
+    0% {
+        clip-path: inset(0% 0 0% 0);
+    }
+
+    100% {
+        clip-path: inset(50% 0 50% 0);
+    }
+
+}
+
+/* --------------------------------------------------------------- */
+@keyframes height-bottom {
+    0% {
+        clip-path: inset(0% 0 100% 0);
+    }
+
+    100% {
+        clip-path: inset(0% 0 0% 0);
+    }
+
+}
+
+@keyframes height-bottom-rev {
+    0% {
+        clip-path: inset(0% 0 0% 0);
+    }
+
+    100% {
+        clip-path: inset(0% 0 100% 0);
+    }
+
+}
+
+/* --------------------------------------------------------------- */
+@keyframes height-top {
+    0% {
+        clip-path: inset(100% 0 0% 0);
+    }
+
+    100% {
+        clip-path: inset(0% 0 0% 0);
+    }
+}
+
+@keyframes height-top-rev {
+    0% {
+        clip-path: inset(0% 0 0% 0);
+    }
+
+    100% {
+        clip-path: inset(100% 0 0% 0);
+    }
+}
+
+/* ----------------------------height----------------------------------- */
+
+/* ----------------------------width----------------------------------- */
+@keyframes width-right {
+    0% {
+        clip-path: inset(0% 100% 0% 0);
+    }
+
+    100% {
+        clip-path: inset(0% 0% 0% 0%);
+    }
+}
+
+@keyframes width-right-rev {
+    0% {
+        clip-path: inset(0% 0% 0% 0%);
+    }
+
+    100% {
+        clip-path: inset(0% 100% 0% 0);
+    }
+}
+
+/* ----------------------------width----------------------------------- */
+
+/* ----------------------------translate----------------------------------- */
+@keyframes translate-bottom {
+    0% {
+        transform: translateY(150%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes translate-bottom-rev {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(150%);
+    }
+}
+
+/* --------------------------------------------------------------- */
+
+@keyframes translate-top {
+    0% {
+        transform: translateY(-150%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes translate-top-rev {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-150%);
+    }
+}
+
+/* --------------------------------------------------------------- */
+
+@keyframes translate-left {
+    0% {
+        transform: translateX(-150%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes translate-left-rev {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-150%);
+    }
+}
+
+/* --------------------------------------------------------------- */
+
+@keyframes translate-right {
+    0% {
+        transform: translateX(150%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes translate-right-rev {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(150%);
+    }
+}
+
+/* ----------------------------translate----------------------------------- */
+
+
+
+
+
+/* 
 .core-slide-active {
 
     & .anime-height,
@@ -93,4 +364,4 @@
             transform: translateX(0);
         }   
     }
-}
+} */

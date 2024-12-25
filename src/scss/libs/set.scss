@@ -2,6 +2,7 @@
 @import 'swiper/scss/grid';
 @import 'swiper/scss/autoplay';
 @import 'swiper/scss/effect-fade';
+@import 'swiper/scss/effect-creative';
 
 
 
@@ -75,7 +76,7 @@
 }
 
 .page-slide {
-
+/* background-color: $bg; */
 
     @include desktop {
         display: flex;
