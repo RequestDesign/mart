@@ -12,7 +12,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
-        margin-bottom: 5.6rem;
+        margin-bottom: 2.6rem;
         @include mobile{
             grid-template-columns: 100%;
             gap: 1.6rem;
@@ -33,10 +33,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4.4rem;
-        @include desktop{
-            
-            padding-bottom: 6.1rem;
-        }
+      
         @include mobile{
             grid-template-columns: 1fr 1fr;
 
@@ -75,7 +72,7 @@
             }
             & .btn-primary{
                 margin-left: 50%;
-                margin-top: 23rem;
+                margin-top: 20rem;
                 @include mobile{
                     margin-left: 45%;
                     margin-top: 16rem;
