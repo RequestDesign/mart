@@ -25,10 +25,10 @@ const HTML = jquery_default()('html');
 jquery_default()(function () {
   document.querySelectorAll('[data-anime-delay],[data-anime-speed]').forEach(el => {
     if (el.dataset.animeDelay) {
-      el.style.transitionDelay = el.dataset.animeDelay;
+      el.style.animationDelay = el.dataset.animeDelay;
     }
     if (el.dataset.animeSpeed) {
-      el.style.transitionDuration = el.dataset.animeSpeed;
+      el.style.animationDuration = el.dataset.animeSpeed;
     }
   });
   dropDowns();
@@ -45,39 +45,41 @@ function mainPageCore() {
   });
   let canSlide = true;
   const swiper = new swiper_swiper/* default */.Z(main, {
-    modules: [modules/* Mousewheel */.Gk],
+    modules: [modules/* Mousewheel */.Gk, modules/* EffectCreative */.gI],
     direction: 'vertical',
+    effect: 'creative',
+    creativeEffect: {},
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
     simulateTouch: false,
     slideClass: 'page-slide',
     noSwipingClass: 'page-slide-stop',
-    speed: 100,
+    speed: 1000,
     slideActiveClass: 'core-slide-active',
     on: {
-      /*  slidePrevTransitionStart: (s) => {
-           if (canSlide) {
-               canSlide = false
-               setTimeout(() => {
-                   canSlide = true
-                   s.slidePrev()
-               }, 2000);
-           }
-          return false
-       },
-       slideNextTransitionStart: (s) => {
-           if (canSlide) {
-               canSlide = false
-               setTimeout(() => {
-                   canSlide = true
-                   s.slideNext()
-               }, 2000);
-           }
-          swiper.update()
-       }, */
+      init: swiper => {
+        swiper.slides[swiper.activeIndex].classList.add('anime-start');
+      },
+      slidePrevTransitionStart: swiper => {
+        swiper.slides[swiper.activeIndex + 1].classList.add('anime-over');
+      },
+      slideNextTransitionStart: swiper => {
+        if (swiper.activeIndex - 1 >= 0) {
+          swiper.slides[swiper.activeIndex - 1].classList.add('anime-over');
+        } else {
+          swiper.slides[swiper.slides.length - 1].classList.add('anime-over');
+        }
+        swiper.slides[swiper.activeIndex - 1].classList.remove('anime-start');
+      },
+      slideChangeTransitionStart: swiper => {
+        console.log('start', swiper.activeIndex);
+        console.log(swiper.activeIndex - 1);
+      },
       slideChangeTransitionEnd: swiper => {
-        console.log('end');
+        console.log('end', swiper.activeIndex);
+        swiper.slides[swiper.activeIndex].classList.remove('anime-over');
+        swiper.slides[swiper.activeIndex].classList.add('anime-start');
         const activeSlide = swiper.slides[swiper.activeIndex],
           container = activeSlide.querySelector('.page-slide-scroll');
         activeSlide.classList.remove('_opened');
