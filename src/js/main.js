@@ -25,6 +25,7 @@ $(function () {
     iniSwipers()
     mainPageCore()
     sectionTopper()
+
 })
 function mainPageCore() {
 
@@ -37,13 +38,58 @@ function mainPageCore() {
             e.classList.add('page-slide')
         })
 
+    let touchStart = 0
 
-    let canSlide = true
+    function sectionState(swiper, slide) {
+    /**
+     * 
+     * @param {swiper} Swiper 
+     * @param {slide} domElement 
+     * 
+     */
+
+        slide.addEventListener('touchstart', (ev) => {
+            touchStart = ev.touches[0].clientY
+        })
+
+        slide.addEventListener('touchend', (ev) => {
+            const end = ev.changedTouches[0].pageY
+            if (end > touchStart) {
+                if (slide.dataset.animeState <= 1) {
+                    swiper.mousewheel.enable()
+                    swiper.allowTouchMove = true
+                    swiper.slidePrev()
+                  
+
+                } else {
+                    slide.dataset.animeState--
+
+                }
+            } else {
+                if (slide.dataset.animeState >= slide.dataset.animeStates) {
+                    swiper.mousewheel.enable()
+                    swiper.allowTouchMove = true
+                    swiper.slideNext()
+                  
+
+                } else {
+                    slide.dataset.animeState++
+
+                }
+
+            }
+            touchStart = 0
+
+
+        })
+
+    }
+
     const swiper = new Swiper(main, {
         modules: [Mousewheel, EffectCreative],
         direction: 'vertical',
         effect: 'creative',
-        creativeEffect:{
+        creativeEffect: {
 
         },
         followFinger: false,
@@ -52,13 +98,17 @@ function mainPageCore() {
         simulateTouch: false,
         slideClass: 'page-slide',
         noSwipingClass: 'page-slide-stop',
-        speed: 1000,
+        speed: 1200,
         slideActiveClass: 'core-slide-active',
 
 
         on: {
             init: (swiper) => {
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
+                swiper.wrapperEl.querySelectorAll('[data-anime-states]')
+                    .forEach((el) => {
+                        sectionState(swiper, el)
+                    })
             },
             slidePrevTransitionStart: (swiper) => {
 
@@ -84,42 +134,31 @@ function mainPageCore() {
                 console.log('end', swiper.activeIndex);
                 swiper.slides[swiper.activeIndex].classList.remove('anime-over')
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
-                const activeSlide = swiper.slides[swiper.activeIndex],
-                    container = activeSlide.querySelector('.page-slide-scroll');
+                const activeSlide = swiper.slides[swiper.activeIndex]
 
+                swiper.slides[swiper.activeIndex - 1] ? swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1 : ''
+                swiper.slides[swiper.activeIndex + 1] ? swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1 : ''
+                
                 activeSlide.classList.remove('_opened')
                 activeSlide.querySelectorAll("._opened")
                     .forEach((e) => {
                         e.classList.remove('_opened')
                     })
 
-                if (!container) return
+                /* 
+                     swiper.mousewheel.disable();
+                     swiper.allowTouchMove = false;
+                      */
+                  
 
-                if (container.scrollHeight > (container.clientHeight + 3)) {
-
-                    const scrollDifferenceTop = container.scrollHeight - container.clientHeight;
-
-                    container.scrollTo(0, 0)
-
-                    activeSlide.classList.add('page-slide-stop')
-                    swiper.mousewheel.disable();
-                    swiper.allowTouchMove = false;
-
-
-                    activeSlide.addEventListener('click', (e) => {
-                        console.log(container.scrollHeight, container.clientHeight);
-                    })
-                    console.log('qwe');
-                    container.addEventListener('scroll', () => {
-
-                        if (container.scrollTop <= 0 || scrollDifferenceTop - container.scrollTop <= 1) {
-                            swiper.mousewheel.enable();
-                            swiper.allowTouchMove = true;
-                            activeSlide.classList.remove('page-slide-stop')
-                        }
-                    });
-
+                if (activeSlide.dataset.animeStates) {
+                    swiper.mousewheel.disable()
+                    swiper.allowTouchMove = false
+                    activeSlide.dataset.animeState = 1
                 }
+
+
+
             }
         }
 
@@ -246,7 +285,7 @@ function iniSwipers() {
 
 function initForms() {
     function formSubmit(inputData) {
-        console.log(inputData);
+
     }
     const forms = document.querySelectorAll('.form')
     if (forms) {

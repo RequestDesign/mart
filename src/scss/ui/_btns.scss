@@ -5,19 +5,7 @@
 
     }
 
-    &-c {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        @include mobile {
-            gap: 3.2rem;
-        }
-
-    }
+  
 
     &-text {
         //styleName: desktop/label circe 12%;
@@ -41,7 +29,22 @@
 
         }
     }
+    &-c {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width:20rem;
+        height:20rem;
+        transform: translate(50%, 50%);
 
+        @include mobile {
+            gap: 3.2rem;
+        }
+
+    }
     &-circle {
         position: absolute;
         width: 37rem;
@@ -129,6 +132,12 @@
         transition: width .2s linear, height .2s linear, background-color .2s linear;
         background-color: transparent;
         z-index: 1;
+        @include mobile{
+            width: 12rem;
+            height: 12rem;
+            right: -7rem;
+            border-width: 1px;
+        }
     }
 
     & .ui-icon {

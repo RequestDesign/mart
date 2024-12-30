@@ -85,6 +85,7 @@ main {
     min-height: 100dvh;
     overflow: hidden;
 
+
     @include mobile {
       padding-top: 0;
       padding-bottom: 0;

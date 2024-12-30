@@ -1,19 +1,102 @@
 .message {
     position: relative;
-    
 
-    @include desktop{
+
+    @include desktop {
         padding-top: 26rem;
     }
-    @include mobile{
+
+    @include mobile {
         padding-top: $sectionGapMobile;
+
+        & .message__c {
+            transition: grid .5s linear;
+            gap: 2.4rem;
+            grid-template-rows: min-content 12rem 17rem min-content 0rem;
+        }
+
+        &.core-slide-active{
+                &[data-anime-state='1'] {
+
+                    & .message__c {
+                        grid-template-rows: min-content 12rem 17rem min-content 0rem;
+        
+                    }
+                }
+        
+                &[data-anime-state='2'] {
+        
+                    & .message__c {
+                        grid-template-rows: min-content 0rem 0rem min-content 50rem;
+        
+                        & .message__c-text-top {
+                            opacity: 1;
+                        }
+        
+                        & .btn-second {
+                            & .anime-height-top {
+                                clip-path: inset(100% 0 0% 0) !important;
+                                animation: height-top-rev 1s ease-in-out;
+                                animation-duration: .5s !important;
+                                animation-delay: 0s !important;
+                            }
+        
+                            & .anime-height-bottom {
+                                clip-path: inset(0% 0 100% 0) !important;
+                                animation: height-bottom-rev 1s ease-in-out;
+                                animation-duration: .5s !important;
+                                animation-delay: 0s !important;
+                            }
+        
+                        }
+                    }
+                }
+        
+                &[data-anime-state='3'] {
+        
+                    & .message__c {
+                        grid-template-rows: min-content 0rem 0rem min-content 50rem;
+        
+                        & .message__c-text-top {
+                            transform: translateY(-100%);
+                            opacity: 0;
+                        }
+        
+                        & .message__c-text-bottom {
+                            transform: translateY(-100%);
+                            opacity: 1;
+                        }
+        
+                        & .btn-second {
+                            & .anime-height-top {
+        
+                                animation: height-top 1s ease-in-out forwards;
+                            }
+        
+                            & .anime-height-bottom {
+        
+                                animation: height-bottom 1s ease-in-out forwards;
+                            }
+                        }
+        
+                    }
+                }
+
+        }
+
+        
     }
+
     & .ui-line {
         position: absolute;
         top: 33rem;
         left: 0;
+
+        @include mobile {
+            top: 46rem;
+        }
     }
-  
+
 
     &__c {
         padding-bottom: 3rem;
@@ -24,20 +107,22 @@
         grid-template-areas:
             'btn heading heading heading'
             '. exp mission .'
+            'small big text .'
             'small big text btn-small';
-            
+
 
         @include mobile {
-         
+            padding-top: 20rem;
+            box-sizing: border-box;
             grid-template-columns: .5fr 1fr;
             gap: 4.8rem 3.2rem;
-            grid-template-areas: 
-            'heading heading'
-            'exp exp'
-            'mission mission'
-            'small big'
-            'text text'
-            'btn-small btn-small';
+            grid-template-areas:
+                'heading heading'
+                'exp exp'
+                'mission mission'
+                'small big'
+                'text text'
+                'btn-small btn-small';
         }
 
         &-heading {
@@ -49,20 +134,30 @@
             grid-area: btn;
             width: fit-content;
             transform: translate(23rem, -11rem);
-            @include mobile{
+
+            @include mobile {
                 position: absolute;
                 top: 0;
                 right: 0;
-                transform: translate(-21rem, 25rem);
+                transform: translate(-21rem, 32rem);
             }
         }
 
         &-exp {
             grid-area: exp;
+            overflow: hidden;
+
+            @include mobile {
+                display: flex;
+                align-items: center
+            }
+
+            ;
         }
 
         &-mission {
             grid-area: mission;
+            overflow: hidden;
         }
 
         &-small {
@@ -80,11 +175,41 @@
             display: flex;
             flex-direction: column;
             gap: 3.2rem;
+            overflow: hidden;
+
+            @include mobile {
+                height: 100%;
+                display: grid;
+                grid-template-rows: 100% 100%;
+                grid-template-columns: 100%;
+
+                &-top {
+                    opacity: 0;
+                    transition: opacity .5s linear, transform .5s linear;
+                }
+
+                &-bottom {
+                    opacity: 0;
+                    transition: opacity .5s linear, transform .5s linear;
+
+                }
+
+            }
+
         }
 
         & .btn-second {
+            @include mobile {
+                margin-top: 5rem;
+            }
+        }
+
+        &-btn-small {
+
             grid-area: btn-small;
             align-self: flex-end;
+
+
         }
     }
 }
