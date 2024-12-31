@@ -116,8 +116,9 @@
         animation-duration: .5s !important;
         animation-delay: 0s !important;
     }
-     /* ----------------------------------------------------- */
-     & .anime-width-right {
+
+    /* ----------------------------------------------------- */
+    & .anime-width-right {
         animation: width-right-rev 1s ease-in-out forwards;
         animation-duration: .5s !important;
         animation-delay: 0s !important;
@@ -336,32 +337,147 @@
         transform: translateX(150%);
     }
 }
-
 /* ----------------------------translate----------------------------------- */
 
-
-
-
-
-/* 
-.core-slide-active {
-
-    & .anime-height,
-    & .anime-width-right,
-    & .anime-height-bottom,
-    & .anime-height-top {
-        clip-path: inset(0% 0% 0% 0%);
-    }
-
-    & .anime-translate-bottom,
-    & .anime-translate-top {
-        & .anime-translate-t {
-            transform: translateY(0);
+/* ----------------------------trigger-mixin----------------------------------- */
+@mixin triggerActive() {
+    $i: 1;
+    @for $i from 1 through 5{
+        [data-anime-state='#{$i}'] {
+            & [data-anime-trigger='#{$i}'] {
+                @content;
+            }
         }
     }
-    & .anime-translate-left{
-        & .anime-translate-t {
-            transform: translateX(0);
-        }   
+}
+
+@mixin triggerDisable() {
+    $i: 1;
+    @for $i from 1 through 5{
+        [data-anime-state='#{$i}'] {
+            & [data-anime-trigger]:not([data-anime-trigger='#{$i}']) {
+                @content;
+            }
+        }
     }
-} */
+}
+
+/* ----------------------------trigger-mixin----------------------------------- */
+
+
+
+
+
+
+@include mobile {
+    /* mobile state triggers */
+
+    @include triggerActive() {
+        &.anime-width-right {
+            animation: width-right 1s ease-in-out forwards;
+        }
+
+        &.anime-height {
+            animation: height 1s ease-in-out forwards;
+        }
+
+        &.anime-height-top {
+            animation: height-top 1s ease-in-out forwards;
+        }
+
+        &.anime-height-bottom {
+            animation: height-bottom 1s ease-in-out forwards;
+        }
+
+        &.anime-translate-bottom {
+            & .anime-translate-t {
+                animation: translate-bottom 1s ease-in-out forwards;
+            }
+        }
+
+        &.anime-translate-top {
+            & .anime-translate-t {
+                animation: translate-top 1s ease-in-out forwards;
+            }
+        }
+
+        &.anime-translate-left {
+            & .anime-translate-t {
+                animation: translate-left 1s ease-in-out forwards;
+            }
+        }
+
+        &.anime-translate-right {
+            & .anime-translate-t {
+                animation: translate-right 1s ease-in-out forwards;
+            }
+        }
+    }
+
+    @include triggerDisable() {
+        &.anime-width-right {
+            clip-path: inset(0% 100% 0% 0);
+            animation: width-right-rev 1s ease-in-out forwards;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+
+        }
+
+        &.anime-height {
+            clip-path: inset(50% 0 50% 0);
+            animation: height-rev 1s ease-in-out forwards;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+
+        &.anime-height-top {
+            clip-path: inset(100% 0 0% 0);
+            animation: height-top-rev 1s ease-in-out forwards;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+
+        &.anime-height-bottom {
+            clip-path: inset(0% 0 100% 0);
+            animation: height-bottom-rev 1s ease-in-out forwards;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+
+        &.anime-translate-bottom {
+            & .anime-translate-t {
+                transform: translateY(-150%);
+                animation: translate-bottom-rev 1s ease-in-out forwards;
+                animation-duration: .5s !important;
+                animation-delay: 0s !important;
+            }
+        }
+
+        &.anime-translate-top {
+            & .anime-translate-t {
+                transform: translateY(150%);
+                animation: translate-top-rev 1s ease-in-out forwards;
+                animation-duration: .5s !important;
+                animation-delay: 0s !important;
+            }
+        }
+
+        &.anime-translate-left {
+            & .anime-translate-t {
+                transform: translateX(150%);
+                animation: translate-left-rev 1s ease-in-out forwards;
+                animation-duration: .5s !important;
+                animation-delay: 0s !important;
+            }
+        }
+
+        &.anime-translate-right {
+            & .anime-translate-t {
+                transform: translateX(-150%); // Предположим, что это правильное значение для translate-right
+                animation: translate-right-rev 1s ease-in-out forwards;
+                animation-duration: .5s !important;
+                animation-delay: 0s !important;
+            }
+        }
+    }
+}

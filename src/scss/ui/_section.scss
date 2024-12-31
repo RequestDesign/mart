@@ -3,7 +3,18 @@
         height: 50rem;
     }
 }
-
+@include mobile{
+    [data-anime-state='1'] {
+        & .section-with-topper__top {
+            clip-path: inset(0% 0 0% 0);
+        }
+    }
+    [data-anime-state='2'] {
+        & .section-with-topper__top {
+             clip-path: inset(0% 0 100% 0);
+        }
+    }
+}
 .section {
     &-with-topper {
         position: relative;
@@ -12,15 +23,18 @@
         display: flex;
         overflow: hidden;
 
-        &._opened {
-            & .section-with-topper__top {
-                transform: translateY(-150%);
-            }
+        @include desktop {
+            &._opened {
+                & .section-with-topper__top {
+                     clip-path: inset(0% 0 100% 0);
+                }
 
-            & .section-with-topper__main {
-                cursor: default;
+                & .section-with-topper__main {
+                    cursor: default;
+                }
             }
         }
+        
 
         &__main {
             position: relative;
@@ -31,20 +45,19 @@
         }
 
         &__top {
-            transition: transform 0.5s linear;
             position: absolute;
             z-index: 5;
             top: 0;
             left: 0;
             width: 100%;
-           /*  height: 100%; */
+            /*  height: 100%; */
             padding-bottom: 6rem;
             background-color: #FFFEF8;
             padding-top: 13.4rem;
             display: grid;
             grid-template-rows: 100%;
-            transition: transform .5s ease-in-out;
-
+            transition: clip-path 1s ease-in-out;
+            clip-path: inset(0% 0 0% 0);
 
             @include mobile {
                 padding-top: $sectionGapMobile;

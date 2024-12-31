@@ -1,12 +1,14 @@
 .heading-main {
     position: relative;
-
     display: flex;
     align-items: center;
     & .ui-line{
         position: absolute;
-        top: 54rem;
+        top: 42rem;
         width: 100%;
+        @include mobile{
+            top: 58rem;
+        }
     }
     &__bg{
         top: 50%;
@@ -23,14 +25,19 @@
         color: $white;
         margin-left: auto;
         @include mobile{
-            height: calc(100% - 35rem);
+            height: calc(100% - 52rem);
             width: 100%;
-            margin-top: 35rem;
+            margin-top: 52rem;
         }
         & .btn-primary{
             position: absolute;
+            top: 5rem;
+            @include desktop{
+                left: -10rem;
+
+            }
             @include mobile{
-                top: -11rem;
+                top: -8rem;
                 right: 22rem;
 
             }
@@ -44,6 +51,7 @@
                 flex-direction: column;
                 gap: 3.2rem;
                 margin-top: auto;
+                margin-bottom: 16rem;
             }
             & .txt20{
                 max-width: 51rem;

@@ -1,11 +1,24 @@
 .two-side {
     position: relative;
-    & .ui-line{
+
+    & .ui-line {
         bottom: 46.5rem;
         left: 0;
         position: absolute;
-        @include mobile{
+
+        @include mobile {
             bottom: 10.5rem;
+        }
+    }
+
+    & .container {
+        @include mobile {
+            height: 100%;
+            padding-left: 0;
+            padding-right: 0;
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: min-content auto;
         }
     }
 
@@ -14,10 +27,40 @@
         justify-content: space-between;
         margin-bottom: 5.6rem;
         align-items: center;
-        @include mobile{
+
+        @include mobile {
             flex-direction: column;
             gap: 3.2rem;
             align-items: flex-start;
+            margin-top: 16.4rem;
+            padding-left: $mobilePadding;
+            padding-right: $mobilePadding;
+        }
+    }
+
+    @include mobile {
+
+
+        &[data-anime-state='1'] {
+            & .two-side__grid {
+                grid-template-rows: .6fr .4fr 0fr 0fr;
+
+            }
+        }
+
+        &[data-anime-state='2'] {
+            & .two-side__grid {
+                grid-template-rows: 0fr .5fr .5fr 0fr;
+
+
+            }
+        }
+
+        &[data-anime-state='3'] {
+            & .two-side__grid {
+                grid-template-rows: 0fr 0fr .5fr .6fr;
+
+            }
         }
     }
 
@@ -25,9 +68,13 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4.4rem;
-      
-        @include mobile{
+
+        @include mobile {
+            height: 100%;
             grid-template-columns: 100%;
+            grid-template-rows: 60% 40% 0% 0%;
+            transition: grid .6s linear;
+            gap: 0;
         }
 
         &-el {
@@ -37,32 +84,57 @@
             height: 58rem;
             position: relative;
 
-            @include mobile{
-                height: auto;
+
+
+            @include mobile {
+                height: 100%;
+                overflow: hidden;
+
             }
 
             &-text {
-                height: 100%;
+
                 display: flex;
                 flex-direction: column;
-                @include mobile{
-                   display: grid;
-                   grid-template-columns: 1fr 1fr;
+
+                @include desktop {
+                    &:nth-child(2) {
+                        height: 100%;
+                        align-items: flex-start;
+                    }
+                }
+
+                @include mobile {
+                    &._grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                    }
+
+                    height: fit-content;
+                    padding: 4rem $mobilePadding 0;
+                    box-sizing: border-box;
+
+                    &+.two-side__grid-el-text {
+                        padding: 0 $mobilePadding;
+                    }
+
                 }
 
                 & .btn-primary {
                     margin-top: auto;
                     margin-left: 50%;
-                    margin-bottom: 19rem;
-                    
+                    margin-bottom: 10rem;
+
                 }
             }
 
             &-img {
                 display: flex;
                 height: 100%;
-                @include mobile{
+
+                @include mobile {
                     height: 72rem;
+                    max-height: 50dvh;
                 }
 
                 & img {

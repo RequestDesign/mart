@@ -6,7 +6,8 @@ import Swiper from 'swiper';
 import Form from './utils/Form'
 
 
-const HTML = $('html')
+const HTML = $('html'),
+SWIPE_SIZE = 100
 $(function () {
     document.querySelectorAll('[data-anime-delay],[data-anime-speed]')
         .forEach((el) => {
@@ -41,12 +42,12 @@ function mainPageCore() {
     let touchStart = 0
 
     function sectionState(swiper, slide) {
-    /**
-     * 
-     * @param {swiper} Swiper 
-     * @param {slide} domElement 
-     * 
-     */
+        /**
+         * 
+         * @param {swiper} Swiper 
+         * @param {slide} domElement 
+         * 
+         */
 
         slide.addEventListener('touchstart', (ev) => {
             touchStart = ev.touches[0].clientY
@@ -54,23 +55,23 @@ function mainPageCore() {
 
         slide.addEventListener('touchend', (ev) => {
             const end = ev.changedTouches[0].pageY
-            if (end > touchStart) {
+            if (end > touchStart + SWIPE_SIZE) {
                 if (slide.dataset.animeState <= 1) {
                     swiper.mousewheel.enable()
                     swiper.allowTouchMove = true
                     swiper.slidePrev()
-                  
+
 
                 } else {
                     slide.dataset.animeState--
 
                 }
-            } else {
+            } else if (end + SWIPE_SIZE < touchStart) {
                 if (slide.dataset.animeState >= slide.dataset.animeStates) {
                     swiper.mousewheel.enable()
                     swiper.allowTouchMove = true
                     swiper.slideNext()
-                  
+
 
                 } else {
                     slide.dataset.animeState++
@@ -92,6 +93,7 @@ function mainPageCore() {
         creativeEffect: {
 
         },
+        initialSlide:4,
         followFinger: false,
         slidesPerView: 1,
         mousewheel: true,
@@ -100,8 +102,8 @@ function mainPageCore() {
         noSwipingClass: 'page-slide-stop',
         speed: 1200,
         slideActiveClass: 'core-slide-active',
-
-
+        /* shortSwipes: false, */
+        threshold: SWIPE_SIZE,
         on: {
             init: (swiper) => {
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
@@ -138,7 +140,7 @@ function mainPageCore() {
 
                 swiper.slides[swiper.activeIndex - 1] ? swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1 : ''
                 swiper.slides[swiper.activeIndex + 1] ? swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1 : ''
-                
+
                 activeSlide.classList.remove('_opened')
                 activeSlide.querySelectorAll("._opened")
                     .forEach((e) => {
@@ -149,9 +151,9 @@ function mainPageCore() {
                      swiper.mousewheel.disable();
                      swiper.allowTouchMove = false;
                       */
-                  
 
-                if (activeSlide.dataset.animeStates) {
+
+                if (activeSlide.dataset.animeStates && window.innerWidth < 769) {
                     swiper.mousewheel.disable()
                     swiper.allowTouchMove = false
                     activeSlide.dataset.animeState = 1
@@ -176,6 +178,8 @@ function iniSwipers() {
             simulateTouch: false,
             effect: 'fade',
             speed: 100,
+            followFinger: false,
+            touchMoveStopPropagation: true,
             fadeEffect: {
                 crossFade: false
             },
