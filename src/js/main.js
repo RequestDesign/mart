@@ -7,7 +7,7 @@ import Form from './utils/Form'
 
 
 const HTML = $('html'),
-SWIPE_SIZE = 100
+    SWIPE_SIZE = 100
 $(function () {
     document.querySelectorAll('[data-anime-delay],[data-anime-speed]')
         .forEach((el) => {
@@ -93,7 +93,7 @@ function mainPageCore() {
         creativeEffect: {
 
         },
-        initialSlide:4,
+        initialSlide: 10,
         followFinger: false,
         slidesPerView: 1,
         mousewheel: true,
@@ -138,8 +138,12 @@ function mainPageCore() {
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
                 const activeSlide = swiper.slides[swiper.activeIndex]
 
-                swiper.slides[swiper.activeIndex - 1] ? swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1 : ''
-                swiper.slides[swiper.activeIndex + 1] ? swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1 : ''
+                if (swiper.slides[swiper.activeIndex - 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
+                    swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1
+                }
+                if (swiper.slides[swiper.activeIndex + 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
+                    swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1
+                }
 
                 activeSlide.classList.remove('_opened')
                 activeSlide.querySelectorAll("._opened")
@@ -198,6 +202,7 @@ function iniSwipers() {
             slidesPerView: 1,
             effect: 'fade',
             speed: 100,
+            followFinger: false,
             fadeEffect: {
                 crossFade: false
             },
@@ -212,6 +217,7 @@ function iniSwipers() {
             modules: [Navigation, EffectFade],
             slidesPerView: 1,
             effect: 'fade',
+            followFinger: false,
             speed: 100,
             fadeEffect: {
                 crossFade: false
@@ -228,6 +234,7 @@ function iniSwipers() {
             modules: [Navigation, EffectFade],
             slidesPerView: 1,
             effect: 'fade',
+            followFinger: false,
             speed: 100,
             fadeEffect: {
                 crossFade: false
@@ -252,6 +259,8 @@ function iniSwipers() {
             modules: [Navigation, EffectFade],
             effect: 'fade',
             speed: 100,
+            followFinger: false,
+            allowTouchMove: false,
             fadeEffect: {
                 crossFade: false
             },
@@ -266,6 +275,8 @@ function iniSwipers() {
             modules: [Navigation, EffectFade],
             effect: 'fade',
             speed: 100,
+            followFinger: false,
+            allowTouchMove: false,
             fadeEffect: {
                 crossFade: false
             },
@@ -276,14 +287,22 @@ function iniSwipers() {
             slidesPerView: 1,
             simulateTouch: false
         })
-        /*  one.on('slideChange', (swiper) => {
-             two.slideTo(swiper.activeIndex)
- 
+        const container = results.querySelector('.results__c-sliders')
+        let touchstart = 0
+        container.addEventListener('touchstart', (ev) => { 
+            touchstart = ev.touches[0].clientX
          })
-         two.on('slideChange', (swiper) => {
-             one.slideTo(swiper.activeIndex)
- 
-         }) */
+        container.addEventListener('touchend', (ev) => { 
+            const end = ev.changedTouches[0].pageX
+            if(end > touchstart + 50){
+                two.slidePrev()
+                one.slidePrev()
+            }else if (end + 50 < touchstart){
+                two.slideNext()
+                one.slideNext()
+            }
+            touchstart = 0
+         })
     }
 }
 
@@ -351,7 +370,7 @@ function sectionTopper() {
     })
 }
 function modalsHandler() {
-    const modalOpeners = $('.modal-opener'),
+    const modalOpeners = $('[data-modal]'),
         modalClosers = $('.modal-closer'),
         html = $('html')
 

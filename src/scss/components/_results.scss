@@ -3,11 +3,12 @@
         display: grid;
         grid-template-columns: .5fr 1fr;
         gap: 4.4rem;
-
+        
         @include mobile {
             display: flex;
             flex-direction: column;
-            gap: 3.2rem;
+            gap: 5rem;
+            padding-top: 16rem;
         }
 
         &-info {
@@ -17,15 +18,25 @@
 
             @include mobile {
                 display: grid;
-                grid-template-columns: auto auto;
+                grid-template-columns: 1fr 1fr;
                 gap: 3.2rem;
 
-                & p {
-                    grid-column: 1 / span 2;
-                }
+
 
                 & .swiper-navigation {
                     justify-self: flex-end;
+                }
+            }
+
+            &-head {
+                @include mobile {
+                    grid-column: 1 / span 2;
+                }
+            }
+
+            &-subhead {
+                @include mobile {
+                    grid-column: 1 / span 2;
                 }
             }
 
@@ -59,14 +70,17 @@
                     z-index: 3;
                     top: 5.6rem;
                     right: 5.6rem;
-                    @include mobile{
+
+                    @include mobile {
                         top: 3.2rem;
                         right: 3.2rem;
                     }
                 }
-                &-slide{
+
+                &-slide {
                     display: flex;
-                    & img{
+
+                    & img {
                         object-fit: cover;
                         object-position: center;
                     }

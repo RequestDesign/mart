@@ -1,13 +1,22 @@
-.footer{
+.footer {
     border-top: 2px solid $black16;
     margin-top: 1.6rem;
     padding: 2rem 0;
-    &__c{
+
+    &__c {
         height: 7.6rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
+
+        @include mobile {
+            height: auto;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 3rem $mobilePadding 3rem;
+            align-items: flex-start;
+        }
+
     }
 
 }

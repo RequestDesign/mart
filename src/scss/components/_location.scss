@@ -2,88 +2,128 @@
     position: relative;
     padding-top: $sectionGap;
     padding-bottom: $sectionGap;
-    
-    @include mobile{
+
+    @include mobile {
         padding-top: $sectionGap;
         padding-bottom: $sectionGap;
     }
-    & .ui-line{
+
+    & .ui-line {
         position: absolute;
         top: 48rem;
         left: 0;
-        @include mobile{
+
+        @include mobile {
             top: 84rem;
         }
     }
+
+    &[data-anime-state='1'] {
+        & .location__c {
+            grid-template-rows: auto 48rem  46rem;
+        }
+    }
+
+    &[data-anime-state='2'] {
+        & .location__c {
+            grid-template-rows: auto 0 46rem;
+
+        }
+    }
+
     &__c {
         margin-top: 5.6rem;
         display: grid;
         grid-template-columns: .35fr 1fr .5fr;
-        grid-template-rows:auto 20rem 10rem ;
+        grid-template-rows: auto 20rem 10rem;
         gap: 4.4rem;
-        grid-template-areas: 
-        'year big btn'
-        'small big dnk'
-        'small big object';
-        @include mobile{
+        grid-template-areas:
+            'year big btn'
+            'small big dnk'
+            'small big object';
+
+        @include mobile {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto auto;
             grid-auto-rows: auto;
-            gap: 8rem 3.2rem;
-            grid-template-areas: 
-            'year btn'
-            'small dnk'
-            'big big'
-            'object object';
+            gap: 0 3.2rem;
+            grid-template-areas:
+                'year btn'
+                'small dnk'
+                'big big'
+                'object object';
+            transition: grid .5s linear;
 
         }
-        &-year{
+
+        &-year {
             grid-area: year;
             padding-top: 5.6rem;
-            @include mobile{
+
+            @include mobile {
                 font-size: 2rem;
                 line-height: 2.8rem;
                 padding-bottom: 8rem;
+                margin-bottom: 6rem;
             }
         }
-        & .btn-primary{
+
+        & .btn-primary {
             grid-area: btn;
             transform: translate(19rem, -21rem);
             width: fit-content;
-            @include mobile{
-                transform: translate(15rem, 0);
+
+            @include mobile {
+                transform: translate(15rem, -5rem);
             }
         }
-        &-small{
+
+        &-small {
             grid-area: small;
             display: flex;
-            @include mobile{
-                height: 46rem;
+
+            @include mobile {
+                height:100%;
+                overflow: hidden;
+                padding-bottom: 2rem;
             }
-            & img{
+
+            & img {
                 object-fit: cover;
                 object-position: center;
             }
         }
-        &-big{
+
+        &-big {
             grid-area: big;
             height: 100%;
             display: flex;
-            @include mobile{
-                height: 54rem;
+
+            @include mobile {
+                height: 43rem;
             }
-            & img{
+
+            & img {
                 object-fit: cover;
             }
         }
-        &-dnk{
+
+        &-dnk {
             grid-area: dnk;
-            @include mobile{
+
+            @include mobile {
                 font-size: 2.8rem;
+                padding: 0  0 2rem;
             }
         }
-        &-object{
+
+        &-object {
             grid-area: object;
+
+            @include mobile {
+                padding: 2rem 0 ;
+
+            }
         }
     }
 

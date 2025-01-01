@@ -45,12 +45,15 @@
 
         &-main {
             display: flex;
-           
+
 
             & .ui-line {
                 position: absolute;
                 bottom: 24rem;
                 width: 100%;
+                @include mobile {
+                    bottom: 57rem;
+                }
 
             }
 
@@ -58,12 +61,16 @@
                 position: absolute;
                 bottom: 30rem;
                 left: 60%;
+                @include mobile {
+                    bottom:68rem;
+                }
+               
             }
 
             &-img {
                 display: flex;
                 flex-grow: 1;
-           
+
 
                 & img {
 
