@@ -83,7 +83,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 4,
+    initialSlide: 10,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -121,8 +121,12 @@ function mainPageCore() {
         swiper.slides[swiper.activeIndex].classList.remove('anime-over');
         swiper.slides[swiper.activeIndex].classList.add('anime-start');
         const activeSlide = swiper.slides[swiper.activeIndex];
-        swiper.slides[swiper.activeIndex - 1] ? swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1 : '';
-        swiper.slides[swiper.activeIndex + 1] ? swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1 : '';
+        if (swiper.slides[swiper.activeIndex - 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
+          swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1;
+        }
+        if (swiper.slides[swiper.activeIndex + 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
+          swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1;
+        }
         activeSlide.classList.remove('_opened');
         activeSlide.querySelectorAll("._opened").forEach(e => {
           e.classList.remove('_opened');
@@ -169,6 +173,7 @@ function iniSwipers() {
       slidesPerView: 1,
       effect: 'fade',
       speed: 100,
+      followFinger: false,
       fadeEffect: {
         crossFade: false
       },
@@ -182,6 +187,7 @@ function iniSwipers() {
       modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       slidesPerView: 1,
       effect: 'fade',
+      followFinger: false,
       speed: 100,
       fadeEffect: {
         crossFade: false
@@ -197,6 +203,7 @@ function iniSwipers() {
       modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       slidesPerView: 1,
       effect: 'fade',
+      followFinger: false,
       speed: 100,
       fadeEffect: {
         crossFade: false
@@ -217,6 +224,8 @@ function iniSwipers() {
       modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       effect: 'fade',
       speed: 100,
+      followFinger: false,
+      allowTouchMove: false,
       fadeEffect: {
         crossFade: false
       },
@@ -231,6 +240,8 @@ function iniSwipers() {
       modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       effect: 'fade',
       speed: 100,
+      followFinger: false,
+      allowTouchMove: false,
       fadeEffect: {
         crossFade: false
       },
@@ -241,15 +252,24 @@ function iniSwipers() {
       slidesPerView: 1,
       simulateTouch: false
     });
-    /*  one.on('slideChange', (swiper) => {
-         two.slideTo(swiper.activeIndex)
-        })
-     two.on('slideChange', (swiper) => {
-         one.slideTo(swiper.activeIndex)
-        }) */
+    const container = results.querySelector('.results__c-sliders');
+    let touchstart = 0;
+    container.addEventListener('touchstart', ev => {
+      touchstart = ev.touches[0].clientX;
+    });
+    container.addEventListener('touchend', ev => {
+      const end = ev.changedTouches[0].pageX;
+      if (end > touchstart + 50) {
+        two.slidePrev();
+        one.slidePrev();
+      } else if (end + 50 < touchstart) {
+        two.slideNext();
+        one.slideNext();
+      }
+      touchstart = 0;
+    });
   }
 }
-
 function initForms() {
   function formSubmit(inputData) {}
   const forms = document.querySelectorAll('.form');
@@ -303,7 +323,7 @@ function sectionTopper() {
   });
 }
 function modalsHandler() {
-  const modalOpeners = $('.modal-opener'),
+  const modalOpeners = $('[data-modal]'),
     modalClosers = $('.modal-closer'),
     html = $('html');
   if (!modalOpeners || !modalClosers) return;
