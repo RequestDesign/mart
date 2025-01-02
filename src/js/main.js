@@ -3,7 +3,8 @@ import $ from 'jquery'
 import Inputmask from 'inputmask'
 import { Navigation, Pagination, Grid, Autoplay, Mousewheel, EffectFade, EffectCreative } from 'swiper/modules';
 import Swiper from 'swiper';
-import Form from './utils/Form'
+import Form from './utils/Form';
+import {rem} from './utils/constants'
 
 
 const HTML = $('html'),
@@ -109,6 +110,7 @@ function mainPageCore() {
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
                 swiper.wrapperEl.querySelectorAll('[data-anime-states]')
                     .forEach((el) => {
+                        el.dataset.animeState = '1'
                         sectionState(swiper, el)
                     })
             },
@@ -289,21 +291,34 @@ function iniSwipers() {
         })
         const container = results.querySelector('.results__c-sliders')
         let touchstart = 0
-        container.addEventListener('touchstart', (ev) => { 
+        container.addEventListener('touchstart', (ev) => {
             touchstart = ev.touches[0].clientX
-         })
-        container.addEventListener('touchend', (ev) => { 
+        })
+        container.addEventListener('touchend', (ev) => {
             const end = ev.changedTouches[0].pageX
-            if(end > touchstart + 50){
+            if (end > touchstart + 50) {
                 two.slidePrev()
                 one.slidePrev()
-            }else if (end + 50 < touchstart){
+            } else if (end + 50 < touchstart) {
                 two.slideNext()
                 one.slideNext()
             }
             touchstart = 0
-         })
+        })
     }
+
+    const gallery = document.querySelector('.gallery')
+    if (gallery) {
+        new Swiper(gallery.querySelector('.swiper'), {
+            direction: 'vertical', 
+            spaceBetween: rem(3),
+            slidesPerView: 'auto',
+            mousewheel: true
+        })
+    }
+
+
+   
 }
 
 function initForms() {

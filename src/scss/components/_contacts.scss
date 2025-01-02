@@ -1,0 +1,190 @@
+.contacts {
+    display: flex;
+    flex-direction: column;
+
+    @include mobile {
+
+
+        &[data-anime-state='1'] {}
+
+        &[data-anime-state='2'] {
+            & .contacts-top {
+                height: 0dvh;
+            }
+
+            & .contacts-info__c {
+                padding-top: 32rem;
+            }
+        }
+
+        &[data-anime-state='3'] {
+            & .contacts-top {
+                height: 0dvh;
+            }
+
+            & .contacts-info {
+                height: 70dvh;
+
+                &__c {
+                    grid-template-rows: 0rem 0rem 0rem 0rem 16rem 100rem;
+                }
+            }
+        }
+
+    }
+}
+
+.contacts-top {
+    height: 50dvh;
+    display: flex;
+    width: 100%;
+
+    @include mobile {
+        height: 100dvh;
+        flex-shrink: 0;
+        transition: height 1s linear;
+        overflow: hidden;
+
+    }
+
+    @include mobile {
+        height: 100dvh;
+    }
+
+    &__wrp {
+        position: relative;
+        z-index: 1;
+        flex-grow: 1;
+        padding-bottom: 11rem;
+        display: flex;
+
+        @include mobile {
+            padding-top: 16rem;
+        }
+    }
+
+    & .ui-line {
+        bottom: 27%;
+        z-index: 2;
+
+        @include mobile {
+            bottom: 74.5%;
+        }
+    }
+
+    &__c {
+        display: grid;
+        grid-template-columns: 37rem auto;
+        gap: 7rem;
+        align-items: flex-end;
+        margin-top: auto;
+
+        @include mobile {
+            margin-top: 0;
+            margin-bottom: auto;
+            grid-template-areas: 'text btn';
+            grid-template-columns: 43rem auto;
+            gap: 0;
+            margin-top: 18rem
+        }
+
+        &-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2.6rem;
+
+            @include mobile {
+                grid-area: text;
+            }
+        }
+
+        & .btn-primary {
+
+            margin-left: 50%;
+            margin-bottom: auto;
+
+            @include mobile {
+                grid-area: btn;
+                margin-left: 43%;
+            }
+        }
+    }
+}
+
+
+
+.contacts-info {
+    height: 40dvh;
+    min-height: 40dvh;
+
+    @include mobile {
+        height: 70dvh;
+        flex-shrink: 0;
+
+    }
+
+    &__c {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 7rem 13rem;
+        padding-top: 10rem;
+
+        @include mobile {
+
+            grid-template-columns: 100%;
+            grid-template-rows: 16rem 16rem 16rem 16rem 0 0rem;
+            transition: grid 1s linear, padding .5s linear;
+        }
+
+        &-el {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+
+            @include mobile {
+                overflow: hidden;
+            }
+
+            &-top {
+                margin-bottom: 1.2rem;
+            }
+
+            &._form {
+                grid-column: 4;
+                grid-row: 1 /span 2;
+
+                @include mobile {
+                    grid-column: 1;
+                    grid-row: 6;
+                    /*   max-height: 0;
+                    transition: max-height 1s linear; */
+                }
+
+                & form {
+                    display: flex;
+                    flex-direction: row;
+                    padding: 2rem 1rem 2rem 0;
+
+                }
+            }
+
+            &._social {
+                transform: translateY(-80%);
+            }
+
+
+        }
+    }
+
+}
+
+.contacts-footer {
+    & .footer__c {
+        @include mobile {
+            padding-top: 12rem;
+            padding-bottom: 12rem;
+
+        }
+    }
+
+}
