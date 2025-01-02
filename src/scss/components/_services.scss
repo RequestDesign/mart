@@ -1,19 +1,19 @@
 .services {
-    position: relative;
-
-    & .ui-line {
-        position: absolute;
-        top: 70%;
-
-        @include mobile {
-            top: 96%;
-        }
-    }
+   
 
     & .container {
         @include mobile {
             height: 100%;
             padding-top: 25rem;
+        }
+        position: relative;
+        & .ui-line {
+            position: absolute;
+            top: 95%;
+    
+            @include mobile {
+                top: 96%;
+            }
         }
     }
 

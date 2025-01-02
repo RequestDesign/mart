@@ -1,17 +1,10 @@
 .two-side {
     position: relative;
 
-    & .ui-line {
-        bottom: 46.5rem;
-        left: 0;
-        position: absolute;
-
-        @include mobile {
-            bottom: 10.5rem;
-        }
-    }
+    
 
     & .container {
+        position: relative;
         @include mobile {
             height: 100%;
             padding-left: 0;
@@ -19,6 +12,13 @@
             display: grid;
             grid-template-columns: 100%;
             grid-template-rows: min-content auto;
+        }
+        & .ui-line {
+            top: 100%;
+            left: 0;
+            @include mobile{
+                top: 92%;
+            }
         }
     }
 

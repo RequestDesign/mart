@@ -9,25 +9,22 @@
 
     & .container {
         position: relative;
+            & .ui-line {
+                top: 30.5%;
+                left: 0;
+                @include mobile {
+                    top: 26.8%;
+                    transition: top 1s linear;
+                }
+            }
     }
 
-    & .ui-line {
-        position: absolute;
-        top: 27.5rem;
-        left: 0;
-        width: 100vw;
-        margin-left: 50%;
-        transform: translateX(-50%);
 
-        @include mobile {
-            top: 50.5rem;
-        }
-    }
 
     @include mobile {
         &[data-anime-state='1'] {
             & .two-grid__c {
-                grid-template-rows: 45% 55% 0%;
+                grid-template-rows: 40% 60% 0%;
 
 
                 & .tl1 {
@@ -38,6 +35,9 @@
                 & .two-grid__c-cell-img {
                     height: 88%;
 
+                }
+                & .ui-line {
+                        top: 26.8%;
                 }
 
 
@@ -58,6 +58,9 @@
                     height: 22%;
 
                 }
+                & .ui-line {
+                    top: 26%;
+                }
 
 
             }
@@ -76,6 +79,9 @@
                 & .two-grid__c-cell-img {
                     height: 22%;
 
+                }
+                & .ui-line {
+                    top: 26%;
                 }
 
 
@@ -104,12 +110,13 @@
 
 
         }
-
+      
         &-cell {
             display: grid;
             grid-template-columns: .5fr 1fr;
             grid-template-rows: 15rem auto;
             gap: 0 4.4rem;
+           
 
             @include mobile {
                 display: flex;
@@ -135,6 +142,7 @@
 
 
             }
+           
 
             &:first-of-type {
                 grid-template-columns: .22fr 1fr;
@@ -149,6 +157,7 @@
 
                 }
             }
+          
 
             &-subhead {
                 height: fit-content;
@@ -186,14 +195,11 @@
 
                 &-el {
                     padding-bottom: 3.2rem;
-                    border-bottom: 1px solid transparent;
                     display: flex;
                     flex-direction: column;
                     gap: 1.6rem;
-                    transition: border .5s .8s linear;
 
                     &:last-of-type {
-                        border: none;
                         padding: 0;
                     }
                 }

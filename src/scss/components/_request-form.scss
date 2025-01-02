@@ -14,10 +14,7 @@
                 grid-template-rows: 0rem 0rem min-content 50rem;
             }
 
-            & .request-form__footer {
-                transition-delay: 2s;
-                transform: translateY(0);
-            }
+          
         }
 
     }
@@ -202,10 +199,7 @@
     &__footer {
         margin-top: auto;
 
-        @include mobile {
-            transform: translateY(110%);
-            transition: transform 1s linear;
-        }
+     
 
     }
 

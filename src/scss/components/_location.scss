@@ -7,16 +7,8 @@
         padding-top: $sectionGap;
         padding-bottom: $sectionGap;
     }
-
-    & .ui-line {
-        position: absolute;
-        top: 48rem;
-        left: 0;
-
-        @include mobile {
-            top: 84rem;
-        }
-    }
+ 
+   
 
     &[data-anime-state='1'] {
         & .location__c {
@@ -41,6 +33,15 @@
             'year big btn'
             'small big dnk'
             'small big object';
+            position: relative;
+            & .ui-line {
+                top: 0;
+                left: 0;
+        
+                @include mobile {
+                    top: 25rem;
+                }
+            }
 
         @include mobile {
             grid-template-columns: 1fr 1fr;

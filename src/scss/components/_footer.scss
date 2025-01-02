@@ -1,7 +1,13 @@
 .footer {
-    border-top: 2px solid $black16;
+
     margin-top: 1.6rem;
     padding: 2rem 0;
+    width: 100%;
+    position: relative;
+    & .ui-line{
+        top: 0;
+    }
+
 
     &__c {
         height: 7.6rem;

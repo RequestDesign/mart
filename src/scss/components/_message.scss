@@ -87,19 +87,7 @@
         
     }
 
-    & .ui-line {
-        position: absolute;
-        top: 42rem;
-        left: 0;
-
-        @include mobile {
-            top: 46rem;
-        }
-    }
-
-
     &__c {
-        padding-bottom: 3rem;
         display: grid;
         grid-template-columns: .5fr 1fr 1fr .5fr;
         gap: 3rem 4.4rem;
@@ -109,6 +97,7 @@
             '. exp mission .'
             'small big text .'
             'small big text btn-small';
+            position: relative;
 
 
         @include mobile {
@@ -123,6 +112,15 @@
                 'small big'
                 'text text'
                 'btn-small btn-small';
+        }
+        & .ui-line {
+            position: absolute;
+            top: 11%;
+            left: 0;
+    
+            @include mobile {
+                top: 29%;
+            }
         }
 
         &-heading {
@@ -139,7 +137,7 @@
                 position: absolute;
                 top: 0;
                 right: 0;
-                transform: translate(-21rem, 32rem);
+                transform: translate(-21rem, 19rem);
             }
         }
 

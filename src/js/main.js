@@ -93,7 +93,7 @@ function mainPageCore() {
         creativeEffect: {
 
         },
-        initialSlide: 10,
+        initialSlide: 2,
         followFinger: false,
         slidesPerView: 1,
         mousewheel: true,
@@ -141,7 +141,7 @@ function mainPageCore() {
                 if (swiper.slides[swiper.activeIndex - 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
                     swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1
                 }
-                if (swiper.slides[swiper.activeIndex + 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
+                if (swiper.slides[swiper.activeIndex + 1] && swiper.slides[swiper.activeIndex + 1].dataset.animeStates) {
                     swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1
                 }
 

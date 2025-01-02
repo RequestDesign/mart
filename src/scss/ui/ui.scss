@@ -8,6 +8,7 @@
 @import './anime';
 /*  */
 @import './section';
+
 /*  */
 .ui {
     &-icon {
@@ -18,6 +19,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
+
         @include mobile {
             width: 4.8rem;
             height: 4.8rem;
@@ -30,7 +32,7 @@
         }
 
         &._arrow {
-           
+
 
             &-black {
                 &-right {
@@ -38,6 +40,7 @@
                 }
 
             }
+
             &-white {
                 &-right {
                     background-image: url(../assets/images/icons/arrow-right-white.svg);
@@ -50,9 +53,13 @@
     &-line {
         background-color: rgba(255, 254, 248, 0.3);
         height: 1px;
-        width: 100%;
-        &._black{
-        background-color: $black16;
+        position: absolute;
+        width: 100vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
+
+        &._black {
+            background-color: $black16;
 
         }
 
@@ -73,11 +80,12 @@
         }
     }
 
-    &-marked-list{
-        & li{
+    &-marked-list {
+        & li {
             list-style: disc;
             list-style-position: inside;
-            &::marker{
+
+            &::marker {
                 color: $black40;
             }
         }

@@ -1,13 +1,7 @@
 .our-specialists {
-    position: relative;
 
-    & .ui-line {
-        position: absolute;
-        top: 30rem;
-        @include mobile{
-            top: 95%;
-        }
-    }
+
+
 
     & .container {
         position: relative;
@@ -15,6 +9,15 @@
         grid-template-columns: .3fr .8fr 84rem;
         gap: 4.4rem;
         align-items: flex-end;
+
+        & .ui-line {
+            position: absolute;
+            top: 42%;
+
+            @include mobile {
+                top: 94%;
+            }
+        }
 
         @include mobile {
             grid-template-columns: 100%;
@@ -96,6 +99,7 @@
 
             & .swiper-slide {
                 background-color: $white;
+
                 & .txt22 {
                     margin-bottom: 2.4rem;
                 }
@@ -104,6 +108,10 @@
 
         & .swiper-navigation {
             margin-top: auto;
+            @include mobile{
+                margin-top: 0;
+                margin-bottom: auto;
+            }
         }
     }
 
