@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 576:
+/***/ 81:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -15,7 +15,130 @@ var inputmask = __webpack_require__(382);
 var modules = __webpack_require__(11);
 // EXTERNAL MODULE: ./node_modules/swiper/swiper.mjs + 1 modules
 var swiper_swiper = __webpack_require__(652);
+;// CONCATENATED MODULE: ./src/js/utils/constants.js
+const rem = function (rem) {
+  if (window.innerWidth > 768) {
+    return 0.005208335 * window.innerWidth * rem;
+  } else {
+    // где 375 это ширина мобильной версии макета
+    return 100 / 375 * (0.05 * window.innerWidth) * rem;
+  }
+};
+let bodyLockStatus = true;
+let bodyUnlock = function () {
+  let delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
+  let body = document.querySelector('body');
+  if (bodyLockStatus) {
+    setTimeout(() => {
+      body.style.paddingRight = '0px';
+      // document.querySelector('header').style.paddingRight = '0px';
+      document.documentElement.classList.remove('lock');
+    }, delay);
+    bodyLockStatus = false;
+    setTimeout(function () {
+      bodyLockStatus = true;
+    }, delay);
+  }
+};
+let bodyLock = function () {
+  let delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
+  let body = document.querySelector('body');
+  if (bodyLockStatus) {
+    const getScrollbarWidth = () => window.innerWidth - document.documentElement.clientWidth;
+    let scrollWith = getScrollbarWidth();
+    body.style.paddingRight = `${scrollWith}px`;
+    // document.querySelector('header').style.paddingRight = `${scrollWith}px`
+    document.documentElement.classList.add('lock');
+    bodyLockStatus = false;
+    setTimeout(function () {
+      bodyLockStatus = true;
+    }, delay);
+  }
+};
+
+// smooth behavior ============================================================
+const _slideUp = function (target) {
+  let duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  let showmore = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  if (!target.classList.contains('_slide')) {
+    target.classList.add('_slide');
+    target.style.transitionProperty = 'height, margin, padding';
+    target.style.transitionDuration = duration + 'ms';
+    target.style.height = `${target.offsetHeight}px`;
+    target.offsetHeight;
+    target.style.overflow = 'hidden';
+    target.style.height = showmore ? `${showmore}px` : `0px`;
+    target.style.paddingTop = 0;
+    target.style.paddingBottom = 0;
+    target.style.marginTop = 0;
+    target.style.marginBottom = 0;
+    window.setTimeout(() => {
+      target.hidden = !showmore ? true : false;
+      !showmore ? target.style.removeProperty('height') : null;
+      target.style.removeProperty('padding-top');
+      target.style.removeProperty('padding-bottom');
+      target.style.removeProperty('margin-top');
+      target.style.removeProperty('margin-bottom');
+      !showmore ? target.style.removeProperty('overflow') : null;
+      target.style.removeProperty('transition-duration');
+      target.style.removeProperty('transition-property');
+      target.classList.remove('_slide');
+      // create event
+      document.dispatchEvent(new CustomEvent('slideUpDone', {
+        detail: {
+          target: target
+        }
+      }));
+    }, duration);
+  }
+};
+const _slideDown = function (target) {
+  let duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  let showmore = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  if (!target.classList.contains('_slide')) {
+    target.classList.add('_slide');
+    target.hidden = target.hidden ? false : null;
+    showmore ? target.style.removeProperty('height') : null;
+    let height = target.offsetHeight;
+    target.style.overflow = 'hidden';
+    target.style.height = showmore ? `${showmore}px` : `0px`;
+    target.style.paddingTop = 0;
+    target.style.paddingBottom = 0;
+    target.style.marginTop = 0;
+    target.style.marginBottom = 0;
+    target.offsetHeight;
+    target.style.transitionProperty = 'height, margin, padding';
+    target.style.transitionDuration = duration + 'ms';
+    target.style.height = height + 'px';
+    target.style.removeProperty('padding-top');
+    target.style.removeProperty('padding-bottom');
+    target.style.removeProperty('margin-top');
+    target.style.removeProperty('margin-bottom');
+    window.setTimeout(() => {
+      target.style.removeProperty('height');
+      target.style.removeProperty('overflow');
+      target.style.removeProperty('transition-duration');
+      target.style.removeProperty('transition-property');
+      target.classList.remove('_slide');
+      // create event
+      document.dispatchEvent(new CustomEvent('slideDownDone', {
+        detail: {
+          target: target
+        }
+      }));
+    }, duration);
+  }
+};
+const _slideToggle = function (target) {
+  let duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  if (target.hidden) {
+    return _slideDown(target, duration);
+  } else {
+    return _slideUp(target, duration);
+  }
+};
 ;// CONCATENATED MODULE: ./src/js/main.js
+
 
 
 
@@ -83,7 +206,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 10,
+    initialSlide: 2,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -98,6 +221,7 @@ function mainPageCore() {
       init: swiper => {
         swiper.slides[swiper.activeIndex].classList.add('anime-start');
         swiper.wrapperEl.querySelectorAll('[data-anime-states]').forEach(el => {
+          el.dataset.animeState = '1';
           sectionState(swiper, el);
         });
       },
@@ -124,7 +248,7 @@ function mainPageCore() {
         if (swiper.slides[swiper.activeIndex - 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
           swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1;
         }
-        if (swiper.slides[swiper.activeIndex + 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
+        if (swiper.slides[swiper.activeIndex + 1] && swiper.slides[swiper.activeIndex + 1].dataset.animeStates) {
           swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1;
         }
         activeSlide.classList.remove('_opened');
@@ -267,6 +391,15 @@ function iniSwipers() {
         one.slideNext();
       }
       touchstart = 0;
+    });
+  }
+  const gallery = document.querySelector('.gallery');
+  if (gallery) {
+    new swiper_swiper/* default */.Z(gallery.querySelector('.swiper'), {
+      direction: 'vertical',
+      spaceBetween: rem(3),
+      slidesPerView: 'auto',
+      mousewheel: true
     });
   }
 }
@@ -512,7 +645,7 @@ function initSwichers() {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [390,729,522], function() { return __webpack_require__(576); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [390,729,522], function() { return __webpack_require__(81); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
