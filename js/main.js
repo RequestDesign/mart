@@ -206,7 +206,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 2,
+    initialSlide: 5,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
