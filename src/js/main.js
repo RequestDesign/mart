@@ -94,7 +94,7 @@ function mainPageCore() {
         creativeEffect: {
 
         },
-        initialSlide: 2,
+        initialSlide: 5,
         followFinger: false,
         slidesPerView: 1,
         mousewheel: true,

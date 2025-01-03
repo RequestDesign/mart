@@ -1,0 +1,68 @@
+.advantages {
+    &__c {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(8, auto);
+        gap: 2.4rem;
+        @include mobile{
+            grid-template-columns: 100%;
+            grid-auto-rows: auto;
+        }
+
+        &-img {
+            @include desktop{
+                grid-column: 2;
+                grid-row: 1 / span 8;
+
+            }
+            height: 84rem;
+            display: flex;
+            clip-path: inset(100% 0 0% 0);
+            transition: clip-path .5s linear;
+            z-index: 1;
+ 
+
+            &:first-of-type {
+                z-index: -1;
+
+            }
+
+            & img {
+                object-fit: cover;
+            }
+        }
+
+        &-el {
+            grid-column: 1;
+            display: flex;
+            gap: 2.6rem;
+            align-items: center;
+
+            &-count {
+                height: 8.4rem;
+                width: 8.4rem;
+                border-radius: 50%;
+                border: 1px solid $black16;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            &-text{
+                display: flex;
+                flex-direction: column;
+                gap: .8rem;
+            }
+
+            @for $i from 1 through 7 {
+                &._hover:hover {
+                    &+.advantages__c-img {
+                        border: 1px solid red;
+                        clip-path: inset(0% 0 0% 0);
+                    }
+                }
+            }
+        }
+
+    }
+}

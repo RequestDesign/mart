@@ -1,4 +1,4 @@
-.services {
+.our-services {
    
 
     & .container {
@@ -19,7 +19,7 @@
 
     &[data-anime-state='2'] {
         @include mobile {
-            & .services__grid {
+            & .our-services__grid {
                 grid-template-rows: 0fr 1fr;
             }
         }

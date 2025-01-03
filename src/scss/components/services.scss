@@ -1,0 +1,51 @@
+.services {
+    padding-top: 16rem;
+    height: 100dvh;
+    &__c {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto;
+        gap: 4.4rem;
+        @include mobile{
+            grid-template-columns: 100%;
+        }
+
+        &-el {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+
+            &-item {
+                height: 90rem;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                box-sizing: border-box;
+                padding: 6.8rem;
+
+                &-img {
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+
+                    & img {
+                        object-fit: cover;
+                    }
+                }
+
+                &-text {
+                    margin-top: auto;
+                    margin-bottom: 6rem;
+                }
+
+                & .btn-pirmary {
+                    margin-top: auto;
+                }
+            }
+        }
+    }
+}

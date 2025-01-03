@@ -64,11 +64,13 @@
     }
 
     & .ui-line {
-        bottom: 27%;
+        @include desktop{
+            bottom:18rem;
+        }
         z-index: 2;
 
         @include mobile {
-            bottom: 74.5%;
+           top: 41rem;
         }
     }
 

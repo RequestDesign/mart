@@ -1,0 +1,71 @@
+.about-heading {
+    position: relative;
+    display: flex;
+
+    & .ui-bg {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+
+    }
+
+    & .ui-line {
+        z-index: 2;
+        left: 0;
+        bottom: 19.5rem;
+
+        @include mobile {
+            bottom: 29.5rem;
+        }
+
+    }
+
+    &__c {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 32rem auto;
+        grid-template-areas:
+            'btn head'
+            'btn txt';
+        gap: 2.6rem;
+        padding-bottom: 13rem;
+        margin-top: auto;
+        margin-bottom: 0 !important;
+
+        @include mobile {
+            grid-template-columns: 37rem auto;
+            grid-template-areas:
+                'head btn'
+                'txt btn';
+        }
+
+
+        & .tl1 {
+            grid-area: head;
+        }
+
+        & .txt20 {
+            grid-area: txt;
+            @include desktop{
+                width: 55rem;
+            }
+        }
+
+        & .btn-primary {
+            grid-area: btn;
+            width: fit-content;
+            height: fit-content;
+            margin-left: 22rem;
+
+            @include mobile {
+                margin-left: 12rem;
+            }
+        }
+    }
+}

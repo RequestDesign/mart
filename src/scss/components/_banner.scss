@@ -1,0 +1,78 @@
+.banner {
+    position: relative;
+
+    &__c {
+        position: relative;
+        height: 70rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: '. body';
+        gap: 4.4rem;
+
+        @include mobile {
+            grid-template-columns: 100%;
+            grid-template-rows: 64rem auto;
+            grid-template-areas:
+                'left'
+                'body';
+            height: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        &-body {
+            grid-area: body;
+
+            @include mobile {
+                padding-right: $mobilePadding;
+                padding-left: $mobilePadding;
+            }
+        }
+
+        &-left {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            @include mobile {
+                grid-area: left;
+            }
+        }
+
+        &-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            width: 100vw;
+            height: 100%;
+
+            @include mobile {
+                position: relative;
+                width: auto;
+            }
+
+            & img {
+                object-position: right;
+
+            }
+
+        }
+    }
+
+    &._design {
+        & .ui-line {
+            top: 47rem;
+        }
+
+        & .banner__c-body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-top: 10.8rem;
+            padding-bottom: 10.8rem;
+
+        }
+    }
+}
