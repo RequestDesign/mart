@@ -206,7 +206,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 5,
+    initialSlide: 6,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -402,7 +402,40 @@ function iniSwipers() {
       mousewheel: true
     });
   }
+  const twoSlider = document.querySelector('.two-slider');
+  if (twoSlider) {
+    new swiper_swiper/* default */.Z(twoSlider.querySelector('.swiper'), {
+      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
+      effect: window.innerWidth < 768 ? 'fade' : 'slide',
+      followFinger: false,
+      speed: 100,
+      fadeEffect: {
+        crossFade: false
+      },
+      navigation: {
+        prevEl: twoSlider.querySelector('.swiper-btn-prev'),
+        nextEl: twoSlider.querySelector('.swiper-btn-next')
+      },
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      spaceBetween: rem(8),
+      on: {
+        init: swiper => {
+          swiper.slides.forEach((e, i) => {
+            console.log(toString(i + 1));
+            e.querySelector('.two-slider__slide-body-count').textContent = (i + 1).toString().padStart(2, '0');
+          });
+        }
+      }
+      /*   breakpoints:{
+            768:{
+                slidesPerGroup: 2
+            }
+        } */
+    });
+  }
 }
+
 function initForms() {
   function formSubmit(inputData) {}
   const forms = document.querySelectorAll('.form');
