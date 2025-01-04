@@ -4,7 +4,7 @@ import Inputmask from 'inputmask'
 import { Navigation, Pagination, Grid, Autoplay, Mousewheel, EffectFade, EffectCreative } from 'swiper/modules';
 import Swiper from 'swiper';
 import Form from './utils/Form';
-import {rem} from './utils/constants'
+import { rem } from './utils/constants'
 
 
 const HTML = $('html'),
@@ -94,7 +94,7 @@ function mainPageCore() {
         creativeEffect: {
 
         },
-        initialSlide: 5,
+        initialSlide: 6,
         followFinger: false,
         slidesPerView: 1,
         mousewheel: true,
@@ -310,15 +310,50 @@ function iniSwipers() {
     const gallery = document.querySelector('.gallery')
     if (gallery) {
         new Swiper(gallery.querySelector('.swiper'), {
-            direction: 'vertical', 
+            direction: 'vertical',
             spaceBetween: rem(3),
             slidesPerView: 'auto',
             mousewheel: true
         })
     }
 
+    const twoSlider = document.querySelector('.two-slider')
+    if (twoSlider) {
+        new Swiper(twoSlider.querySelector('.swiper'), {
+            modules: [Navigation, EffectFade],
+            effect: window.innerWidth < 768 ? 'fade' : 'slide',
+            followFinger: false,
+            speed: 100,
+            fadeEffect: {
+                crossFade: false
+            },
+            navigation: {
+                prevEl: twoSlider.querySelector('.swiper-btn-prev'),
+                nextEl: twoSlider.querySelector('.swiper-btn-next'),
+            },
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+            spaceBetween: rem(8),
+            on:{
+                init : (swiper) => {
+                    swiper.slides.forEach((e, i) => {
+                        console.log(toString(i + 1));
+                        e.querySelector('.two-slider__slide-body-count')
+                            .textContent = (i + 1).toString().padStart(2, '0')
+                    })
+                }, 
+            } 
+            /*   breakpoints:{
+                  768:{
+                      slidesPerGroup: 2
+                  }
+              } */
 
-   
+        })
+    }
+
+
+
 }
 
 function initForms() {

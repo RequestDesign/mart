@@ -1,0 +1,89 @@
+.two-slider {
+    padding-top: 10rem;
+    @include mobile{
+        padding-top: 16rem;
+
+    }
+
+
+
+    & .swiper {
+        height: 50vh;
+        @include mobile {
+            height: 68vh;
+        }
+    }
+  
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 5.6rem;
+        position: relative;
+        z-index: 5;
+
+        & .ui-line {
+            bottom: 0;
+        }
+
+        & .btn-primary {
+            transform: translate(-27rem, 5rem);
+
+            @include mobile {
+
+                transform: translate(-21rem, 69vh);
+            }
+        }
+    }
+
+    &__slide {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4.4rem;
+        grid-template-rows: 100%;
+
+        @include mobile {
+            grid-template-columns: 100%;
+          
+            grid-template-rows: 60rem auto;
+        }
+
+        &-img {
+            display: flex;
+            height: 100%;
+
+        }
+
+        &-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 2.4rem;
+            @include mobile{
+                justify-content: flex-start;
+            }
+
+            &-count {
+                margin-bottom: 8rem;
+
+                @include mobile {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    & .swiper-nav {
+        position: absolute;
+        top: 2rem;
+        left: 24%;
+        z-index: 3;
+
+        @include mobile {
+            top: 100%;
+            left: 0;
+            transform: translateY(-100%);
+        }
+    }
+}
