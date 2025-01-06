@@ -1,10 +1,17 @@
 .two-side {
     position: relative;
 
-    
+    @include mobile {
+        &._arch {
+            padding-bottom: 0;
+        }
+    }
+
+
 
     & .container {
         position: relative;
+
         @include mobile {
             height: 100%;
             padding-left: 0;
@@ -13,10 +20,12 @@
             grid-template-columns: 100%;
             grid-template-rows: min-content auto;
         }
+
         & .ui-line {
             top: 100%;
             left: 0;
-            @include mobile{
+
+            @include mobile {
                 top: 92%;
             }
         }
@@ -27,6 +36,7 @@
         justify-content: space-between;
         margin-bottom: 5.6rem;
         align-items: center;
+        transition: margin .5s linear;
 
         @include mobile {
             flex-direction: column;
@@ -48,15 +58,22 @@
             }
         }
 
-        &[data-anime-state='2'] {
+        &._arch[data-anime-state='2'] {
             & .two-side__grid {
-                grid-template-rows: 0fr .6fr .4fr 0fr;
+                grid-template-rows: 0fr .7fr .3fr 0fr;
 
 
             }
+
+            & .two-side__top {
+                margin-top: 0;
+            }
         }
 
-        &[data-anime-state='3'] {
+        &._arch[data-anime-state='3'] {
+            & .two-side__top {
+                margin-top: 0;
+            }
             & .two-side__grid {
                 grid-template-rows: 0fr 0fr .5fr .6fr;
 
@@ -86,11 +103,18 @@
 
 
 
+
+
             @include mobile {
                 height: 100%;
                 overflow: hidden;
 
             }
+
+            &-price {
+                margin-top: auto;
+            }
+
             &-text {
 
                 display: flex;

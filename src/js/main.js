@@ -94,7 +94,7 @@ function mainPageCore() {
         creativeEffect: {
 
         },
-        initialSlide: 6,
+        initialSlide: 4,
         followFinger: false,
         slidesPerView: 1,
         mousewheel: true,
@@ -334,21 +334,41 @@ function iniSwipers() {
             slidesPerView: 2,
             slidesPerGroup: 2,
             spaceBetween: rem(8),
-            on:{
-                init : (swiper) => {
+            on: {
+                init: (swiper) => {
                     swiper.slides.forEach((e, i) => {
                         console.log(toString(i + 1));
                         e.querySelector('.two-slider__slide-body-count')
                             .textContent = (i + 1).toString().padStart(2, '0')
                     })
-                }, 
-            } 
+                },
+            }
             /*   breakpoints:{
                   768:{
                       slidesPerGroup: 2
                   }
               } */
 
+        })
+    }
+
+    const care = document.querySelector('.arch-care')
+    if (care) {
+        new Swiper(care.querySelector('.swiper'), {
+            navigation: [Navigation],
+            simulateTouch: false,
+            followFinger: false,
+            spaceBetween: rem(4.4),
+            slidesPerView: 1.4,
+            breakpoints:{
+                768:{
+                    slidesPerView: 4
+                }
+            },
+            navigation: {
+                prevEl: care.querySelector('.swiper-btn-prev'),
+                nextEl: care.querySelector('.swiper-btn-next'),
+            }
         })
     }
 

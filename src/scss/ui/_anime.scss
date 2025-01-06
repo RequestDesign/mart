@@ -48,6 +48,14 @@
 
             }
         }
+        &-right {
+            overflow: hidden;
+
+            & .anime-translate-t {
+                transform: translateX(-150%);
+
+            }
+        }
 
         &-t {}
     }

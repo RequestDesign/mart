@@ -1,0 +1,139 @@
+.supervisor-heading {
+    position: relative;
+    display: flex;
+
+    & .ui-bg {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+
+    }
+
+    & .ui-line {
+        z-index: 2;
+        left: 0;
+
+        @include desktop {
+            top: 33rem;
+        }
+
+        @include mobile {
+            top: 34.5rem;
+        }
+
+    }
+
+    &__c {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 32rem auto auto 46rem;
+        grid-template-areas:
+            '. . . top'
+            'btn ttl . .'
+            ' . price we idk';
+        gap: 2.6rem;
+
+        height: 100%;
+
+        @include mobile {
+            grid-template-columns: 1.1fr 1fr;
+            grid-template-areas:
+                'ttl btn'
+                'top top'
+                'we we'
+                'price price';
+            padding-top: 23rem;
+            padding-bottom: 0;
+
+        }
+
+
+        & .tl1 {
+            grid-area: ttl;
+            height: fit-content;
+            position: relative;
+            align-self: center;
+        }
+
+        &-top {
+            height: fit-content;
+            grid-area: top;
+            align-self: flex-start;
+
+            @include mobile {
+                align-self: flex-end;
+            }
+        }
+
+        &-we {
+            height: fit-content;
+            grid-area: we;
+            align-self: flex-end;
+
+            @include mobile {
+                align-self: flex-start;
+            }
+        }
+
+        &-idk {
+            height: fit-content;
+            grid-area: idk;
+            align-self: flex-end;
+        }
+
+        &-price {
+            grid-area: price;
+            display: flex;
+            gap: 8rem;
+            align-self: center;
+            align-self: flex-end;
+
+
+            &-el {
+                display: flex;
+                flex-direction: column;
+                gap: 1.6rem;
+            }
+        }
+
+        & .btn-primary {
+            grid-area: btn;
+            width: fit-content;
+            height: fit-content;
+            margin-left: 22rem;
+
+            @include mobile {
+                margin-left: 14rem;
+                transform: translateY(-4rem);
+            }
+        }
+    }
+}
+
+.supervisor-joke {
+    &__c {
+        width: 120rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+     
+        gap: 21rem;
+        @include mobile{
+            text-align: center;
+        }
+
+        &-top {}
+
+        &-bottom {
+           align-self: flex-end;
+        }
+
+    }
+}

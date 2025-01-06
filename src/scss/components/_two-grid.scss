@@ -208,6 +208,12 @@
 
             &-img {
                 display: flex;
+                &._complects{
+                    @include desktop{
+                        grid-column: 1;
+                        grid-row: 1 / span 2;
+                    }
+                }
 
                 @include mobile {
                     flex-shrink: 0;

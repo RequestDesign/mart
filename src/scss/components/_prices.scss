@@ -1,0 +1,168 @@
+.prices-heading {
+    position: relative;
+    display: flex;
+
+    & .ui-bg {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+
+    }
+
+    & .ui-line {
+        z-index: 2;
+        left: 0;
+
+        @include desktop {
+            bottom: 6rem;
+        }
+
+        @include mobile {
+            bottom: 13rem;
+        }
+
+    }
+
+    &__c {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 32rem auto 46rem;
+        grid-template-areas:
+            '. . .'
+            'btn ttl .'
+            ' . small .';
+        gap: 2.6rem;
+        margin-bottom: 0 !important;
+
+        @include mobile {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                'ttl btn'
+                'small small';
+            margin-top: auto;
+
+        }
+
+
+        & .tl1 {
+            grid-area: ttl;
+            height: fit-content;
+            position: relative;
+        }
+
+        & .txt20 {
+            height: fit-content;
+            grid-area: small;
+
+
+        }
+
+
+
+        &-price {
+            grid-area: price;
+            display: flex;
+            gap: 8rem;
+            align-self: center;
+
+            &-el {
+                display: flex;
+                flex-direction: column;
+                gap: 1.6rem;
+            }
+        }
+
+        & .btn-primary {
+            grid-area: btn;
+            width: fit-content;
+            height: fit-content;
+            margin-left: 22rem;
+
+            @include mobile {
+                margin-left: 12rem;
+            }
+        }
+    }
+}
+
+.prices-grid {
+    & .container {
+        @include mobile {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &__top {
+        margin-bottom: 5.6rem;
+
+        @include mobile {
+            padding-left: $mobilePadding;
+            padding-right: $mobilePadding;
+        }
+    }
+
+    &__c {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 4.4rem;
+
+        @include mobile {
+            grid-template-columns: 100%;
+
+            & .ui-line {
+                width: calc(100% - $mobilePadding *2);
+                margin-left: $mobilePadding;
+                margin-right: $mobilePadding;
+            }
+
+        }
+
+        &-el {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+
+            @include mobile {
+                grid-row: 1;
+                grid-column: 1;
+
+                & .prices-grid__c-el-item {
+                    padding-left: $mobilePadding;
+                    padding-right: $mobilePadding;
+                }
+            }
+
+
+
+            & .ui-list {
+                margin: 1.2rem 0;
+                padding-top: 2.4rem;
+                padding-bottom: 1.2rem;
+                overflow: hidden;
+            }
+
+            &-img {
+                margin-top: auto;
+                height: 30dvh;
+                max-height: 35rem;
+                display: flex;
+                 & img{
+                    object-fit: cover;
+                 }
+
+                @include mobile {
+                    height: 50%;
+                    margin-top: 5rem;
+                    max-height: unset;
+                }
+            }
+        }
+    }
+}

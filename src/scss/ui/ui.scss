@@ -63,6 +63,13 @@
 
         }
 
+        &._relative {
+            position: relative;
+            width: 100%;
+            margin-left: 0;
+            transform: translateX(0);
+        }
+
     }
 
     &-bg {
@@ -106,11 +113,53 @@
         line-height: normal;
         letter-spacing: 0.12em;
         flex-shrink: 0;
-        @include mobile{
+
+        @include mobile {
             width: 8rem;
             height: 8rem;
             font-size: 2.6rem;
         }
 
+    }
+
+    &-list {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.8rem;
+        padding-left: 2rem;
+
+        @include mobile {
+            gap: 3.2rem;
+            padding-left: 5rem;
+        }
+
+        & li {
+            list-style: disc;
+            list-style-position: outside;
+
+            &::marker {
+                color: $black16;
+            }
+        }
+    }
+
+    &-download {
+        width: fit-content;
+        padding-right: 2rem;
+        background-image: url(../assets/images/icons/download.svg);
+        background-repeat: no-repeat;
+        background-position: right top;
+        background-size: contain;
+        opacity: .5;
+        transition: opacity .5s linear;
+
+        @include hover {
+            opacity: 1;
+        }
+
+        @include mobile {
+            padding-right: 4rem;
+        }
     }
 }
