@@ -206,7 +206,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 6,
+    initialSlide: 4,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -434,8 +434,27 @@ function iniSwipers() {
         } */
     });
   }
-}
 
+  const care = document.querySelector('.arch-care');
+  if (care) {
+    new swiper_swiper/* default */.Z(care.querySelector('.swiper'), {
+      navigation: [modules/* Navigation */.W_],
+      simulateTouch: false,
+      followFinger: false,
+      spaceBetween: rem(4.4),
+      slidesPerView: 1.4,
+      breakpoints: {
+        768: {
+          slidesPerView: 4
+        }
+      },
+      navigation: {
+        prevEl: care.querySelector('.swiper-btn-prev'),
+        nextEl: care.querySelector('.swiper-btn-next')
+      }
+    });
+  }
+}
 function initForms() {
   function formSubmit(inputData) {}
   const forms = document.querySelectorAll('.form');
