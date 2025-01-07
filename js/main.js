@@ -229,16 +229,26 @@ function mainPageCore() {
       wheelIsReady = false;
       setTimeout(() => {
         wheelIsReady = true;
-      }, 1000);
+      }, 500);
       console.log(ev.deltaY);
-      if (ev.deltaY > 0 && swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
-        console.log("Прокрутка вниз");
-        swiperCore.mousewheel.enable();
-        swiperCore.allowTouchMove = true;
-      } else if (ev.deltaY < 0 && swiperSlider.activeIndex <= 0) {
-        console.log("Прокрутка вверх");
-        swiperCore.mousewheel.enable();
-        swiperCore.allowTouchMove = true;
+      if (ev.deltaY > 0) {
+        /*  console.log("Прокрутка вниз"); */
+        if (swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
+          swiperCore.mousewheel.enable();
+          swiperCore.allowTouchMove = true;
+          swiperCore.slideNext();
+        } else {
+          swiperSlider.slideNext();
+        }
+      } else if (ev.deltaY < 0) {
+        /* console.log("Прокрутка вверх"); */
+        if (swiperSlider.activeIndex <= 0) {
+          swiperCore.mousewheel.enable();
+          swiperCore.allowTouchMove = true;
+          swiperCore.slidePrev();
+        } else {
+          swiperSlider.slidePrev();
+        }
       }
     });
   }
@@ -247,7 +257,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 0,
+    initialSlide: 9,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -271,12 +281,8 @@ function mainPageCore() {
             direction: 'vertical',
             spaceBetween: rem(3),
             slidesPerView: 'auto',
-            mousewheel: true,
-            on: {
-              scroll: (s, ev) => {
-                console.log(ev.deltaY);
-              }
-            }
+            mousewheel: false,
+            simulateTouch: false
           });
           sectionSlider(swiper, slider, el);
         });
@@ -351,7 +357,7 @@ function iniSwipers() {
   }
   const ourSpecialists = document.querySelector('.our-specialists');
   if (ourSpecialists) {
-    const smallImg = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__small.swiper'), {
+    new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.swiper'), {
       modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       slidesPerView: 1,
       effect: 'fade',
@@ -365,50 +371,15 @@ function iniSwipers() {
         prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
         nextEl: ourSpecialists.querySelector('.swiper-btn-next')
       }
-    });
-    const userInfo = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__info-data.swiper'), {
-      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
-      slidesPerView: 1,
-      effect: 'fade',
-      followFinger: false,
-      speed: 100,
-      fadeEffect: {
-        crossFade: false
-      },
-      simulateTouch: false,
-      allowTouchMove: false,
-      navigation: {
-        prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
-        nextEl: ourSpecialists.querySelector('.swiper-btn-next')
-      }
-    });
-    const bigImg = new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.our-specialists__big.swiper'), {
-      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
-      slidesPerView: 1,
-      effect: 'fade',
-      followFinger: false,
-      speed: 100,
-      fadeEffect: {
-        crossFade: false
-      },
-      navigation: {
-        prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
-        nextEl: ourSpecialists.querySelector('.swiper-btn-next')
-      }
-    });
-    bigImg.on('slideChange', swiper => {
-      smallImg.slideTo(swiper.activeIndex);
-      userInfo.slideTo(swiper.activeIndex);
     });
   }
   const results = document.querySelector('.results');
   if (results) {
-    const one = new swiper_swiper/* default */.Z(results.querySelector('.results__c-sliders-one.swiper'), {
+    const one = new swiper_swiper/* default */.Z(results.querySelector('.swiper'), {
       modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
       effect: 'fade',
       speed: 100,
       followFinger: false,
-      allowTouchMove: false,
       fadeEffect: {
         crossFade: false
       },
@@ -416,40 +387,7 @@ function iniSwipers() {
         prevEl: results.querySelector('.swiper-btn-prev'),
         nextEl: results.querySelector('.swiper-btn-next')
       },
-      slidesPerView: 1,
-      simulateTouch: false
-    });
-    const two = new swiper_swiper/* default */.Z(results.querySelector('.results__c-sliders-two.swiper'), {
-      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
-      effect: 'fade',
-      speed: 100,
-      followFinger: false,
-      allowTouchMove: false,
-      fadeEffect: {
-        crossFade: false
-      },
-      navigation: {
-        prevEl: results.querySelector('.swiper-btn-prev'),
-        nextEl: results.querySelector('.swiper-btn-next')
-      },
-      slidesPerView: 1,
-      simulateTouch: false
-    });
-    const container = results.querySelector('.results__c-sliders');
-    let touchstart = 0;
-    container.addEventListener('touchstart', ev => {
-      touchstart = ev.touches[0].clientX;
-    });
-    container.addEventListener('touchend', ev => {
-      const end = ev.changedTouches[0].pageX;
-      if (end > touchstart + 50) {
-        two.slidePrev();
-        one.slidePrev();
-      } else if (end + 50 < touchstart) {
-        two.slideNext();
-        one.slideNext();
-      }
-      touchstart = 0;
+      slidesPerView: 1
     });
   }
 
