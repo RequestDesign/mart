@@ -201,12 +201,53 @@ function mainPageCore() {
       touchStart = 0;
     });
   }
+  function sectionSlider(swiperCore, swiperSlider, slide) {
+    /**
+     * 
+     * @param {swiperCore} Swiper 
+     * @param {slide} domElement 
+     * 
+     */
+    slide.addEventListener('touchstart', ev => {
+      touchStart = ev.touches[0].clientY;
+    });
+    slide.addEventListener('touchend', ev => {
+      const end = ev.changedTouches[0].pageY;
+      if (end > touchStart + SWIPE_SIZE && swiperSlider.activeIndex <= 0) {
+        swiperCore.mousewheel.enable();
+        swiperCore.allowTouchMove = true;
+        swiperCore.slidePrev();
+      } else if (end + SWIPE_SIZE < touchStart && swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
+        swiperCore.mousewheel.enable();
+        swiperCore.allowTouchMove = true;
+        swiperCore.slideNext();
+      }
+    });
+    let wheelIsReady = true;
+    slide.addEventListener('wheel', ev => {
+      if (!wheelIsReady) return;
+      wheelIsReady = false;
+      setTimeout(() => {
+        wheelIsReady = true;
+      }, 1000);
+      console.log(ev.deltaY);
+      if (ev.deltaY > 0 && swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
+        console.log("Прокрутка вниз");
+        swiperCore.mousewheel.enable();
+        swiperCore.allowTouchMove = true;
+      } else if (ev.deltaY < 0 && swiperSlider.activeIndex <= 0) {
+        console.log("Прокрутка вверх");
+        swiperCore.mousewheel.enable();
+        swiperCore.allowTouchMove = true;
+      }
+    });
+  }
   const swiper = new swiper_swiper/* default */.Z(main, {
     modules: [modules/* Mousewheel */.Gk, modules/* EffectCreative */.gI],
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 4,
+    initialSlide: 0,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -224,6 +265,21 @@ function mainPageCore() {
           el.dataset.animeState = '1';
           sectionState(swiper, el);
         });
+        swiper.wrapperEl.querySelectorAll('[data-anime-slider]').forEach(el => {
+          const slider = new swiper_swiper/* default */.Z(el.querySelector('.swiper'), {
+            modules: [modules/* Mousewheel */.Gk],
+            direction: 'vertical',
+            spaceBetween: rem(3),
+            slidesPerView: 'auto',
+            mousewheel: true,
+            on: {
+              scroll: (s, ev) => {
+                console.log(ev.deltaY);
+              }
+            }
+          });
+          sectionSlider(swiper, slider, el);
+        });
       },
       slidePrevTransitionStart: swiper => {
         swiper.slides[swiper.activeIndex + 1].classList.add('anime-over');
@@ -238,7 +294,6 @@ function mainPageCore() {
       },
       slideChangeTransitionStart: swiper => {
         console.log('start', swiper.activeIndex);
-        console.log(swiper.activeIndex - 1);
       },
       slideChangeTransitionEnd: swiper => {
         console.log('end', swiper.activeIndex);
@@ -265,6 +320,10 @@ function mainPageCore() {
           swiper.mousewheel.disable();
           swiper.allowTouchMove = false;
           activeSlide.dataset.animeState = 1;
+        }
+        if (activeSlide.dataset.animeSlider) {
+          swiper.mousewheel.disable();
+          swiper.allowTouchMove = false;
         }
       }
     }
@@ -393,15 +452,17 @@ function iniSwipers() {
       touchstart = 0;
     });
   }
-  const gallery = document.querySelector('.gallery');
-  if (gallery) {
-    new swiper_swiper/* default */.Z(gallery.querySelector('.swiper'), {
-      direction: 'vertical',
-      spaceBetween: rem(3),
-      slidesPerView: 'auto',
-      mousewheel: true
-    });
-  }
+
+  /*  const gallery = document.querySelector('.gallery')
+   if (gallery) {
+       new Swiper(gallery.querySelector('.swiper'), {
+           direction: 'vertical',
+           spaceBetween: rem(3),
+           slidesPerView: 'auto',
+           mousewheel: true
+       })
+   }
+  */
   const twoSlider = document.querySelector('.two-slider');
   if (twoSlider) {
     new swiper_swiper/* default */.Z(twoSlider.querySelector('.swiper'), {
@@ -422,7 +483,6 @@ function iniSwipers() {
       on: {
         init: swiper => {
           swiper.slides.forEach((e, i) => {
-            console.log(toString(i + 1));
             e.querySelector('.two-slider__slide-body-count').textContent = (i + 1).toString().padStart(2, '0');
           });
         }
