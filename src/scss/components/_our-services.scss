@@ -1,24 +1,31 @@
 .our-services {
-   
+  
+
+    @include mobile {
+        padding-bottom: 0;
+    }
 
     & .container {
         @include mobile {
             height: 100%;
-            padding-top: 25rem;
+
         }
+
         position: relative;
+
         & .ui-line {
             position: absolute;
             top: 95%;
-    
+
             @include mobile {
                 top: 96%;
             }
         }
     }
 
-    &[data-anime-state='2'] {
-        @include mobile {
+    @include mobile {
+        &[data-anime-state='2'] {
+
             & .our-services__grid {
                 grid-template-rows: 0fr 1fr;
             }
@@ -56,20 +63,24 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4.4rem;
+        height: 70dvh;
+        max-height: 74rem;
 
         @include mobile {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
             transition: grid .5s linear;
             overflow: hidden;
+            height: unset;
+            max-height: unset;
 
         }
 
         &-el {
             display: flex;
             flex-direction: column;
-            gap: 3.2rem;
-            height: 72rem;
+            gap: 2.4rem;
+            height: 100%;
             overflow: hidden;
 
             @include mobile {
@@ -111,7 +122,7 @@
 
             & .btn-primary {
                 margin-left: 50%;
-                margin-top: 20rem;
+                margin-top: 17rem;
 
                 @include mobile {
                     margin-left: 45%;

@@ -1,5 +1,8 @@
 .gallery {
-    padding-top: 12rem;
+    padding-bottom: 0;
+    @include mobile{
+        padding-bottom: 0;
+    }
 
     &__c {
         height: 100%;
@@ -9,12 +12,20 @@
             flex-direction: column;
             gap: 20rem;
             height: 70dvh;
+           
 
             &-list {
                 display: flex;
                 height: fit-content;
                 justify-content: flex-end;
                 border-top: 1px solid $black16;
+                @include mobile{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr ;
+                    grid-template-rows: 1fr 1fr;
+                    gap: 8rem;
+                    border-bottom: 1px solid $black16;
+                }
 
                 &-el {
                     width: 25rem;
@@ -32,12 +43,31 @@
                     &:last-of-type {
                         border-color: transparent;
                     }
+                    @include mobile{
+                        &:nth-child(1), &:nth-child(3){
+                            padding-left: 0;
+                            justify-self: flex-start;
+                             border-right: none;
+                             border-left:none;
+                        }
+                        &:nth-child(2), &:nth-child(4){
+                            padding-right: 0;
+                            border-right: none;
+                            border-left: 1px solid $black16;
+                            justify-self: flex-end;
+                        }
+                    }
 
                 }
             }
 
             &-text {
                 margin: 0 auto;
+                padding: 14rem;
+                @include mobile{
+                    padding: 0;
+                    text-align: left !important;
+                }
 
             }
         }
@@ -46,10 +76,12 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4.4rem;
-
-            height:calc(100dvh - 12rem - 3rem);
+            height: calc(100dvh - 12rem - 3rem);
             width: 100%;
             display: grid;
+            @include mobile{
+                grid-template-columns: 100%;
+            }
 
             &-img {
                 display: flex;
@@ -63,15 +95,48 @@
                 align-items: center;
                 justify-content: center;
                 gap: 4.4rem;
-                & *{
+
+
+                & * {
                     width: fit-content;
                 }
             }
         }
-        &-img{
-            height:calc(100dvh - 12rem - 3rem);
+
+        &-text {
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 14rem;
+        }
+
+        &-img {
+            height: calc(100dvh - $headerGap - 6rem);
             width: 100%;
-            display: grid;
+            display: flex;
+
+            & img {
+                object-fit: cover;
+                object-position: center;
+            }
+
+            &._two {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+
+            &-img {
+                display: flex;
+
+                & img {
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+
         }
     }
 }

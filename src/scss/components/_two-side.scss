@@ -34,7 +34,7 @@
     &__top {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 5.6rem;
+        margin-bottom: 4rem;
         align-items: center;
         transition: margin .5s linear;
 
@@ -85,6 +85,8 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4.4rem;
+        height: 62dvh;
+        max-height: 60rem;
 
         @include mobile {
             height: 100%;
@@ -98,17 +100,11 @@
             display: flex;
             flex-direction: column;
             gap: 2.4rem;
-            height: 58rem;
+            height: 100%;
             position: relative;
 
-
-
-
-
             @include mobile {
-                height: 100%;
                 overflow: hidden;
-
             }
 
             &-price {
@@ -146,7 +142,7 @@
                 & .btn-primary {
                     margin-top: auto;
                     margin-left: 50%;
-                    margin-bottom: 10rem;
+                    margin-bottom: 15rem;
 
                 }
             }

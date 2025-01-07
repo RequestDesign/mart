@@ -1,11 +1,6 @@
 .message {
     position: relative;
 
-
-    @include desktop {
-        padding-top: 26rem;
-    }
-
     @include mobile {
         padding-top: $sectionGapMobile;
 
@@ -131,7 +126,7 @@
         & .btn-primary {
             grid-area: btn;
             width: fit-content;
-            transform: translate(23rem, -11rem);
+            transform: translate(23rem, 10rem);
 
             @include mobile {
                 position: absolute;

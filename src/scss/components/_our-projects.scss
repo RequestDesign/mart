@@ -1,5 +1,7 @@
 .our-projects {
     display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
 
     @include desktop {
 
@@ -16,6 +18,9 @@
     }
 
     @include mobile {
+        padding-top: 0;
+        padding-bottom: 0;
+    
         &[data-anime-state='1'] {}
 
         &[data-anime-state='2'] {
@@ -79,7 +84,7 @@
                 height: fit-content;
                 opacity: 0;
                 transform: translateX(-50%);
-              
+
                 transition: opacity .5s ease-in-out;
                 transition-delay: 1s;
 

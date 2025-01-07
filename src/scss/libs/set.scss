@@ -57,33 +57,29 @@
 }
 
 .swiper-clip {
+
     & .swiper-slide-active {
-        animation: swiper-clip .5s ease-in-out forwards;
-
-
-    }
-
-    &._clip-bottom {
-        & .swiper-slide-active {
-            animation: swiper-clip-bottom .5s ease-in-out forwards;
-
+        & .swiper-clip._clip-both {
+            animation: swiper-clip .8s ease-in-out forwards;
 
         }
-    }
-
-    &._clip-top {
-        & .swiper-slide-active {
-            animation: swiper-clip-top .5s ease-in-out forwards;
-
-
+        & .swiper-clip._clip-bottom {
+            animation: swiper-clip-bottom .8s ease-in-out forwards;
         }
+    
+        & .swiper-clip._clip-top {
+            animation: swiper-clip-top .8s ease-in-out forwards;
+        }
+
     }
+
+    
 }
 
 .page-slide {
     /* background-color: $bg; */
     padding-top: $headerGap;
-    padding-bottom: $headerGap;
+    padding-bottom: calc($headerGap / 2);
 
     @include desktop {
         display: flex;

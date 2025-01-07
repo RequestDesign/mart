@@ -1,8 +1,8 @@
 <section class="our-specialists">
-    <div class="container">
+    <div class="container swiper">
         <div class="ui-line _black anime-width-right" data-anime-delay="1s" data-anime-speed="1s"></div>
         <div class="our-specialists__top">
-            <button class="btn-primary _black desktop">
+            <button class="btn-primary _black ">
                 <span class="btn-primary-anchor">
                     <span class="btn-primary-c">
                         <span class="btn-primary-text anime-height-top" data-anime-delay="1s">
@@ -22,105 +22,65 @@
                 специалистов
             </p>
         </div>
-        <!--  -->
-         <!-- тут маленькие картинки -->
-        <div class="our-specialists__small swiper-clip _clip-top swiper desktop anime-height-top">
-           
-            <ul class="swiper-wrapper">
-                <li class="swiper-slide">
-                    <div class="our-specialists__img">
-                        <img src="./assets/images/message-small.png" alt="">
-                    </div>
-                </li>
-                <li class="swiper-slide">
-                    <div class="our-specialists__img">
-                        <img src="./assets/images/message-big.png" alt="">
-                    </div>
-                </li>
-                <li class="swiper-slide">
-                    <div class="our-specialists__img">
-                        <img src="./assets/images/message-small.png" alt="">
-                    </div>
-                </li>
-                <li class="swiper-slide">
-                    <div class="our-specialists__img">
-                        <img src="./assets/images/message-big.png" alt="">
-                    </div>
-                </li>
-            </ul>
+        <div class="swiper-nav">
+            <button class="swiper-btn swiper-btn-prev"></button>
+            <button class="swiper-btn swiper-btn-next"></button>
         </div>
         <!--  -->
-         <!-- тут инфа о челе -->
-        <div class="our-specialists__info anime-height">
-            <div class="our-specialists__info-data swiper swiper-clip">
-               
-                <ul class="swiper-wrapper">
-                    <li class="swiper-slide">
-                        <p class="txt22 txt-up">user  <br/> name 1111</p>
-                        <p class="txt20"> user <br/> job <br/> 1111</p>
-                    </li>
-                    <li class="swiper-slide">
-                        <p class="txt22 txt-up">Lorem ipsum dolor sit amet.</p>
-                        <p class="txt20"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, earum.</p>
-                    </li>
-                    <li class="swiper-slide">
-                        <p class="txt22 txt-up">user name 333</p>
-                        <p class="txt20"> user job 3333</p>
-                    </li>
-                    <li class="swiper-slide">
-                        <p class="txt22 txt-up">user name 444</p>
-                        <p class="txt20"> user job 444</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="swiper-navigation">
-                <button class="swiper-btn swiper-btn-prev"></button>
-                <button class="swiper-btn swiper-btn-next"></button>
-            </div>
-            <button class="btn-primary _black mobile">
-                <span class="btn-primary-anchor">
-                    <span class="btn-primary-c">
-                        <span class="btn-primary-text">
-                            закажите <br />
-                            звонок <br />
-                            в удобное <br />
-                            для вас время
+        <ul class="swiper-wrapper  swiper-clip">
+            <li class="swiper-slide our-specialists__slide">
+                <div class="our-specialists__slide-small swiper-clip _clip-bottom desktop ">
+                    <img src="./assets/images/message-small.png" alt="">
+                </div>
+                <div class="our-specialists__slide-info swiper-clip _clip-both">
+                    <p class="txt22 txt-up">
+                        name of this <br /> dude
+                    </p>
+                    <p class="txt20">
+                        job <br />
+                        of this <br />
+                        dude
+                    </p>
+                </div>
+                <div class="our-specialists__slide-big swiper-clip _clip-top ">
+                    <img src="./assets/images/message-big.png" alt="">
+                </div>
+            </li>
 
-                        </span>
-                        <span class="ui-icon _arrow-black-right">
-                        </span>
-                    </span>
-                    <span class="btn-primary-circle"></span>
-                </span>
-            </button>
-        </div>
-        <!--  --> 
-        <!-- а тут большая картинка -->
-        <div class="our-specialists__big swiper swiper-clip _clip-bottom anime-height-bottom">
-          
-            <div class="swiper-wrapper">
+            <li class="swiper-slide our-specialists__slide">
+                <div class="our-specialists__slide-small swiper-clip _clip-bottom desktop ">
+                    <img src="./assets/images/heading-main.png" alt="">
+                </div>
+                <div class="our-specialists__slide-info swiper-clip _clip-both">
+                    <p class="txt22 txt-up">
+                        name
+                    </p>
+                    <p class="txt20">
+                        job
+                    </p>
+                </div>
+                <div class="our-specialists__slide-big swiper-clip _clip-top ">
+                    <img src="./assets/images/contacts-mob.png" alt="">
+                </div>
+            </li>
+            <li class="swiper-slide our-specialists__slide">
+                <div class="our-specialists__slide-small swiper-clip _clip-bottom desktop ">
+                    <img src="./assets/images/message-big.png" alt="">
+                </div>
+                <div class="our-specialists__slide-info swiper-clip _clip-both">
+                    <p class="txt22 txt-up">
+                        a
+                    </p>
+                    <p class="txt20">
+                        Lorem ipsum dolor sit amet.
+                    </p>
+                </div>
+                <div class="our-specialists__slide-big swiper-clip _clip-top ">
+                    <img src="./assets/images/message-small.png" alt="">
+                </div>
+            </li>
 
-                <li class="swiper-slide">
-                    <div class="our-specialists__img">
-                        <img src="./assets/images/message-small.png" alt="">
-                    </div>
-                </li>
-                <li class="swiper-slide">
-                    <div class="our-specialists__img">
-                        <img src="./assets/images/message-big.png" alt="">
-                    </div>
-                </li>
-                <li class="swiper-slide">
-                    <div class="our-specialists__img">
-                        <img src="./assets/images/message-small.png" alt="">
-                    </div>
-                </li>
-                <li class="swiper-slide">
-                    <div class="our-specialists__img">
-                        <img src="./assets/images/message-big.png" alt="">
-                    </div>
-                </li>
-            </div>
-        </div>
+        </ul>
+
     </div>
 </section>

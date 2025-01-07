@@ -3,12 +3,12 @@
         display: grid;
         grid-template-columns: .5fr 1fr;
         gap: 4.4rem;
-        
+
         @include mobile {
             display: flex;
             flex-direction: column;
             gap: 5rem;
-            padding-top: 16rem;
+          
         }
 
         &-info {
@@ -51,34 +51,39 @@
 
         &-sliders {
             height: 72rem;
-            display: grid;
             width: 100%;
-            grid-template-columns: 1fr 1fr;
-            gap: 4.4rem;
+            position: relative;
+
+            &-text {
+                position: absolute;
+                left: 50%;
+                top: 5rem;
+                width: fit-content;
+                transform: translateX(calc(-100% - 5rem));
+                z-index: 3;
+                &:last-of-type{
+                    left: 100%;
+                }
+            }
+
 
             @include mobile {
                 height: 60rem;
-                gap: 3.2rem;
+
             }
 
-            & .swiper {
-                position: relative;
-                width: 100%;
-
-                & .txt14 {
-                    position: absolute;
-                    z-index: 3;
-                    top: 5.6rem;
-                    right: 5.6rem;
-
-                    @include mobile {
-                        top: 3.2rem;
-                        right: 3.2rem;
-                    }
+            &-el {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4.4rem;
+                @include mobile{
+                    gap: 2rem;
                 }
 
-                &-slide {
+                &-img {
                     display: flex;
+                    height: 100%;
+                    width: 100%;
 
                     & img {
                         object-fit: cover;
@@ -86,6 +91,8 @@
                     }
                 }
             }
+
+
         }
     }
 }

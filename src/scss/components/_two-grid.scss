@@ -7,19 +7,23 @@
 .two-grid {
     position: relative;
 
-    & .container {
-        position: relative;
-            & .ui-line {
-                top: 30.5%;
-                left: 0;
-                @include mobile {
-                    top: 26.8%;
-                    transition: top 1s linear;
-                }
-            }
+    @include mobile {
+        padding-bottom: 0;
     }
 
+    & .container {
+        position: relative;
 
+        & .ui-line {
+            top: 30.5%;
+            left: 0;
+
+            @include mobile {
+                top: 31.8%;
+                transition: top 1s linear;
+            }
+        }
+    }
 
     @include mobile {
         &[data-anime-state='1'] {
@@ -36,8 +40,9 @@
                     height: 88%;
 
                 }
+
                 & .ui-line {
-                        top: 26.8%;
+                    top: 24.8%;
                 }
 
 
@@ -58,8 +63,9 @@
                     height: 22%;
 
                 }
+
                 & .ui-line {
-                    top: 26%;
+                    top: 16%;
                 }
 
 
@@ -80,8 +86,9 @@
                     height: 22%;
 
                 }
+
                 & .ui-line {
-                    top: 26%;
+                    top: 16%;
                 }
 
 
@@ -105,18 +112,18 @@
             grid-template-columns: 100%;
             grid-template-rows: 50% 50%;
             height: 100%;
-            padding-top: 18rem;
+            padding-top: 0;
             gap: 0;
 
 
         }
-      
+
         &-cell {
             display: grid;
             grid-template-columns: .5fr 1fr;
             grid-template-rows: 15rem auto;
             gap: 0 4.4rem;
-           
+
 
             @include mobile {
                 display: flex;
@@ -142,7 +149,7 @@
 
 
             }
-           
+
 
             &:first-of-type {
                 grid-template-columns: .22fr 1fr;
@@ -157,7 +164,7 @@
 
                 }
             }
-          
+
 
             &-subhead {
                 height: fit-content;
@@ -169,14 +176,13 @@
             }
 
             & .btn-primary {
-                margin-top: 5rem;
-                margin-left: 21rem;
+                transform: translate(22rem, 5rem);
 
                 @include mobile {
                     position: absolute;
-                    right: 20rem;
-                    top: 25rem;
-
+                    top: 0;
+                    right: 0;
+                    transform: translate(-22rem, 13.5rem);
                 }
 
             }
@@ -208,8 +214,9 @@
 
             &-img {
                 display: flex;
-                &._complects{
-                    @include desktop{
+
+                &._complects {
+                    @include desktop {
                         grid-column: 1;
                         grid-row: 1 / span 2;
                     }

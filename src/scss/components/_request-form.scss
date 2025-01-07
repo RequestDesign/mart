@@ -1,8 +1,11 @@
 .request-form {
     display: flex;
     flex-direction: column;
+    padding-bottom: 0;
 
     @include mobile {
+        padding-bottom: 0;
+
         &[data-anime-state='1'] {
             & .request-form__grid {
                 grid-template-rows: 33rem 58rem min-content 50rem;
@@ -14,7 +17,7 @@
                 grid-template-rows: 0rem 0rem min-content 50rem;
             }
 
-          
+
         }
 
     }
@@ -199,7 +202,7 @@
     &__footer {
         margin-top: auto;
 
-     
+
 
     }
 

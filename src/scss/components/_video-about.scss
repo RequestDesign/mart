@@ -1,5 +1,13 @@
 .video-about {
     display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    @include mobile {
+        padding-top: 0;
+        padding-bottom: 0;
+
+    }
 
     &__c {
         flex-grow: 1;
@@ -51,6 +59,7 @@
                 position: absolute;
                 bottom: 24rem;
                 width: 100%;
+
                 @include mobile {
                     bottom: 57rem;
                 }
@@ -61,10 +70,11 @@
                 position: absolute;
                 bottom: 30rem;
                 left: 60%;
+
                 @include mobile {
-                    bottom:68rem;
+                    bottom: 68rem;
                 }
-               
+
             }
 
             &-img {
