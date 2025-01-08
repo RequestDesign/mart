@@ -1,22 +1,35 @@
 .services {
-    padding-top: 16rem;
-    height: 100dvh;
+    padding-bottom: 0;
+
+    & .container {
+        height: 100%;
+    }
+
     &__c {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: auto;
-        gap: 4.4rem;
-        @include mobile{
-            grid-template-columns: 100%;
-        }
+      /*   @include desktop {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        } */
+
 
         &-el {
             display: flex;
             flex-direction: column;
             gap: 1.6rem;
+            height: 90dvh;
+
+            &._text {
+                height: 15rem;
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+
 
             &-item {
-                height: 90rem;
+                height: 100%;
                 display: flex;
                 flex-direction: column;
                 position: relative;
@@ -29,7 +42,7 @@
                     top: 0;
                     left: 0;
                     width: 100%;
-                    height: 100%;
+                    height: 100dvh;
                     display: flex;
 
                     & img {

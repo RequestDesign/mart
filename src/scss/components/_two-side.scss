@@ -2,6 +2,7 @@
     position: relative;
 
     @include mobile {
+        padding-bottom: 0;
         &._arch {
             padding-bottom: 0;
         }
@@ -58,24 +59,23 @@
             }
         }
 
-        &._arch[data-anime-state='2'] {
+        &[data-anime-state='2'] {
             & .two-side__grid {
-                grid-template-rows: 0fr .7fr .3fr 0fr;
+                grid-template-rows: 0fr .7fr .4fr 0fr;
 
 
             }
-
             & .two-side__top {
                 margin-top: 0;
             }
         }
 
-        &._arch[data-anime-state='3'] {
+        &[data-anime-state='3'] {
             & .two-side__top {
                 margin-top: 0;
             }
             & .two-side__grid {
-                grid-template-rows: 0fr 0fr .5fr .6fr;
+                grid-template-rows: 0fr 0fr .4fr .6fr;
 
             }
         }
@@ -94,6 +94,7 @@
             grid-template-rows: 60% 40% 0% 0%;
             transition: grid .6s linear;
             gap: 0;
+            max-height: 100%;
         }
 
         &-el {
@@ -143,6 +144,9 @@
                     margin-top: auto;
                     margin-left: 50%;
                     margin-bottom: 15rem;
+                    @include mobile{
+                        margin-bottom: 8rem;
+                    }
 
                 }
             }

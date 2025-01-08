@@ -6,15 +6,58 @@
     @include mobile {
         padding-bottom: 0;
 
+        & .ui-marked-list li {
+            transition: transform .5s ease-in-out;
+        }
+
+        & .request-form__footer {
+            & [data-anime-delay] {
+                animation-delay: 0 !important;
+            }
+
+            & [data-anime-delay='1s'] {
+                animation-delay: 1s !important;
+
+            }
+        }
+
         &[data-anime-state='1'] {
             & .request-form__grid {
-                grid-template-rows: 33rem 58rem min-content 50rem;
+                grid-template-rows: 33rem 58rem 35dvh 50rem;
+            }
+
+            & .ui-marked-list li {
+                transform: translateX(150%);
             }
         }
 
         &[data-anime-state='2'] {
+            & .ui-marked-list li {
+                animation: translate-left 1s ease-in-out forwards !important;
+            }
+
+            & .request-form__grid-right .tl2 .anime-translate-t {
+                animation:translate-top 1s ease-in-out forwards !important; 
+            }
+
             & .request-form__grid {
-                grid-template-rows: 0rem 0rem min-content 50rem;
+                grid-template-rows: 0rem 0rem 35dvh 50rem;
+            }
+
+
+        }
+
+        &[data-anime-state='3'] {
+            & .ui-marked-list li {
+                animation: translate-left 1s ease-in-out forwards !important;
+            }
+
+            & .request-form__grid-right .tl2 .anime-translate-t {
+                animation:translate-top 1s ease-in-out forwards !important; 
+            }
+
+            & .request-form__grid {
+                grid-template-rows: 0rem 0rem 35dvh 50rem;
             }
 
 
@@ -35,12 +78,12 @@
 
         @include mobile {
             grid-template-columns: 100%;
-            grid-template-rows: 33rem 58rem min-content 50rem;
+            grid-template-rows: 33rem 58rem 35dvh 50rem;
             transition: grid 1s ease-out;
             gap: 0;
             padding-left: 0;
             padding-right: 0;
-            padding-top: 16rem;
+
         }
 
         &-top {
@@ -169,7 +212,7 @@
             display: flex;
 
             @include mobile {
-                height: 50rem;
+                height: 100%;
                 margin-bottom: 4rem;
 
             }

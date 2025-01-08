@@ -12,6 +12,12 @@ $contentWidth: 173rem;
 $mobilePadding: 1.6rem;
 $headerGap: 10rem;
 $headerGapMob: 16rem;
+@mixin mob-pad{
+  @include mobile{
+    padding-left: $mobilePadding;
+    padding-right: $mobilePadding;
+  }
+}
 
 
 html {

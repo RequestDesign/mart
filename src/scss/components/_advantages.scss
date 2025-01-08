@@ -1,26 +1,40 @@
 .advantages {
+    display: flex;
+
     &__c {
+        height: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(8, auto);
+        grid-auto-rows: min-content;
         gap: 2.4rem;
-        @include mobile{
+        position: relative;
+
+        @include mobile {
             grid-template-columns: 100%;
-            grid-auto-rows: auto;
+            grid-auto-rows: min-content;
+            & .tl1{
+                margin-bottom: 6rem;
+            }
         }
 
         &-img {
-            @include desktop{
-                grid-column: 2;
-                grid-row: 1 / span 8;
-
+            @include desktop {
+                width: calc(50% - 2.4rem);
+                position: absolute;
+                top: 0;
+                right: 0;
+                
             }
-            height: 84rem;
+
+            height: 100%;
             display: flex;
             clip-path: inset(100% 0 0% 0);
             transition: clip-path .5s linear;
             z-index: 1;
- 
+            @include mobile{
+                display: none;
+            }
+
 
             &:first-of-type {
                 z-index: -1;
@@ -39,8 +53,8 @@
             align-items: center;
 
             &-count {
-                height: 8.4rem;
-                width: 8.4rem;
+                height: 7rem;
+                width: 7rem;
                 border-radius: 50%;
                 border: 1px solid $black16;
                 display: flex;
@@ -48,7 +62,8 @@
                 justify-content: center;
                 flex-shrink: 0;
             }
-            &-text{
+
+            &-text {
                 display: flex;
                 flex-direction: column;
                 gap: .8rem;
@@ -57,7 +72,6 @@
             @for $i from 1 through 7 {
                 &._hover:hover {
                     &+.advantages__c-img {
-                        border: 1px solid red;
                         clip-path: inset(0% 0 0% 0);
                     }
                 }

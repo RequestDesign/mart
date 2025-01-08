@@ -1,9 +1,10 @@
 .contacts {
     display: flex;
     flex-direction: column;
+    padding-top: 0;
 
     @include mobile {
-
+        padding-top: 0;
 
         &[data-anime-state='1'] {}
 

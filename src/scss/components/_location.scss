@@ -2,7 +2,9 @@
     position: relative;
 
     @include mobile {
-
+        & .tl1{
+            font-size: 5rem;
+        }
 
         &[data-anime-state='1'] {
             & .location__c {
@@ -19,7 +21,7 @@
     }
 
     &__c {
-        height: 100%;
+       
         margin-top: 5.6rem;
         display: grid;
         grid-template-columns: .35fr 1fr .5fr;
@@ -51,6 +53,7 @@
                 'big big'
                 'object object';
             transition: grid .5s linear;
+          
 
         }
 

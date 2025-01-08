@@ -2,19 +2,23 @@
     position: relative;
     display: flex;
     align-items: center;
-    & .ui-line{
+
+    & .ui-line {
         position: absolute;
         top: 42rem;
         width: 100%;
-        @include mobile{
+
+        @include mobile {
             top: 58rem;
         }
     }
-    &__bg{
+
+    &__bg {
         top: 50%;
         transform: translateY(-50%);
         height: 101%;
     }
+
     &__c {
         width: 113rem;
         height: 60rem;
@@ -24,38 +28,45 @@
         justify-content: space-between;
         color: $white;
         margin-left: auto;
-        @include mobile{
-            height: calc(100% - 52rem);
+
+        @include mobile {
+            height: 100%;
             width: 100%;
-            margin-top: 52rem;
+            padding-top: 30rem;
         }
-        & .btn-primary{
+
+        & .btn-primary {
             position: absolute;
             top: 5rem;
-            @include desktop{
+
+            @include desktop {
                 left: -10rem;
 
             }
-            @include mobile{
-                top: -8rem;
+
+            @include mobile {
+                top: 15rem;
                 right: 22rem;
 
             }
         }
-      
-        &-bottom{
+
+        &-bottom {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            @include mobile{
+
+            @include mobile {
                 flex-direction: column;
                 gap: 3.2rem;
                 margin-top: auto;
-                margin-bottom: 16rem;
+                margin-bottom: 0;
             }
-            & .txt20{
+
+            & .txt20 {
                 max-width: 51rem;
-                @include mobile{
+
+                @include mobile {
                     max-width: 60rem;
                 }
             }

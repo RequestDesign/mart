@@ -14,6 +14,15 @@
             & .our-projects__c-main-slide-body-values {
                 clip-path: inset(0% 0 0% 0);
             }
+            & .our-projects__c-main-slide-body{
+                margin-bottom: 32.4rem;
+            }
+            & .ui-line{
+                margin-bottom: 38.7rem;
+            }
+            & .btn-primary{
+                opacity: 1;
+            }
         }
     }
 
@@ -98,7 +107,7 @@
                 position: absolute;
                 left: 0;
                 bottom: 0;
-                margin-bottom: 38.7rem;
+                margin-bottom: 25.7rem;
                 /* 11.3 */
                 width: 100%;
                 z-index: 3;
@@ -117,13 +126,14 @@
                 justify-content: center;
 
                 &-body {
-                    margin-bottom: 32.4rem;
+                    margin-bottom: 20rem;
                     position: relative;
                     display: flex;
                     flex-direction: column;
                     gap: 5.6rem;
                     box-sizing: border-box;
                     padding-left: 30rem;
+                    transition:  margin 1s ease-in-out;
 
                     @include mobile {
                         padding-left: 0;
@@ -142,6 +152,10 @@
                         left: 21rem;
                         top: -3rem;
                         position: absolute;
+                        transition: opacity 1s linear;
+                        @include desktop{
+                            opacity: 0;
+                        }
 
                         @include mobile {
                             top: 56rem;

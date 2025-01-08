@@ -146,7 +146,7 @@
 
         & .btn-primary {
             margin-left: 30rem;
-            transform: translate(-10rem, -25%);
+            transform: translate(-10rem, 18%);
 
             @include mobile {
                 margin-left: auto;
@@ -238,6 +238,7 @@
 }
 
 .arch-care {
+   
     & .container {
         @include mobile {
             padding-left: 0;
@@ -322,6 +323,10 @@
         &-img {
             display: flex;
             object-position: top;
+            & img{
+                object-fit: cover;
+                object-position: center;
+            }
 
         }
 

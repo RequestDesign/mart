@@ -15,7 +15,7 @@
         position: relative;
 
         & .ui-line {
-            top: 30.5%;
+            top: 19.5%;
             left: 0;
 
             @include mobile {
@@ -101,7 +101,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 4rem 4.4rem;
         margin-top: 0;
-        padding-top: 13.8rem;
+        
         transition: grid 1s linear;
 
         @include mobile {
@@ -176,7 +176,7 @@
             }
 
             & .btn-primary {
-                transform: translate(22rem, 5rem);
+                transform: translate(22rem, 15rem);
 
                 @include mobile {
                     position: absolute;
