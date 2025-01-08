@@ -137,7 +137,7 @@
         </div>
         <div class="ui-line  anime-width-right" data-anime-trigger="2" data-anime-delay="2s"></div>
         <ul class="swiper-wrapper swiper-clip anime-translate-t" data-anime-speed="1s">
-            <li class="swiper-slide our-projects__c-main-slide">
+            <li class="swiper-slide our-projects__c-main-slide swiper-clip _clip-both ">
                 <div class="ui-bg">
                     <img src="./assets/images/heading-main.webp" alt="">
                 </div>
@@ -168,7 +168,7 @@
                     </div>
                 </div>
             </li>
-            <li class="swiper-slide our-projects__c-main-slide">
+            <li class="swiper-slide our-projects__c-main-slide swiper-clip _clip-both">
                 <div class="ui-bg">
                     <img src="./assets/images/message-big.webp" alt="">
                 </div>
@@ -199,7 +199,7 @@
                     </div>
                 </div>
             </li>
-            <li class="swiper-slide our-projects__c-main-slide">
+            <li class="swiper-slide our-projects__c-main-slide swiper-clip _clip-both">
                 <div class="ui-bg">
                     <img src="./assets/images/heading-main.webp" alt="">
                 </div>
@@ -546,31 +546,30 @@
                 специалистов
             </p>
         </div>
-        <div class="swiper-nav">
+        <div class="swiper-nav anime-height-top">
             <button class="swiper-btn swiper-btn-prev"></button>
             <button class="swiper-btn swiper-btn-next"></button>
         </div>
         <!--  -->
         <ul class="swiper-wrapper  swiper-clip">
             <li class="swiper-slide our-specialists__slide">
-                <div class="our-specialists__slide-small swiper-clip _clip-bottom desktop ">
-                    <img src="./assets/images/message-small.webp" alt="">
+                <div class="our-specialists__slide-small  swiper-clip _clip-bottom desktop ">
+                    <img class="anime-height-bottom" src="./assets/images/message-small.webp" alt="">
                 </div>
-                <div class="our-specialists__slide-info swiper-clip _clip-both">
-                    <p class="txt22 txt-up">
+                <div class="our-specialists__slide-info swiper-clip _clip-both ">
+                    <p class="txt22 txt-up anime-height-top">
                         name of this <br> dude
                     </p>
-                    <p class="txt20">
+                    <p class="txt20 anime-height-bottom">
                         job <br>
                         of this <br>
                         dude
                     </p>
                 </div>
                 <div class="our-specialists__slide-big swiper-clip _clip-top ">
-                    <img src="./assets/images/message-big.webp" alt="">
+                    <img class="anime-height-top" src="./assets/images/message-big.webp" alt="">
                 </div>
             </li>
-
             <li class="swiper-slide our-specialists__slide">
                 <div class="our-specialists__slide-small swiper-clip _clip-bottom desktop ">
                     <img src="./assets/images/heading-main.webp" alt="">
@@ -718,9 +717,9 @@
             </a>
             <div class="tl1 txt-up two-grid__c-heading anime-translate-bottom">
               <p class="anime-translate-t">
-                Благодаря <br class="mobile" /> поэтапной <br />
-                работе, мы с Вами <br class="mobile" /> уверенно <br class="desktop" />
-                двигаемся <br class="mobile" /> к качественному <br />
+                Благодаря <br class="mobile" /> поэтапной <br class="mobile" />
+                работе, <br class="desktop" /> мы с Вами <br class="mobile" /> уверенно
+                двигаемся <br class="mobile" /> к качественному <br class="mobile" />
                 результату
               </p>
             </div>
@@ -831,7 +830,7 @@
           <p class="tl1 txt-up anime-height">
             Наша студия находится <br />
             в Санкт-Петербурге — <br />
-            одном из самых красивых <br />
+            одном из самых красивых
             городов мира
           </p>
           <div class="location__c">
@@ -937,13 +936,13 @@
                 </div>
               </li>
             </ul>
-        
-        
+
+
           </div>
         </div>
       </section>
       <!--  -->
-      <section class="request-form" data-anime-states="2">
+      <section class="request-form" data-anime-states="3">
     <div class="container request-form__grid">
         <div class="request-form__grid-top anime-height-top" data-anime-trigger="1">
             <p class="tl1 txt-up">
@@ -1015,13 +1014,13 @@
             <img src="./assets/images/heading-main.webp" alt="">
         </div>
         <div class="request-form__grid-right">
-            <div class="tl2 anime-translate-top" data-anime-trigger="2">
+            <div class="tl2 anime-translate-top" data-anime-trigger="0">
                 <p class="anime-translate-t" data-anime-delay="1s">
                     Подводя итоги, <br>
                     Вы получаете
                 </p>
             </div>
-            <ul class="ui-marked-list anime-translate-left" data-anime-trigger="2">
+            <ul class="ui-marked-list anime-translate-left" data-anime-trigger="0">
                 <li class="txt20 anime-translate-t" data-anime-delay="1.1s">Свободное время для себя</li>
                 <li class="txt20 anime-translate-t" data-anime-delay="1.2s">Спокойствие и уверенность</li>
                 <li class="txt20 anime-translate-t" data-anime-delay="1.3s">Полное технические сопровождение</li>
@@ -1033,8 +1032,8 @@
         </div>
     </div>
 
-    <div class="request-form__footer footer anime-translate-bottom">
-        <div class="ui-line _black anime-width-right" data-anime-delay="3s" data-anime-trigger="2"></div>
+    <div class="request-form__footer footer anime-translate-bottom" data-anime-trigger="3">
+        <div class="ui-line _black anime-width-right" data-anime-delay="3s" data-anime-trigger="3"></div>
         <div class="container footer__c txt16 anime-translate-t" data-anime-delay="2s" data-anime-trigger="2">
             <a href="#" class="col-black40">Политика конфиденциальности</a>
             <p class="txt16  col-black40">© 2014-2024</p>
