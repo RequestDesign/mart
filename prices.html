@@ -428,7 +428,7 @@
                 </div>
             </section>
             <!--  -->
-            <section class="request-form" data-anime-states="3">
+            <section class="request-form" data-anime-states="3" data-anime-desktops="2">
     <div class="container request-form__grid">
         <div class="request-form__grid-top anime-height-top" data-anime-trigger="1">
             <p class="tl1 txt-up">
@@ -446,13 +446,13 @@
                     для связи
                 </p>
             </div>
-            <form class=" anime-height " data-anime-delay=".5s">
+            <form class="anime-height form" data-anime-delay=".5s">
                 <label class="input-text">
-                    <input type="text" placeholder="placeholder" required="">
+                    <input type="text" name="phone" data-required="y" placeholder="+7 (___) ___-__-__" required="">
                     <span class="input-text-error"> добавь _error на лэйбл</span>
                 </label>
 
-                <button class="btn-second">
+                <button class="btn-second form-submit">
                     <span class="btn-second-text"></span>
                     <span class="btn-second-circle"> </span>
                     <span class="ui-icon">
@@ -500,13 +500,13 @@
             <img src="./assets/images/heading-main.webp" alt="">
         </div>
         <div class="request-form__grid-right">
-            <div class="tl2 anime-translate-top" data-anime-trigger="0">
+            <div class="tl2 anime-translate-top">
                 <p class="anime-translate-t" data-anime-delay="1s">
                     Подводя итоги, <br>
                     Вы получаете
                 </p>
             </div>
-            <ul class="ui-marked-list anime-translate-left" data-anime-trigger="0">
+            <ul class="ui-marked-list anime-translate-left">
                 <li class="txt20 anime-translate-t" data-anime-delay="1.1s">Свободное время для себя</li>
                 <li class="txt20 anime-translate-t" data-anime-delay="1.2s">Спокойствие и уверенность</li>
                 <li class="txt20 anime-translate-t" data-anime-delay="1.3s">Полное технические сопровождение</li>
@@ -518,28 +518,185 @@
         </div>
     </div>
 
-    <div class="request-form__footer footer anime-translate-bottom" data-anime-trigger="3">
-        <div class="ui-line _black anime-width-right" data-anime-delay="3s" data-anime-trigger="3"></div>
-        <div class="container footer__c txt16 anime-translate-t" data-anime-delay="2s" data-anime-trigger="2">
+    <div class="request-form__footer footer anime-translate-bottom" data-anime-trigger-desktop="2" data-anime-trigger="3">
+        <div class="ui-line _black anime-width-right" data-anime-delay=".5s" data-anime-trigger-desktop="2" data-anime-trigger="3"></div>
+        <div class="container footer__c txt16 anime-translate-t" data-anime-trigger-desktop="2" data-anime-trigger="3">
             <a href="#" class="col-black40">Политика конфиденциальности</a>
             <p class="txt16  col-black40">© 2014-2024</p>
             <button class="btn-second" data-modal="request">
-                <span class="btn-second-text anime-height-top" data-anime-delay="1s" data-anime-trigger="2">заявка на обратный звонок</span>
-                <span class="btn-second-circle anime-height-bottom" data-anime-delay="1s" data-anime-trigger="2"> </span>
-                <span class="ui-icon anime-height-bottom" data-anime-delay="1s" data-anime-trigger="2">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#140E0A" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14.4297 5.92969L20.4997 11.9997L14.4297 18.0697" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M3.5 12H20.33" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
+                <span class="btn-second-text anime-height-top" data-anime-delay="1s" data-anime-trigger-desktop="2" data-anime-trigger="3">заявка на
+                    обратный звонок</span>
+                <span class="btn-second-circle anime-height-bottom" data-anime-delay="1s" data-anime-trigger-desktop="2" data-anime-trigger="3">
                 </span>
-              </button>
+                <span class="ui-icon anime-height-bottom" data-anime-delay="1s" data-anime-trigger-desktop="2" data-anime-trigger="3">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#140E0A" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.4297 5.92969L20.4997 11.9997L14.4297 18.0697" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M3.5 12H20.33" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </button>
         </div>
     </div>
 </section>
             <!--  -->
         </main>
-        <footer>
-   
+        <div class="modal modal-request modal-closer ">
+    <div class="modal__c container">
+        <button class="modal__c-closer modal-closer">
+        </button>
+
+        <div class="tl1 txt-up anime-translate-top">
+            <p class="anime-translate-t" data-anime-delay="1s">
+                закажите звонок в удобное <br>
+                для вас время
+            </p>
+        </div>
+        <form class="form modal__c-form">
+
+            <label class="input-text anime-width-right" data-anime-delay="1.1s">
+                <input type="text" name="name" data-required="y" placeholder="Ваше имя" required="">
+                <span class="input-text-error">твое имя? антон</span>
+            </label>
+
+            <label class="input-text anime-width-right" data-anime-delay="1.2s">
+                <input type="text" name="name" data-required="y" placeholder="+7 (___) ___-__-__" required="">
+                <span class="input-text-error">а? че звал, сларк</span>
+            </label>
+
+            <div class="modal__c-form-time anime-height-top" data-anime-delay="1.5s">
+                <p class="txt20">Выберите удобное время</p>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h" checked="">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+                <label class="input-time">
+                    <input type="radio" name="requsetModalTime" value="11h-12h">
+                    <span class="input-time-border"></span>
+                    <span class="input-time-text"> 11:00 - 12:00</span>
+                </label>
+            </div>
+
+            <div class="modal__c-form-footer">
+
+                <button class="btn-second  form-submit">
+                    <span class="btn-second-text anime-height-top" data-anime-delay="2s">
+                        заказать звонок
+                    </span>
+                    <span class="btn-second-circle anime-height-bottom" data-anime-delay="2s">
+                    </span>
+                    <span class="ui-icon anime-height-bottom" data-anime-delay="2s">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#140E0A" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.4297 5.92969L20.4997 11.9997L14.4297 18.0697" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M3.5 12H20.33" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </span>
+                </button>
+                <p class="txt16 col-black40 anime-width-right" data-anime-delay="2s">Отправляя форму, вы принимаете
+                    пользовательское соглашение</p>
+            </div>
+
+        </form>
+        <div class="modal__c-img desktop anime-height-bottom" data-anime-delay="1s">
+            <img src="./assets/images/heading-main.webp">
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-call modal-closer ">
+    <div class="modal__c container">
+        <button class="modal__c-closer modal-closer">
+        </button>
+
+        <div class="tl1 txt-up anime-translate-top">
+            <p class="anime-translate-t" data-anime-delay="1s">
+                Оставьте свои контакты <br>
+                для связи
+            </p>
+        </div>
+        <form class="form modal__c-form">
+
+            <label class="input-text anime-width-right" data-anime-delay="1.1s">
+                <input type="text" name="name" data-required="y" placeholder="Ваше имя">
+                <span class="input-text-error">твое имя? антон</span>
+            </label>
+
+            <label class="input-text anime-width-right" data-anime-delay="1.2s">
+                <input type="text" name="name" data-required="y" placeholder="+7 (___) ___-__-__">
+                <span class="input-text-error">а? че звал, сларк</span>
+            </label>
+
+            <label class="input-text anime-width-right" data-anime-delay="1.2s">
+                <textarea rows="3" type="text" name="comment" placeholder="Комментарий"></textarea>
+                <span class="input-text-error">а? че звал, сларк</span>
+            </label>
+
+
+
+            <div class="modal__c-form-footer">
+
+                <button class="btn-second  form-submit">
+                    <span class="btn-second-text anime-height-top" data-anime-delay="2s">
+                        отправить заявку
+                    </span>
+                    <span class="btn-second-circle anime-height-bottom" data-anime-delay="2s">
+                    </span>
+                    <span class="ui-icon anime-height-bottom" data-anime-delay="2s">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#140E0A" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.4297 5.92969L20.4997 11.9997L14.4297 18.0697" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M3.5 12H20.33" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </span>
+                </button>
+                <p class="txt16 col-black40 anime-width-right" data-anime-delay="2s">Отправляя форму, вы принимаете
+                    пользовательское соглашение</p>
+            </div>
+
+        </form>
+        <div class="modal__c-img desktop anime-height-bottom" data-anime-delay="1s">
+            <img src="./assets/images/heading-main.webp">
+        </div>
+    </div>
+</div>
+
+<footer>
+    <!-- ой че за хуйня, а где футер? -->
+    <!-- а нету  -->
 </footer>
     </div>
 

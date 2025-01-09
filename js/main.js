@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 81:
+/***/ 906:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -11,10 +11,191 @@ var jquery = __webpack_require__(755);
 var jquery_default = /*#__PURE__*/__webpack_require__.n(jquery);
 // EXTERNAL MODULE: ./node_modules/inputmask/dist/inputmask.js
 var inputmask = __webpack_require__(382);
+var inputmask_default = /*#__PURE__*/__webpack_require__.n(inputmask);
 // EXTERNAL MODULE: ./node_modules/swiper/modules/index.mjs + 27 modules
 var modules = __webpack_require__(938);
 // EXTERNAL MODULE: ./node_modules/swiper/swiper.mjs + 1 modules
 var swiper_swiper = __webpack_require__(652);
+;// CONCATENATED MODULE: ./src/js/utils/Form.js
+class Form {
+  /**
+   * 
+   * @param {Element} formDomEl 
+   * @param {Function} submitFoo 
+   * 
+   */
+  constructor(formDomEl, submitFoo) {
+    this._form = formDomEl;
+    this._form.setAttribute('novalidate', true);
+    this._inputContainerSelector = 'input-text';
+    this._inputErrorMsgSelector = 'input-text-error';
+    this._inputErrorSelector = '_error';
+    this.submitForm = submitFoo;
+    this._inputs = this._form.querySelectorAll('input, textarea');
+    this._inputsData = this._createInputData(this._inputs);
+    this._passwordInput = Array.from(this._inputs).find(e => e.name == 'password');
+    this._passwordRepeatInput = Array.from(this._inputs).find(e => e.name == 'passwordRepeat');
+    this._submitBtn = this._form.querySelector('.form-submit');
+    /**
+     * _inputsData: {[key: input.name] :{
+     *                  value: any,
+     *                  isValid: bool,
+     *                  isRequired: bool
+     *                  }
+     *              }
+     *  */
+
+    /*  this._btnSubmit = this._form.querySelector('button[type="submit"]')
+        this._btnSubmit.setAttribute('disabled', true) */
+
+    this.initForm();
+  }
+  _inputHandler(inputTarget) {
+    this._inputsData[inputTarget.name].value = inputTarget.value;
+    this._validation(inputTarget);
+  }
+  _validation(input) {
+    //валидация инпутов
+
+    switch (input.name) {
+      case 'name':
+        this._checkInputValid(input, /^[A-Za-zА-Яа-яЁё ]+$/, 'Допустим ввод только букв');
+        break;
+      case 'email':
+        this._checkInputValid(input, /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Поле должно быть в формате email@domain.com');
+        break;
+      case 'phone':
+        this._checkInputValid(input, /^\+(7|375) \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Формат номера телефона +7 (888) 888-88-88');
+        break;
+      case 'password':
+        this._checkInputValid(input, /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/, 'Не корректный пароль');
+        break;
+      default:
+        this._checkInputValid(input);
+        break;
+    }
+  }
+  _checkInputValid(target) {
+    let regex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    let regexMsg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'че то не так написал, исправляй';
+    if (!this._inputsData[target.name].isRequired) return;
+    const inputContainer = target.closest('.' + this._inputContainerSelector);
+    const errorMsg = inputContainer.querySelector('.' + this._inputErrorMsgSelector);
+    if (this._inputsData[target.name].isRequired && !this._inputsData[target.name].value) {
+      //check requred
+      inputContainer.classList.add(this._inputErrorSelector);
+      errorMsg.textContent = 'Это поле обязательно.';
+      this._inputsData[target.name].isValid = false;
+    } else if (target.name == 'passwordRepeat') {
+      this._validation(this._passwordInput);
+      if (target.value !== this._inputsData.password.value) {
+        inputContainer.classList.add(this._inputErrorSelector);
+        errorMsg.textContent = 'Пароли не совпадают';
+        this._inputsData[target.name].isValid = false;
+      } else {
+        this._inputsData[target.name].isValid = true;
+        inputContainer.classList.remove(this._inputErrorSelector);
+        errorMsg.textContent = ' ';
+      }
+    } else if (target.getAttribute('type') == 'checkbox' || target.getAttribute('type') == 'radio') {
+      //check for checkbox and radio
+      this._inputsData[target.name].isValid = !this._inputsData[target.name].isRequired ? true : target.checked;
+      if (!target.checked) {
+        inputContainer.classList.add(this._inputErrorSelector);
+      } else {
+        inputContainer.classList.remove(this._inputErrorSelector);
+      }
+    } else if (regex && !regex.test(target.value)) {
+      //check regex
+      inputContainer.classList.add(this._inputErrorSelector);
+      errorMsg.textContent = regexMsg;
+      this._inputsData[target.name].isValid = false;
+    } else {
+      //validation successfull
+
+      this._inputsData[target.name].isValid = true;
+      inputContainer.classList.remove(this._inputErrorSelector);
+      errorMsg.textContent = ' ';
+    }
+  }
+  _onSubmit() {
+    let whatsUp = true;
+    for (const inp of this._inputs) {
+      this._inputHandler(inp);
+      if (!this._inputsData[inp.name].isValid) {
+        whatsUp = false;
+      }
+    }
+    if (!whatsUp) return;
+    //сабмит
+    this._form.dispatchEvent(new Event('submit'));
+  }
+  _createInputData(inputs) {
+    let echo = {};
+    for (const input of inputs) {
+      input.setAttribute('autocomplete', 'off');
+      if (input.name == 'password') {
+        const passbtn = input.closest('.' + this._inputContainerSelector).querySelector('.input-text-password');
+        if (passbtn) {
+          passbtn.addEventListener('click', e => {
+            e.preventDefault();
+            this._passowrHide();
+          });
+        }
+      }
+      if (input.type == 'file') {
+        input.addEventListener('change', e => {
+          this._fileHandler(e);
+        });
+      }
+      if (!echo[input.name]) {
+        const isValid = input.dataset.required ? false : true,
+          isRequired = input.dataset.required ? true : false;
+        let value = input.dataset.defaultv || input.checked || input.value || '';
+        if (input.type == 'checkbox' || input.type == 'radio') {
+          value = input.checked;
+        }
+        echo[input.name];
+        echo[input.name] = {
+          value,
+          isValid,
+          isRequired
+        };
+      }
+    }
+    return echo;
+  }
+  _fileHandler(evt) {
+    const inputContainer = evt.target.closest('.' + this._inputContainerSelector);
+    if (evt.target.value) {
+      inputContainer.classList.add('_active');
+      inputContainer.querySelector('.input-file-got').querySelector('.input-file-text').textContent = evt.target.value.split('\\').slice(-1);
+    } else {
+      inputContainer.classList.remove('_active');
+    }
+  }
+  _passowrHide() {
+    if (this._passwordInput.type == 'text') {
+      this._passwordInput.setAttribute('type', 'password');
+      this._passwordRepeatInput.setAttribute('type', 'password');
+    } else {
+      this._passwordInput.setAttribute('type', 'text');
+      this._passwordRepeatInput.setAttribute('type', 'text');
+    }
+  }
+  initForm() {
+    this._form.noValidate = true;
+    this._submitBtn.setAttribute('type', 'button');
+    this._submitBtn.addEventListener('click', e => {
+      this._onSubmit(e);
+    });
+    this._inputs.forEach(el => {
+      el.addEventListener('input', e => this._inputHandler(e.target));
+      el.addEventListener('blur', e => this._inputHandler(e.target));
+      el.addEventListener('change', e => this._inputHandler(e.target));
+    });
+  }
+}
 ;// CONCATENATED MODULE: ./src/js/utils/constants.js
 const rem = function (rem) {
   if (window.innerWidth > 768) {
@@ -159,6 +340,8 @@ jquery_default()(function () {
   dropDowns();
   iniSwipers();
   mainPageCore();
+  initForms();
+  modalsHandler();
 });
 function mainPageCore() {
   const main = document.querySelector('.main-swiper.swiper');
@@ -170,10 +353,8 @@ function mainPageCore() {
   let touchStart = 0;
   function sectionState(swiper, slide) {
     /**
-     * 
      * @param {swiper} Swiper 
      * @param {slide} domElement 
-     * 
      */
 
     slide.addEventListener('touchstart', ev => {
@@ -202,13 +383,46 @@ function mainPageCore() {
       }
       touchStart = 0;
     });
+    if (slide.dataset.animeDesktops) {
+      slide.dataset.animeDesktop = '1';
+      let wheelIsReady = true;
+      slide.addEventListener('wheel', ev => {
+        if (!wheelIsReady) return;
+        wheelIsReady = false;
+        setTimeout(() => {
+          wheelIsReady = true;
+        }, 500);
+        if (ev.deltaY > 0) {
+          /*  console.log("Прокрутка вниз"); */
+          if (slide.dataset.animeDesktop >= slide.dataset.animeDesktops) {
+            if (swiper.slides[swiper.activeIndex + 1]) {
+              swiper.mousewheel.enable();
+              swiper.allowTouchMove = true;
+              swiper.slideNext();
+            }
+          } else {
+            slide.dataset.animeDesktop++;
+          }
+        } else if (ev.deltaY < 0) {
+          /* console.log("Прокрутка вверх"); */
+          if (slide.dataset.animeDesktop <= 1) {
+            swiper.mousewheel.enable();
+            swiper.allowTouchMove = true;
+            swiper.slidePrev();
+          } else {
+            slide.dataset.animeDesktop--;
+          }
+        }
+      });
+    }
   }
   function sectionSlider(swiperCore, swiperSlider, slide) {
     /**
-     * 
+     * коровый страничный слайдер
      * @param {swiperCore} Swiper 
+     * слайдер секции
+     * @param {swiperSlider} Swiper 
      * @param {slide} domElement 
-     * 
      */
     slide.addEventListener('touchstart', ev => {
       touchStart = ev.touches[0].clientY;
@@ -258,7 +472,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 10,
+    initialSlide: 0,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -272,34 +486,37 @@ function mainPageCore() {
     on: {
       init: swiper => {
         swiper.slides[swiper.activeIndex].classList.add('anime-start');
-        swiper.wrapperEl.querySelectorAll('[data-anime-states]').forEach(el => {
-          el.dataset.animeState = '1';
-          sectionState(swiper, el);
-        });
-        swiper.wrapperEl.querySelectorAll('[data-anime-slider]').forEach(el => {
-          const cfg = {
-            default: {
-              modules: [modules/* Mousewheel */.Gk],
-              direction: 'vertical',
-              spaceBetween: rem(3),
-              slidesPerView: 'auto',
-              mousewheel: false,
-              simulateTouch: false
-            }
-          };
-          const slider = new swiper_swiper/* default */.Z(el.querySelector('.swiper'), {
-            modules: [modules/* Mousewheel */.Gk, modules/* Grid */.rj],
-            slidesPerGroup: 2,
-            slidesPerView: 'auto',
-            direction: 'vertical',
-            grid: {
-              fill: 'row'
-            },
-            spaceBetween: rem(3),
-            mousewheel: false,
-            simulateTouch: false
-          });
-          sectionSlider(swiper, slider, el);
+        swiper.slides.forEach(el => {
+          if (el.dataset.animeStates) {
+            el.dataset.animeState = '1';
+            sectionState(swiper, el);
+          }
+          if (el.dataset.animeSlider) {
+            const cfg = {
+              default: {
+                modules: [modules/* Mousewheel */.Gk],
+                direction: 'vertical',
+                spaceBetween: rem(3),
+                slidesPerView: 'auto',
+                mousewheel: false,
+                simulateTouch: false
+              },
+              gallery: {
+                modules: [modules/* Mousewheel */.Gk, modules/* Grid */.rj],
+                slidesPerGroup: 2,
+                slidesPerView: 'auto',
+                direction: 'vertical',
+                grid: {
+                  fill: 'row'
+                },
+                spaceBetween: rem(3),
+                mousewheel: false,
+                simulateTouch: false
+              }
+            };
+            const slider = new swiper_swiper/* default */.Z(el.querySelector('.swiper'), cfg.default);
+            sectionSlider(swiper, slider, el);
+          }
         });
         if (IS_MOBILE) {
           if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
@@ -307,7 +524,7 @@ function mainPageCore() {
             swiper.allowTouchMove = false;
           }
         } else {
-          if (swiper.slides[swiper.activeIndex].dataset.animeSlider) {
+          if (swiper.slides[swiper.activeIndex].dataset.animeSlider || swiper.slides[swiper.activeIndex].dataset.animeDesktops) {
             swiper.mousewheel.disable();
             swiper.allowTouchMove = false;
           }
@@ -326,6 +543,12 @@ function mainPageCore() {
       },
       slideChangeTransitionStart: swiper => {
         console.log('start', swiper.activeIndex);
+        if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
+          swiper.slides[swiper.activeIndex].dataset.animeState = 1;
+        }
+        if (swiper.slides[swiper.activeIndex].dataset.animeDesktops) {
+          swiper.slides[swiper.activeIndex].dataset.animeDesktop = 1;
+        }
       },
       slideChangeTransitionEnd: swiper => {
         console.log('end', swiper.activeIndex);
@@ -531,9 +754,9 @@ function initForms() {
   if (forms) {
     forms.forEach(e => {
       new Form(e, formSubmit);
-      const phone = $(e).find('input[name="phone"]');
+      const phone = jquery_default()(e).find('input[name="phone"]');
       if (phone) {
-        new Inputmask('+7 (999) 999-99-99').mask(phone);
+        new (inputmask_default())('+7 (999) 999-99-99').mask(phone);
       }
     });
   }
@@ -574,15 +797,15 @@ function sectionTopper(target) {
   });
 }
 function modalsHandler() {
-  const modalOpeners = $('[data-modal]'),
-    modalClosers = $('.modal-closer'),
-    html = $('html');
+  const modalOpeners = jquery_default()('[data-modal]'),
+    modalClosers = jquery_default()('.modal-closer'),
+    html = jquery_default()('html');
   if (!modalOpeners || !modalClosers) return;
   modalOpeners.on('click', ev => {
     const {
       modal
     } = ev.currentTarget.dataset;
-    $(`.modal-${modal}`).fadeIn().addClass('_opened');
+    jquery_default()(`.modal-${modal}`).removeClass('anime-over').addClass('_opened anime-start');
     html.addClass('_lock');
   });
   modalClosers.on('click', ev => {
@@ -590,11 +813,8 @@ function modalsHandler() {
       classList
     } = ev.target;
     if (!classList.contains('modal-closer')) return;
-    if (classList.contains('modal')) {
-      $(ev.target).fadeOut().removeClass('_opened');
-    } else {
-      $(ev.target.closest('.modal')).fadeOut().removeClass('_opened');
-    }
+    const t = classList.contains('modal') ? jquery_default()(ev.target) : jquery_default()(ev.target.closest('.modal'));
+    t.removeClass('_opened').addClass('anime-over').removeClass('anime-start');
     html.removeClass('_lock');
   });
 }
@@ -763,7 +983,7 @@ function initSwichers() {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [390,729,522], function() { return __webpack_require__(81); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [390,729,522], function() { return __webpack_require__(906); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
