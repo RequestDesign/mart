@@ -1,0 +1,29 @@
+.not-found {
+    padding: 0;
+    display: block !important;
+
+    @include mobile {
+        padding-top: 0;
+    }
+
+    &__c {
+        background-color: $white;
+        width: 100%;
+
+        & .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 18.4rem;
+            padding-bottom: 9.6rem;
+            margin-top: 0;
+
+            @include mobile{
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 5rem;
+            }
+        }
+    }
+}

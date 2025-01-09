@@ -23,43 +23,53 @@
 
         &[data-anime-state='1'] {
             & .request-form__grid {
-                grid-template-rows: 33rem 58rem 35dvh 50rem;
+                grid-template-rows: 33rem 63rem 35dvh 50rem;
             }
 
-            & .ui-marked-list li {
-                transform: translateX(150%);
+          
+            & .ui-marked-list .anime-translate-t {
+                animation: translate-left-rev 1s ease-in-out forwards;
+
+            }
+
+            & .request-form__grid-right .tl2 .anime-translate-t {
+                animation: translate-top-rev 1s ease-in-out forwards;
             }
         }
 
         &[data-anime-state='2'] {
-            & .ui-marked-list li {
-                animation: translate-left 1s ease-in-out forwards !important;
+            & .ui-marked-list .anime-translate-t {
+                animation: translate-left 1s ease-in-out forwards;
+
             }
 
             & .request-form__grid-right .tl2 .anime-translate-t {
-                animation:translate-top 1s ease-in-out forwards !important; 
+                animation: translate-top 1s ease-in-out forwards;
             }
 
             & .request-form__grid {
-                grid-template-rows: 0rem 0rem 35dvh 50rem;
+                grid-template-rows: 0rem 0rem 35dvh 57rem;
             }
 
 
         }
 
         &[data-anime-state='3'] {
-            & .ui-marked-list li {
-                animation: translate-left 1s ease-in-out forwards !important;
+            & .ui-marked-list .anime-translate-t {
+                animation: translate-left 1s ease-in-out forwards;
             }
 
             & .request-form__grid-right .tl2 .anime-translate-t {
-                animation:translate-top 1s ease-in-out forwards !important; 
+                animation: translate-top 1s ease-in-out forwards;
             }
 
             & .request-form__grid {
-                grid-template-rows: 0rem 0rem 35dvh 50rem;
+                grid-template-rows: 0rem 0rem 20dvh 57rem;
             }
 
+            & .request-form__grid-right {
+                gap: 3rem;
+            }
 
         }
 
@@ -70,15 +80,13 @@
     &__grid {
         display: grid;
         grid-template-columns: .5fr 1fr .5fr;
+        grid-template-rows: min-content min-content;
         gap: 4.4rem;
 
-        @include desktop {
-            padding-bottom: 3.5rem;
-        }
 
         @include mobile {
             grid-template-columns: 100%;
-            grid-template-rows: 33rem 58rem 35dvh 50rem;
+            grid-template-rows: 33rem 63rem 35dvh 50rem;
             transition: grid 1s ease-out;
             gap: 0;
             padding-left: 0;
@@ -96,7 +104,7 @@
                 grid-column: 1;
                 padding-left: $mobilePadding;
                 padding-right: $mobilePadding;
-                margin-bottom: 8rem;
+
             }
 
         }
@@ -117,21 +125,21 @@
             }
 
             & form {
-                margin-top: 1.6rem;
                 display: flex;
                 flex-wrap: nowrap;
                 gap: 2rem;
                 justify-content: space-between;
-                border-bottom: 1px solid $black16;
-                padding: 2rem 0;
-
-                & input {
-                    border: none !important;
-                    padding-bottom: 0;
+                padding: 6rem 0 0;
+                @include mobile{
+                    padding: 7.5rem 0 0 ;
                 }
 
                 & .btn-second {
-                    margin-right: 1rem;
+                    transform: translate(-5rem, -4rem);
+
+                    @include mobile {
+                        transform: translate(-9rem, -7rem);
+                    }
                 }
             }
 
@@ -213,7 +221,7 @@
 
             @include mobile {
                 height: 100%;
-                margin-bottom: 4rem;
+
 
             }
 
@@ -229,9 +237,12 @@
             justify-content: space-between;
 
             @include mobile {
+                margin-top: 5rem;
                 gap: 5rem;
                 padding-left: $mobilePadding;
                 padding-right: $mobilePadding;
+                justify-content: unset;
+                transition: gap 1s linear;
             }
 
             & ul {

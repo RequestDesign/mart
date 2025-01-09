@@ -1,0 +1,116 @@
+.modal {
+    position: fixed;
+    z-index: 111;
+    top: -100%;
+    left: 0;
+    height: 100dvh;
+    width: 100vw;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 1s ease-in-out;
+    transform: translateY(0);
+
+    &._opened {
+        transform: translateY(100%);
+
+    }
+
+    &__c {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+       
+
+        @include mobile {
+            grid-template-columns: 100%;
+        }
+
+        &-closer {
+            width: 4.8rem;
+            height: 4.8rem;
+            background-image: url(../assets/images/icons/x.svg);
+            background-position: center;
+            background-size: 80%;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translateY(-100%);
+            opacity: .7;
+
+            @include hover {
+                opacity: 1;
+            }
+
+            @include mobile {
+                width: 8rem;
+                height: 8rem;
+            }
+
+        }
+
+        & .tl1 {
+            grid-column: 1 / span 2;
+
+        }
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 4rem;
+            max-width: 50rem;
+
+            @include mobile {
+                max-width: 100%;
+            }
+
+            &-footer {
+                display: flex;
+                justify-content: space-between;
+                gap: 3.2rem;
+                align-items: center;
+                margin-top: 4rem;
+
+                @include mobile {
+                    flex-direction: column-reverse;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    margin-top: 4rem;
+                    gap: 5rem;
+                }
+
+                & .btn-second {
+                    flex-shrink: 0;
+                    
+                }
+            }
+
+            &-time {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 1.6rem;
+
+                & .txt20 {
+                    grid-column: 1 / span 3;
+                }
+
+
+            }
+        }
+
+        &-img {
+            display: flex;
+            height: 100%;
+
+            & img {
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+}

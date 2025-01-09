@@ -9,10 +9,9 @@ export default class Form {
     constructor(formDomEl, submitFoo) {
         this._form = formDomEl
         this._form.setAttribute('novalidate', true)
-        this._inputContainerSelector = 'form-input'
-        this._inputErrorMsgSelector = 'input-text-error-msg'
+        this._inputContainerSelector = 'input-text'
+        this._inputErrorMsgSelector = 'input-text-error'
         this._inputErrorSelector = '_error'
-        this._inputPlaceholderSelector = 'input-text-placeholder'
         this.submitForm = submitFoo
         this._inputs = this._form.querySelectorAll('input, textarea')
         this._inputsData = this._createInputData(this._inputs)
@@ -35,24 +34,8 @@ export default class Form {
         this.initForm()
     }
     _inputHandler(inputTarget) {
-
-
-
         this._inputsData[inputTarget.name].value = inputTarget.value
         this._validation(inputTarget);
-
-        if (!inputTarget.placeholder) return
-
-        if (inputTarget.value) {
-            inputTarget.closest('.' + this._inputContainerSelector)
-                .querySelector('.' + this._inputPlaceholderSelector).style.display = 'none'
-        } else {
-            inputTarget.closest('.' + this._inputContainerSelector)
-                .querySelector('.' + this._inputPlaceholderSelector).style.display = 'block'
-        }
-
-
-
     }
 
     _validation(input) {
@@ -165,18 +148,7 @@ export default class Form {
         for (const input of inputs) {
 
             input.setAttribute('autocomplete', 'off')
-            if (input.placeholder) {
-
-                const plcaholder = input.closest('.' + this._inputContainerSelector)
-                    .querySelector('.' + this._inputPlaceholderSelector)
-
-                plcaholder.textContent = input.placeholder
-                if (input.dataset.required) {
-                    plcaholder.setAttribute('data-end', ' *')
-                    plcaholder.style.display = 'block'
-                }
-
-            }
+           
 
 
             if (input.name == 'password') {

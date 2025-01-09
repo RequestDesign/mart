@@ -18,6 +18,7 @@
         line-height: 120%;
         border-bottom: 2px solid $black16;
         padding-bottom: 1.6rem;
+        resize: none;
 
         @include mobile {
             font-size: 3.2rem;
@@ -49,6 +50,8 @@
 .input-time {
     position: relative;
     width: 100%;
+    cursor: pointer;
+    flex-shrink: 0;
 
     & input {
         position: absolute;
@@ -88,6 +91,7 @@
         line-height: 110%;
         display: block;
         color: $black16;
+        text-align: center;
 
         @include mobile {
             padding: 2.4rem;

@@ -27,6 +27,8 @@ $(function () {
     dropDowns()
     iniSwipers()
     mainPageCore()
+    initForms()
+    modalsHandler()
 
 
 })
@@ -45,10 +47,8 @@ function mainPageCore() {
 
     function sectionState(swiper, slide) {
         /**
-         * 
          * @param {swiper} Swiper 
          * @param {slide} domElement 
-         * 
          */
 
         slide.addEventListener('touchstart', (ev) => {
@@ -63,15 +63,14 @@ function mainPageCore() {
                     swiper.allowTouchMove = true
                     swiper.slidePrev()
 
-
                 } else {
                     slide.dataset.animeState--
 
                 }
             } else if (end + SWIPE_SIZE < touchStart) {
                 if (slide.dataset.animeState >= slide.dataset.animeStates) {
-                    
-                    if(swiper.slides[swiper.activeIndex + 1]){
+
+                    if (swiper.slides[swiper.activeIndex + 1]) {
                         swiper.mousewheel.enable()
                         swiper.allowTouchMove = true
                         swiper.slideNext()
@@ -89,13 +88,58 @@ function mainPageCore() {
 
         })
 
+        if (slide.dataset.animeDesktops) {
+            slide.dataset.animeDesktop = '1'
+            let wheelIsReady = true
+            slide.addEventListener('wheel', (ev) => {
+                if (!wheelIsReady) return
+                wheelIsReady = false
+                setTimeout(() => {
+                    wheelIsReady = true
+                }, 500);
+
+                if (ev.deltaY > 0) {
+                    /*  console.log("Прокрутка вниз"); */
+                    if (slide.dataset.animeDesktop >= slide.dataset.animeDesktops) {
+                        if (swiper.slides[swiper.activeIndex + 1]) {
+                            swiper.mousewheel.enable()
+                            swiper.allowTouchMove = true
+                            swiper.slideNext()
+                        }
+
+
+                    } else {
+                        slide.dataset.animeDesktop++
+
+                    }
+
+                } else if (ev.deltaY < 0) {
+                    /* console.log("Прокрутка вверх"); */
+                    if (slide.dataset.animeDesktop <= 1) {
+
+
+                        swiper.mousewheel.enable()
+                        swiper.allowTouchMove = true
+                        swiper.slidePrev()
+
+
+                    } else {
+                        slide.dataset.animeDesktop--
+
+                    }
+
+                }
+            })
+        }
+
     }
     function sectionSlider(swiperCore, swiperSlider, slide) {
         /**
-         * 
+         * коровый страничный слайдер
          * @param {swiperCore} Swiper 
+         * слайдер секции
+         * @param {swiperSlider} Swiper 
          * @param {slide} domElement 
-         * 
          */
         slide.addEventListener('touchstart', (ev) => {
             touchStart = ev.touches[0].clientY
@@ -152,7 +196,7 @@ function mainPageCore() {
         direction: 'vertical',
         effect: 'creative',
         creativeEffect: {},
-        initialSlide: 10,
+        initialSlide: 0,
         followFinger: false,
         slidesPerView: 1,
         mousewheel: true,
@@ -166,13 +210,14 @@ function mainPageCore() {
         on: {
             init: (swiper) => {
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
-                swiper.wrapperEl.querySelectorAll('[data-anime-states]')
-                    .forEach((el) => {
+                swiper.slides.forEach((el) => {
+                    if (el.dataset.animeStates) {
                         el.dataset.animeState = '1'
+
                         sectionState(swiper, el)
-                    })
-                swiper.wrapperEl.querySelectorAll('[data-anime-slider]')
-                    .forEach((el) => {
+                    }
+
+                    if (el.dataset.animeSlider) {
                         const cfg = {
                             default: {
                                 modules: [Mousewheel],
@@ -181,24 +226,25 @@ function mainPageCore() {
                                 slidesPerView: 'auto',
                                 mousewheel: false,
                                 simulateTouch: false
+                            },
+                            gallery: {
+                                modules: [Mousewheel, Grid],
+                                slidesPerGroup: 2,
+                                slidesPerView: 'auto',
+                                direction: 'vertical',
+                                grid: {
+                                    fill: 'row',
+                                },
+                                spaceBetween: rem(3),
+                                mousewheel: false,
+                                simulateTouch: false
                             }
                         }
-                        const slider = new Swiper(el.querySelector('.swiper'), {
-                            modules: [Mousewheel, Grid],
-                            slidesPerGroup: 2,
-                            slidesPerView: 'auto',
-                            direction: 'vertical',
-                            grid: {
-                                fill: 'row',
-                            },
-                            spaceBetween: rem(3),
-                            mousewheel: false,
-                            simulateTouch: false
-
-                        })
-
+                        const slider = new Swiper(el.querySelector('.swiper'), cfg.default)
                         sectionSlider(swiper, slider, el)
-                    })
+                    }
+                })
+
 
                 if (IS_MOBILE) {
 
@@ -207,7 +253,9 @@ function mainPageCore() {
                         swiper.allowTouchMove = false
                     }
                 } else {
-                    if (swiper.slides[swiper.activeIndex].dataset.animeSlider) {
+                    if (swiper.slides[swiper.activeIndex].dataset.animeSlider
+                        ||
+                        swiper.slides[swiper.activeIndex].dataset.animeDesktops) {
                         swiper.mousewheel.disable()
                         swiper.allowTouchMove = false
                     }
@@ -231,7 +279,12 @@ function mainPageCore() {
             },
             slideChangeTransitionStart: (swiper) => {
                 console.log('start', swiper.activeIndex)
-
+                if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
+                    swiper.slides[swiper.activeIndex].dataset.animeState = 1
+                }
+                if (swiper.slides[swiper.activeIndex].dataset.animeDesktops) {
+                    swiper.slides[swiper.activeIndex].dataset.animeDesktop = 1
+                }
             },
             slideChangeTransitionEnd: (swiper) => {
                 console.log('end', swiper.activeIndex);
@@ -239,7 +292,6 @@ function mainPageCore() {
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
                 const activeSlide = swiper.slides[swiper.activeIndex]
                 if (activeSlide.classList.contains('section-with-topper')) {
-
                     sectionTopper(activeSlide)
                 }
 
@@ -544,23 +596,19 @@ function modalsHandler() {
         const { modal } = ev.currentTarget.dataset
 
         $(`.modal-${modal}`)
-            .fadeIn()
-            .addClass('_opened')
+            .removeClass('anime-over')
+            .addClass('_opened anime-start')
         html.addClass('_lock')
     })
 
 
     modalClosers.on('click', (ev) => {
         const { classList } = ev.target
+
         if (!classList.contains('modal-closer')) return
 
-        if (classList.contains('modal')) {
-            $(ev.target).fadeOut().removeClass('_opened')
-
-        } else {
-            $(ev.target.closest('.modal')).fadeOut().removeClass('_opened')
-
-        }
+        const t = classList.contains('modal') ? $(ev.target) : $(ev.target.closest('.modal'))
+        t.removeClass('_opened').addClass('anime-over').removeClass('anime-start')
         html.removeClass('_lock')
     })
 }
