@@ -384,9 +384,9 @@ function mainPageCore() {
       touchStart = 0;
     });
     if (slide.dataset.animeDesktops) {
-      slide.dataset.animeDesktop = '1';
       let wheelIsReady = true;
       slide.addEventListener('wheel', ev => {
+        const slide = ev.currentTarget;
         if (!wheelIsReady) return;
         wheelIsReady = false;
         setTimeout(() => {
@@ -396,9 +396,11 @@ function mainPageCore() {
           /*  console.log("Прокрутка вниз"); */
           if (slide.dataset.animeDesktop >= slide.dataset.animeDesktops) {
             if (swiper.slides[swiper.activeIndex + 1]) {
+              swiper.slideNext();
               swiper.mousewheel.enable();
               swiper.allowTouchMove = true;
-              swiper.slideNext();
+              slide.dataset.animeDesktop = '0';
+              slide.dataset.animeState = '0';
             }
           } else {
             slide.dataset.animeDesktop++;
@@ -406,11 +408,23 @@ function mainPageCore() {
         } else if (ev.deltaY < 0) {
           /* console.log("Прокрутка вверх"); */
           if (slide.dataset.animeDesktop <= 1) {
-            swiper.mousewheel.enable();
-            swiper.allowTouchMove = true;
-            swiper.slidePrev();
+            if (swiper.slides[swiper.activeIndex - 1]) {
+              swiper.slidePrev();
+              swiper.mousewheel.enable();
+              swiper.allowTouchMove = true;
+            }
           } else {
             slide.dataset.animeDesktop--;
+          }
+        }
+        if (slide.dataset.isvideo) {
+          const v = slide.querySelector('video');
+          if (slide.dataset.animeDesktop == 2 || slide.dataset.animeState == 2) {
+            console.log('play');
+            v.play();
+          } else {
+            console.log('stop');
+            v.pause();
           }
         }
       });
@@ -472,7 +486,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 0,
+    initialSlide: 5,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -483,12 +497,16 @@ function mainPageCore() {
     slideActiveClass: 'core-slide-active',
     /* shortSwipes: false, */
     threshold: SWIPE_SIZE,
+    preventInteractionOnTransition: true,
     on: {
       init: swiper => {
         swiper.slides[swiper.activeIndex].classList.add('anime-start');
         swiper.slides.forEach(el => {
           if (el.dataset.animeStates) {
             el.dataset.animeState = '1';
+            if (el.dataset.animeDesktops) {
+              el.dataset.animeDesktop = '1';
+            }
             sectionState(swiper, el);
           }
           if (el.dataset.animeSlider) {
@@ -516,6 +534,9 @@ function mainPageCore() {
             };
             const slider = new swiper_swiper/* default */.Z(el.querySelector('.swiper'), cfg.default);
             sectionSlider(swiper, slider, el);
+          }
+          if (el.classList.contains('section-with-topper')) {
+            sectionTopper(el);
           }
         });
         if (IS_MOBILE) {
@@ -555,29 +576,21 @@ function mainPageCore() {
         swiper.slides[swiper.activeIndex].classList.remove('anime-over');
         swiper.slides[swiper.activeIndex].classList.add('anime-start');
         const activeSlide = swiper.slides[swiper.activeIndex];
-        if (activeSlide.classList.contains('section-with-topper')) {
-          sectionTopper(activeSlide);
-        }
         if (swiper.slides[swiper.activeIndex - 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
           swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1;
         }
         if (swiper.slides[swiper.activeIndex + 1] && swiper.slides[swiper.activeIndex + 1].dataset.animeStates) {
           swiper.slides[swiper.activeIndex + 1].dataset.animeState = 1;
         }
-        activeSlide.classList.remove('_opened');
-        activeSlide.querySelectorAll("._opened").forEach(e => {
-          e.classList.remove('_opened');
-        });
-
-        /* 
-             swiper.mousewheel.disable();
-             swiper.allowTouchMove = false;
-              */
-
         if (activeSlide.dataset.animeStates && window.innerWidth < 769) {
           swiper.mousewheel.disable();
           swiper.allowTouchMove = false;
           activeSlide.dataset.animeState = 1;
+        }
+        if (activeSlide.dataset.animeDesktops && window.innerWidth > 769) {
+          swiper.mousewheel.disable();
+          swiper.allowTouchMove = false;
+          activeSlide.dataset.animeDesktop = 1;
         }
         if (activeSlide.dataset.animeSlider) {
           swiper.mousewheel.disable();
@@ -644,36 +657,56 @@ function iniSwipers() {
   }
   const twoSlider = document.querySelector('.two-slider');
   if (twoSlider) {
-    new swiper_swiper/* default */.Z(twoSlider.querySelector('.swiper'), {
-      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
-      effect: window.innerWidth < 768 ? 'fade' : 'slide',
-      followFinger: false,
-      speed: 100,
-      fadeEffect: {
-        crossFade: false
-      },
-      navigation: {
-        prevEl: twoSlider.querySelector('.swiper-btn-prev'),
-        nextEl: twoSlider.querySelector('.swiper-btn-next')
-      },
-      slidesPerView: 2,
-      slidesPerGroup: 2,
-      spaceBetween: rem(8),
-      on: {
-        init: swiper => {
-          swiper.slides.forEach((e, i) => {
-            e.querySelector('.two-slider__slide-body-count').textContent = (i + 1).toString().padStart(2, '0');
-          });
+    if (window.innerWidth < 768) {
+      new swiper_swiper/* default */.Z(twoSlider.querySelector('.swiper'), {
+        modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
+        effect: window.innerWidth < 768 ? 'fade' : 'slide',
+        followFinger: false,
+        speed: 100,
+        preventInteractionOnTransition: true,
+        fadeEffect: {
+          crossFade: false
+        },
+        navigation: {
+          prevEl: twoSlider.querySelector('.swiper-btn-prev'),
+          nextEl: twoSlider.querySelector('.swiper-btn-next')
+        },
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: rem(8),
+        on: {
+          init: swiper => {
+            swiper.slides.forEach((e, i) => {
+              e.querySelector('.two-slider__slide-body-count').textContent = (i + 1).toString().padStart(2, '0');
+            });
+          }
         }
-      }
-      /*   breakpoints:{
-            768:{
-                slidesPerGroup: 2
-            }
-        } */
-    });
+        /*   breakpoints:{
+              768:{
+                  slidesPerGroup: 2
+              }
+          } */
+      });
+    } else {
+      const next = twoSlider.querySelector('.swiper-btn-next'),
+        prev = twoSlider.querySelector('.swiper-btn-prev');
+      prev.setAttribute('disabled', true);
+      next.addEventListener('click', ev => {
+        if (twoSlider.dataset.twoslideState < 2) {
+          twoSlider.dataset.twoslideState++;
+          ev.currentTarget.setAttribute('disabled', true);
+          prev.removeAttribute('disabled');
+        }
+      });
+      prev.addEventListener('click', ev => {
+        if (twoSlider.dataset.twoslideState > 1) {
+          twoSlider.dataset.twoslideState--;
+          ev.currentTarget.setAttribute('disabled', true);
+          next.removeAttribute('disabled');
+        }
+      });
+    }
   }
-
   const care = document.querySelector('.arch-care');
   if (care) {
     new swiper_swiper/* default */.Z(care.querySelector('.swiper'), {
@@ -791,9 +824,29 @@ function dropDowns() {
 function sectionTopper(target) {
   if (!target) return;
   target.querySelector('.section-with-topper__main').addEventListener('click', e => {
-    target.classList.toggle('_opened');
-  }, {
-    once: true
+    const parent = e.currentTarget.closest('.section-with-topper'),
+      slide = target;
+    if (window.innerWidth > 768) {
+      if (parent.dataset.animeDesktop = 1) {
+        parent.dataset.animeDesktop = 2;
+      } else {
+        return;
+      }
+    } else {
+      if (parent.dataset.animeState = 1) {
+        parent.dataset.animeState = 2;
+      } else {
+        return;
+      }
+    }
+    if (slide.dataset.isvideo) {
+      const v = slide.querySelector('video');
+      if (slide.dataset.animeDesktop == 2 || slide.dataset.animeState == 2) {
+        v.play();
+      } else {
+        v.pause();
+      }
+    }
   });
 }
 function modalsHandler() {
