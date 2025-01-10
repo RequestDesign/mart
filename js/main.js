@@ -391,7 +391,7 @@ function mainPageCore() {
         wheelIsReady = false;
         setTimeout(() => {
           wheelIsReady = true;
-        }, 500);
+        }, 1000);
         if (ev.deltaY > 0) {
           /*  console.log("Прокрутка вниз"); */
           if (slide.dataset.animeDesktop >= slide.dataset.animeDesktops) {
