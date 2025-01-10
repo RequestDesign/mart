@@ -1,17 +1,33 @@
 .contacts {
-    display: flex;
-    flex-direction: column;
+    display: grid !important;
     padding-top: 0;
+    padding-bottom: 0;
+    grid-template-columns: 100%;
+    grid-template-rows: 55dvh 45dvh 0rem;
+    transition: grid 1s ease-in-out;
+
+    @include desktop {
+        &[data-anime-desktop='1'] {
+            grid-template-rows: 55dvh 45dvh 0rem;
+
+        }
+
+        &[data-anime-desktop='2'] {
+            grid-template-rows: 30dvh 50dvh 20rem;
+        }
+    }
 
     @include mobile {
         padding-top: 0;
+        padding-bottom: 0;
+        grid-template-rows: 100dvh 0dvh 0dvh;
 
-        &[data-anime-state='1'] {}
+        &[data-anime-state='1'] {
+            grid-template-rows: 100dvh 0dvh 0dvh;
+        }
 
         &[data-anime-state='2'] {
-            & .contacts-top {
-                height: 0dvh;
-            }
+            grid-template-rows: 0dvh 100dvh 0dvh;
 
             & .contacts-info__c {
                 padding-top: 32rem;
@@ -19,14 +35,11 @@
         }
 
         &[data-anime-state='3'] {
-            & .contacts-top {
-                height: 0dvh;
-            }
+            grid-template-rows: 0dvh 65dvh 35dvh;
 
             & .contacts-info {
-                height: 70dvh;
-
                 &__c {
+                    gap: 5rem 13rem;
                     grid-template-rows: 0rem 0rem 0rem 0rem 16rem 100rem;
                 }
             }
@@ -36,21 +49,10 @@
 }
 
 .contacts-top {
-    height: 50dvh;
+    height: 100%;
     display: flex;
     width: 100%;
-
-    @include mobile {
-        height: 100dvh;
-        flex-shrink: 0;
-        transition: height 1s linear;
-        overflow: hidden;
-
-    }
-
-    @include mobile {
-        height: 100dvh;
-    }
+    overflow: hidden;
 
     &__wrp {
         position: relative;
@@ -65,13 +67,14 @@
     }
 
     & .ui-line {
-        @include desktop{
-            bottom:18rem;
+        @include desktop {
+            bottom: 18rem;
         }
+
         z-index: 2;
 
         @include mobile {
-           top: 41rem;
+            top: 41rem;
         }
     }
 
@@ -117,14 +120,8 @@
 
 
 .contacts-info {
-    height: 40dvh;
-    min-height: 40dvh;
+    height: 100%;
 
-    @include mobile {
-        height: 70dvh;
-        flex-shrink: 0;
-
-    }
 
     &__c {
         display: grid;
@@ -136,7 +133,7 @@
 
             grid-template-columns: 100%;
             grid-template-rows: 16rem 16rem 16rem 16rem 0 0rem;
-            transition: grid 1s linear, padding .5s linear;
+            transition: grid 1s ease-in-out, padding .5s ease-in-out, gap .5s ease-in-out;
         }
 
         &-el {
@@ -166,8 +163,15 @@
                 & form {
                     display: flex;
                     flex-direction: row;
-                    padding: 2rem 1rem 2rem 0;
+                    padding: 6rem 1rem 0 0;
 
+                    & .btn-second {
+                        transform: translate(-4rem, -4rem);
+
+                        @include mobile {
+                            transform: translate(-7rem, -5rem);
+                        }
+                    }
                 }
             }
 

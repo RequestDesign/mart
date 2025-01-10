@@ -5,10 +5,21 @@
 
     @include desktop {
 
-        &._opened, &[data-anime-desktop='2'] {
+        &[data-anime-desktop='1'] {
+            & .our-projects__c-top {
+                clip-path: inset(0% 0% 0% 0);
+            }
+        }
+
+        &[data-anime-desktop='2'] {
             & .swiper-navigation {
                 opacity: 1;
+                margin-bottom: 32.4rem;
                 transform: translate(-50%, 0);
+            }
+
+            & .our-projects__c-top {
+                clip-path: inset(0% 0% 100% 0);
             }
 
             & .our-projects__c-main-slide-body-values {
@@ -23,9 +34,7 @@
                 margin-bottom: 38.7rem;
             }
 
-            & .btn-primary {
-                opacity: 1;
-            }
+
         }
     }
 
@@ -33,9 +42,17 @@
         padding-top: 0;
         padding-bottom: 0;
 
-        &[data-anime-state='1'] {}
+        &[data-anime-state='1'] {
+            & .our-projects__c-top {
+                clip-path: inset(0% 0% 0% 0);
+            }
+
+        }
 
         &[data-anime-state='2'] {
+            & .our-projects__c-top {
+                clip-path: inset(0% 0% 100% 0);
+            }
 
             & .swiper-navigation {
                 opacity: 1;
@@ -50,6 +67,8 @@
 
 
         &-top {
+            transition: clip-path 1s ease-in-out;
+            overflow: hidden;
 
             & .container {
                 display: grid;
@@ -157,18 +176,20 @@
 
             & .swiper-navigation {
                 position: absolute;
-                margin-bottom: 32.4rem;
+                opacity: 0;
                 bottom: 0;
                 left: 50%;
                 display: flex;
                 justify-content: flex-end;
                 z-index: 3;
                 height: fit-content;
-                opacity: 0;
-                transform: translateX(-50%);
 
-                transition: opacity .5s ease-in-out;
-                transition-delay: 1s;
+                transform: translateX(-50%);
+                transition: opacity 1s ease-in-out, margin 1s ease-in-out;
+
+                @include desktop {
+                    margin-bottom: 20.4rem;
+                }
 
                 @include mobile {
                     bottom: 12rem;
@@ -184,6 +205,7 @@
                 /* 11.3 */
                 width: 100%;
                 z-index: 3;
+                transition: margin 1s ease-in-out;
 
 
                 @include mobile {
@@ -227,9 +249,7 @@
                         position: absolute;
                         transition: opacity 1s linear;
 
-                        @include desktop {
-                            opacity: 0;
-                        }
+
 
                         @include mobile {
                             top: 56rem;
