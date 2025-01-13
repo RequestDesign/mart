@@ -19,7 +19,7 @@
         left: 0;
 
         @include desktop {
-            top: 50rem;
+            bottom: 30rem;
         }
 
         @include mobile {
@@ -37,9 +37,9 @@
             '. top .'
             'btn ttl .'
             ' . we bottom';
-        gap: 2.6rem;
-        padding-top: 25rem;
-        height: 100%;
+        gap: 9rem 2.6rem;
+        margin-top: auto;
+        height: fit-content;
 
         @include mobile {
             grid-template-columns: 1.1fr 1fr;
@@ -112,8 +112,11 @@
             width: fit-content;
             height: fit-content;
             margin-left: 22rem;
+            transform: translateY(10rem);
 
             @include mobile {
+            transform: translateY(0);
+
                 margin-left: 12rem;
             }
         }
@@ -238,7 +241,7 @@
 }
 
 .arch-care {
-   
+
     & .container {
         @include mobile {
             padding-left: 0;
@@ -300,7 +303,7 @@
 
             & .swiper-slide-active {
 
-                & .arch-care__slide-text{
+                & .arch-care__slide-text {
                     opacity: 1;
                 }
             }
@@ -313,7 +316,7 @@
         max-height: 79rem;
         display: grid;
         grid-template-rows: 60% auto;
-      
+
         gap: 4.4rem;
 
         @include mobile {
@@ -323,7 +326,8 @@
         &-img {
             display: flex;
             object-position: top;
-            & img{
+
+            & img {
                 object-fit: cover;
                 object-position: center;
             }

@@ -9,11 +9,15 @@
         height: 100%;
         & .ui-line{
             position: absolute;
-            top: 67%;
+            @include desktop{
+                bottom: 21rem;
+                margin: 0;
+                transform: translate(0, 0);
+            }
         }
 
         &-body {
-            margin-bottom: 32.4rem;
+            margin-bottom: 15.4rem;
             position: relative;
             display: flex;
             flex-direction: column;

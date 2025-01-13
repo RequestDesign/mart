@@ -9,6 +9,7 @@
             & .our-projects__c-top {
                 clip-path: inset(0% 0% 0% 0);
             }
+         
         }
 
         &[data-anime-desktop='2'] {
@@ -125,6 +126,7 @@
                     border-right: 1px solid $black40;
                     transition: background-color .2s linear, color .2s linear;
                     cursor: pointer;
+              
 
                     & input {
                         display: none;

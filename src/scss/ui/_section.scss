@@ -16,21 +16,23 @@
     }
 }
 .section {
+    @include desktop{
+
+       
+    }
     &-with-topper {
         position: relative;
         width: 100%;
         height: 100%;
         display: flex;
         overflow: hidden;
+        
 
         @include desktop {
-            &._opened {
-                & .section-with-topper__top {
-                     clip-path: inset(0% 0 100% 0);
-                }
-
+           
+            &[data-anime-desktop='1']{
                 & .section-with-topper__main {
-                    cursor: default;
+                    cursor: pointer;
                 }
             }
         }
@@ -41,7 +43,7 @@
             z-index: 4;
             width: 100%;
             height: 100%;
-            cursor: pointer;
+          
         }
 
         &__top {

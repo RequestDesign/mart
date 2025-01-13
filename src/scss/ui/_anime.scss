@@ -60,6 +60,10 @@
 
         &-t {}
     }
+
+    &-zoom {
+        transform: scale(1.2);
+    }
 }
 
 
@@ -116,6 +120,7 @@
     }
 
 }
+
 /* 
 @mixin animeSwiperMob() {
     .anime-start {
@@ -142,8 +147,13 @@
 
 
 @include desktop {
-
+   
     @include desktopActive() {
+        &.anime-zoom {
+            animation: zoomOut 1s ease-in-out forwards;
+            
+        }
+
         &.anime-width-right {
             animation: width-right 1s ease-in-out forwards;
         }
@@ -188,6 +198,12 @@
 
 
     @include desktopDisable() {
+        &.anime-zoom {
+            animation: zoomIn 1s ease-in-out forwards;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+
         &.anime-width-right {
             clip-path: inset(0% 100% 0% 0);
             animation: width-right-rev 1s ease-in-out forwards;
@@ -266,6 +282,10 @@
     /* mobile state triggers */
 
     @include triggerActive() {
+        &.anime-zoom {
+            animation: zoomOut 1s ease-in-out forwards;
+        }
+
         &.anime-width-right {
             animation: width-right 1s ease-in-out forwards;
         }
@@ -307,9 +327,15 @@
         }
     }
 
-  
+
 
     @include triggerDisable() {
+        &.anime-zoom {
+            animation: zoomIn 1s ease-in-out forwards;
+            animation-duration: .5s !important;
+            animation-delay: 0s !important;
+        }
+
         &.anime-width-right {
             clip-path: inset(0% 100% 0% 0);
             animation: width-right-rev 1s ease-in-out forwards;
@@ -377,7 +403,7 @@
     }
 
 
-   /*  @include animeSwiperMob() {
+    /*  @include animeSwiperMob() {
         &.anime-width-right {
             animation: width-right 1s ease-in-out forwards;
         }
@@ -488,6 +514,12 @@
 }
 
 .anime-start {
+    & .anime-zoom {
+        animation: zoomOut 1s ease-in-out forwards;
+    }
+
+    /* ----------------------------------------------------- */
+
     & .anime-height {
         animation: height 1s ease-in-out forwards;
     }
@@ -532,29 +564,33 @@
 }
 
 .anime-over {
+    & .anime-zoom {
+        animation: zoomIn 1s ease-in-out forwards;
+    }
+
 
     & .anime-height {
-        animation: height-rev 1s ease-in-out;
-        animation-duration: .5s !important;
+        animation: height-rev 1s linear;
+        animation-duration: .3s !important;
         animation-delay: 0s !important;
     }
 
     & .anime-height-top {
-        animation: height-top-rev 1s ease-in-out;
-        animation-duration: .5s !important;
+        animation: height-top-rev 1s linear;
+        animation-duration: .3s !important;
         animation-delay: 0s !important;
     }
 
     & .anime-height-bottom {
-        animation: height-bottom-rev 1s ease-in-out;
-        animation-duration: .5s !important;
+        animation: height-bottom-rev 1s linear;
+        animation-duration: .3s !important;
         animation-delay: 0s !important;
     }
 
     /* ----------------------------------------------------- */
     & .anime-width-right {
-        animation: width-right-rev 1s ease-in-out forwards;
-        animation-duration: .5s !important;
+        animation: width-right-rev 1s linear forwards;
+        animation-duration: .3s !important;
         animation-delay: 0s !important;
     }
 
@@ -562,32 +598,32 @@
 
     & .anime-translate-bottom {
         & .anime-translate-t {
-            animation: translate-bottom-rev 1s ease-in-out;
-            animation-duration: .5s !important;
+            animation: translate-bottom-rev 1s linear;
+            animation-duration: .3s !important;
             animation-delay: 0s !important;
         }
     }
 
     & .anime-translate-top {
         & .anime-translate-t {
-            animation: translate-top-rev 1s ease-in-out;
-            animation-duration: .5s !important;
+            animation: translate-top-rev 1s linear;
+            animation-duration: .3s !important;
             animation-delay: 0s !important;
         }
     }
 
     & .anime-translate-left {
         & .anime-translate-t {
-            animation: translate-left-rev 1s ease-in-out;
-            animation-duration: .5s !important;
+            animation: translate-left-rev 1s linear;
+            animation-duration: .3s !important;
             animation-delay: 0s !important;
         }
     }
 
     & .anime-translate-right {
         & .anime-translate-t {
-            animation: translate-right-rev 1s ease-in-out;
-            animation-duration: .5s !important;
+            animation: translate-right-rev 1s linear;
+            animation-duration: .3s !important;
             animation-delay: 0s !important;
         }
     }
@@ -596,6 +632,32 @@
 
 
 
+/* --------------------------zoom------------------------------------- */
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+
+    }
+
+}
+
+@keyframes zoomOut {
+    0% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+
+    }
+
+}
+
+/* --------------------------zoom------------------------------------- */
 /* --------------------------height------------------------------------- */
 @keyframes height {
     0% {

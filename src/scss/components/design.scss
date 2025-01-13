@@ -38,7 +38,7 @@
             'btn ttl .'
             '. price small';
         gap: 2.6rem;
-        padding-top: 25rem;
+        padding-top: 16rem;
         padding-bottom: 12rem;
         height: 100%;
 
@@ -79,7 +79,7 @@
             grid-area: price;
             display: flex;
             gap: 8rem;
-            align-self: center;
+            align-self: flex-end;
 
             &-el {
                 display: flex;

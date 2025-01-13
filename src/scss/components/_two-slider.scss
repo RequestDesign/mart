@@ -9,7 +9,7 @@
     @include desktop {
         &[data-twoslide-state='1'] {
 
-            & .two-slider__slide:nth-child(1),
+            /*    & .two-slider__slide:nth-child(1),
             & .two-slider__slide:nth-child(2) {
                 & img {
                     clip-path: inset(0% 0 0% 0);
@@ -29,29 +29,31 @@
                     background-color: $white;
 
                 }
-            }
+            }  */
 
-            & .two-slider__slide:nth-child(3),
-            & .two-slider__slide:nth-child(4) {
+            & .two-slider__slide:nth-child(1),
+            & .two-slider__slide:nth-child(2) {
                 & img {
-                    clip-path: inset(100% 0 0% 0);
+                    clip-path: inset(0% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
-
                 }
 
                 & .two-slider__slide-body-count span {
-                    clip-path: inset(100% 0 0% 0);
+                    clip-path: inset(0% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
-                    background-color: $white;
-
                 }
 
                 & .tl3,
                 & .txt16 {
-                    clip-path: inset(100% 0 0% 0);
-                    transition: clip-path .5s ease-in-out;
-                    background-color: $white;
+                    
 
+                    clip-path: inset(0% 0 0% 0);
+                    transition: clip-path .5s ease-in-out;
+                }
+                
+                & .two-slider__slide-body {
+                    opacity: 1;
+                    transition: opacity .5s ease-in-out;
                 }
             }
         }
@@ -69,33 +71,26 @@
                 & .two-slider__slide-body-count span {
                     clip-path: inset(100% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
+                    background-color: $white;
+
+                }
+
+                & .two-slider__slide-body {
+                    opacity: 0;
+                    transition: opacity .5s ease-in-out;
                 }
 
                 & .tl3,
                 & .txt16 {
+                    
                     clip-path: inset(100% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
+                    background-color: $white;
+
                 }
             }
 
-            & .two-slider__slide:nth-child(3),
-            & .two-slider__slide:nth-child(4) {
-                & img {
-                    clip-path: inset(0% 0 0% 0);
-                    transition: clip-path .5s ease-in-out;
-                }
 
-                & .two-slider__slide-body-count span {
-                    clip-path: inset(0% 0 0% 0);
-                    transition: clip-path .5s ease-in-out;
-                }
-
-                & .tl3,
-                & .txt16 {
-                    clip-path: inset(0% 0 0% 0);
-                    transition: clip-path .5s ease-in-out;
-                }
-            }
         }
 
 
@@ -238,10 +233,16 @@
             justify-content: flex-end;
             gap: 2.4rem;
 
+            @include desktop {
+                padding-right: 5rem;
+                background-color: $white;
+            }
+
 
             @include mobile {
                 justify-content: flex-start;
-                & .txt16{
+
+                & .txt16 {
                     max-width: 50%;
                 }
             }

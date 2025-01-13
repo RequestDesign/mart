@@ -19,7 +19,7 @@
         left: 0;
 
         @include desktop {
-            top: 33rem;
+           bottom: 39.5rem;
         }
 
         @include mobile {
@@ -154,7 +154,7 @@
 
         & .ui-line {
             position: absolute;
-            top: 29.5%;
+            top: 23.2rem;
 
             @include mobile {
                 top: 100%;
@@ -164,7 +164,7 @@
         & .btn-primary {
             position: absolute;
             right: 11%;
-            top: 14%;
+            top: 15rem;
             z-index: 3;
 
             @include mobile {
@@ -284,6 +284,7 @@
                             display: flex;
                             flex-direction: column;
                             gap: 2.4rem;
+                            padding-top: 5rem;
                             background-color: $white;
                         }
 

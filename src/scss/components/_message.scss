@@ -10,95 +10,103 @@
             grid-template-rows: min-content 12rem 17rem min-content 0rem;
         }
 
-        &.core-slide-active{
-                &[data-anime-state='1'] {
+        &.core-slide-active {
+            &[data-anime-state='1'] {
 
-                    & .message__c {
-                        grid-template-rows: min-content 12rem 17rem min-content 0rem;
-        
+                & .message__c {
+                    grid-template-rows: min-content 12rem 17rem min-content 0rem;
+
+                }
+            }
+
+            &[data-anime-state='2'] {
+
+                & .message__c {
+                    grid-template-rows: min-content 0rem 0rem min-content 50rem;
+
+                    & .message__c-text-top {
+                        opacity: 1;
+                    }
+
+                    & .btn-second {
+                        & .anime-height-top {
+                            clip-path: inset(100% 0 0% 0) !important;
+                            animation: height-top-rev 1s ease-in-out;
+                            animation-duration: .5s !important;
+                            animation-delay: 0s !important;
+                        }
+
+                        & .anime-height-bottom {
+                            clip-path: inset(0% 0 100% 0) !important;
+                            animation: height-bottom-rev 1s ease-in-out;
+                            animation-duration: .5s !important;
+                            animation-delay: 0s !important;
+                        }
+
                     }
                 }
-        
-                &[data-anime-state='2'] {
-        
-                    & .message__c {
-                        grid-template-rows: min-content 0rem 0rem min-content 50rem;
-        
-                        & .message__c-text-top {
-                            opacity: 1;
+            }
+
+            &[data-anime-state='3'] {
+
+                & .message__c {
+                    grid-template-rows: min-content 0rem 0rem min-content 50rem;
+
+                    & .message__c-text-top {
+                        transform: translateY(-100%);
+                        opacity: 0;
+                    }
+
+                    & .message__c-text-bottom {
+                        transform: translateY(-100%);
+                        opacity: 1;
+                    }
+
+                    & .btn-second {
+                        & .anime-height-top {
+
+                            animation: height-top 1s ease-in-out forwards;
                         }
-        
-                        & .btn-second {
-                            & .anime-height-top {
-                                clip-path: inset(100% 0 0% 0) !important;
-                                animation: height-top-rev 1s ease-in-out;
-                                animation-duration: .5s !important;
-                                animation-delay: 0s !important;
-                            }
-        
-                            & .anime-height-bottom {
-                                clip-path: inset(0% 0 100% 0) !important;
-                                animation: height-bottom-rev 1s ease-in-out;
-                                animation-duration: .5s !important;
-                                animation-delay: 0s !important;
-                            }
-        
+
+                        & .anime-height-bottom {
+
+                            animation: height-bottom 1s ease-in-out forwards;
                         }
                     }
+
                 }
-        
-                &[data-anime-state='3'] {
-        
-                    & .message__c {
-                        grid-template-rows: min-content 0rem 0rem min-content 50rem;
-        
-                        & .message__c-text-top {
-                            transform: translateY(-100%);
-                            opacity: 0;
-                        }
-        
-                        & .message__c-text-bottom {
-                            transform: translateY(-100%);
-                            opacity: 1;
-                        }
-        
-                        & .btn-second {
-                            & .anime-height-top {
-        
-                                animation: height-top 1s ease-in-out forwards;
-                            }
-        
-                            & .anime-height-bottom {
-        
-                                animation: height-bottom 1s ease-in-out forwards;
-                            }
-                        }
-        
-                    }
-                }
+            }
 
         }
 
-        
+
     }
 
     &__c {
         display: grid;
         grid-template-columns: .5fr 1fr 1fr .5fr;
         gap: 3rem 4.4rem;
-        grid-auto-rows: auto;
+   
+
+
         grid-template-areas:
             'btn heading heading heading'
             '. exp mission .'
             'small big text .'
             'small big text btn-small';
-            position: relative;
+        position: relative;
 
+        @include desktop{
+            grid-template-rows:  min-content min-content minmax(40dvh, 40rem) 4rem;
+            height: fit-content !important;
+            margin-bottom: 0 !important;
+        }
 
         @include mobile {
             padding-top: 20rem;
             box-sizing: border-box;
             grid-template-columns: .5fr 1fr;
+            grid-auto-rows: auto;
             gap: 4.8rem 3.2rem;
             grid-template-areas:
                 'heading heading'
@@ -108,11 +116,12 @@
                 'text text'
                 'btn-small btn-small';
         }
+
         & .ui-line {
             position: absolute;
             top: 11%;
             left: 0;
-    
+
             @include mobile {
                 top: 29%;
             }
@@ -126,7 +135,7 @@
         & .btn-primary {
             grid-area: btn;
             width: fit-content;
-            transform: translate(23rem, 10rem);
+            transform: translate(23rem, 1rem);
 
             @include mobile {
                 position: absolute;
@@ -156,11 +165,21 @@
         &-small {
             grid-area: small;
             display: flex;
+
+            & img {
+                object-fit: cover;
+                object-position: center;
+            }
         }
 
         &-big {
             grid-area: big;
             display: flex;
+
+            & img {
+                object-fit: cover;
+                object-position: center;
+            }
         }
 
         &-text {

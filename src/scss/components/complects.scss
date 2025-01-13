@@ -19,7 +19,7 @@
         left: 0;
 
         @include desktop {
-            top: 30rem;
+          bottom: 22rem;
         }
 
         @include mobile {
@@ -37,10 +37,9 @@
             '. . .'
             'btn ttl .'
             ' . we small';
-        gap: 2.6rem;
-        padding-top: 25rem;
-        padding-bottom: 12rem;
-        height: 100%;
+        gap: 11rem 2.6rem;
+        margin-top: auto;
+        height: fit-content;
 
         @include mobile {
             grid-template-columns: 1fr 1fr;
@@ -69,7 +68,7 @@
 
             grid-area: small;
 
-          
+
         }
 
         & .txt22 {

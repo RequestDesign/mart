@@ -19,7 +19,7 @@
         left: 0;
 
         @include desktop {
-            bottom: 6rem;
+            bottom: 16rem;
         }
 
         @include mobile {
@@ -38,7 +38,10 @@
             'btn ttl .'
             ' . small .';
         gap: 2.6rem;
+        margin-top: auto;
+        height: fit-content;
         margin-bottom: 0 !important;
+        padding-bottom: 10rem;
 
         @include mobile {
             grid-template-columns: 1fr 1fr;

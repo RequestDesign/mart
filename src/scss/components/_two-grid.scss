@@ -11,11 +11,31 @@
         padding-bottom: 0;
     }
 
+
+        &._complects {
+            & .container {
+                padding-top: 10rem;
+                & .ui-line {
+                    top: 17rem;
+                    left: 0;
+        
+                    @include mobile {
+                        top: 31.8%;
+                        transition: top 1s linear;
+                    }
+                }
+                & .btn-primary{
+                   transform: translate(22rem, -2rem); 
+                }
+            }
+        }
+  
+
     & .container {
         position: relative;
 
         & .ui-line {
-            top: 19.5%;
+            top: 14rem;
             left: 0;
 
             @include mobile {
@@ -101,7 +121,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 4rem 4.4rem;
         margin-top: 0;
-        
+
         transition: grid 1s linear;
 
         @include mobile {
@@ -204,10 +224,22 @@
                     display: flex;
                     flex-direction: column;
                     gap: 1.6rem;
+                    position: relative;
+
+                    & .ui-line {
+                        top: 100% !important;
+                        width: 100%;
+                        margin: 0;
+                        transform: translate(0, 0);
+                    }
+
 
                     &:last-of-type {
-                        padding: 0;
+                        & .ui-line {
+                            display: none;
+                        }
                     }
+
                 }
 
             }

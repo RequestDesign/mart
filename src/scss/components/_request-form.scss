@@ -26,7 +26,7 @@
                 grid-template-rows: 33rem 63rem 35dvh 50rem;
             }
 
-          
+
             & .ui-marked-list .anime-translate-t {
                 animation: translate-left-rev 1s ease-in-out forwards;
 
@@ -75,6 +75,9 @@
 
     }
 
+    @include desktop {
+       
+    }
 
 
     &__grid {
@@ -82,6 +85,11 @@
         grid-template-columns: .5fr 1fr .5fr;
         grid-template-rows: min-content min-content;
         gap: 4.4rem;
+        @include desktop{
+            height: fit-content !important;
+            max-height: fit-content !important;
+        }
+
 
 
         @include mobile {
@@ -130,8 +138,9 @@
                 gap: 2rem;
                 justify-content: space-between;
                 padding: 6rem 0 0;
-                @include mobile{
-                    padding: 7.5rem 0 0 ;
+
+                @include mobile {
+                    padding: 7.5rem 0 0;
                 }
 
                 & .btn-second {
@@ -256,8 +265,7 @@
     &__footer {
         margin-top: auto;
 
-
-
+       
     }
 
 }

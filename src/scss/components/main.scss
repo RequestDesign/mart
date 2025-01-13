@@ -5,8 +5,8 @@
 
     & .ui-line {
         position: absolute;
-        top: 42rem;
-        width: 100%;
+        top: 29%;
+      
 
         @include mobile {
             top: 58rem;
@@ -21,7 +21,7 @@
 
     &__c {
         width: 113rem;
-        height: 60rem;
+        height: 50rem;
         display: flex;
         position: relative;
         flex-direction: column;

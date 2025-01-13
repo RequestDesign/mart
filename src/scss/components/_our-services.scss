@@ -1,5 +1,5 @@
 .our-services {
-  
+
 
     @include mobile {
         padding-bottom: 0;
@@ -15,7 +15,7 @@
 
         & .ui-line {
             position: absolute;
-            top: 95%;
+            top: 91%;
 
             @include mobile {
                 top: 96%;
@@ -107,11 +107,15 @@
 
             &-img {
                 display: flex;
-                height: 100%;
+                height: 60dvh;
+                max-height: 52rem;
+                flex-shrink: 0;
+
 
                 @include mobile {
                     flex-shrink: 0;
                     height: 50rem;
+                    max-height: unset;
                 }
 
                 & img {
