@@ -342,6 +342,7 @@ jquery_default()(function () {
   mainPageCore();
   initForms();
   modalsHandler();
+  initFaq();
 });
 function mainPageCore() {
   const main = document.querySelector('.main-swiper.swiper');
@@ -361,6 +362,7 @@ function mainPageCore() {
       touchStart = ev.touches[0].clientY;
     });
     slide.addEventListener('touchend', ev => {
+      const slide = ev.currentTarget;
       const end = ev.changedTouches[0].pageY;
       if (end > touchStart + SWIPE_SIZE) {
         if (slide.dataset.animeState <= 1) {
@@ -382,6 +384,17 @@ function mainPageCore() {
         }
       }
       touchStart = 0;
+      console.log('isvdeo');
+      if (slide.dataset.isvideo) {
+        const v = slide.querySelector('video');
+        if (slide.dataset.animeState == 2) {
+          console.log('play');
+          v.play();
+        } else {
+          console.log('pause');
+          v.pause();
+        }
+      }
     });
     if (slide.dataset.animeDesktops) {
       let wheelIsReady = true;
@@ -420,10 +433,8 @@ function mainPageCore() {
         if (slide.dataset.isvideo) {
           const v = slide.querySelector('video');
           if (slide.dataset.animeDesktop == 2 || slide.dataset.animeState == 2) {
-            console.log('play');
             v.play();
           } else {
-            console.log('stop');
             v.pause();
           }
         }
@@ -486,14 +497,14 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: 5,
+    initialSlide: localStorage.getItem('coreSwiper') ? localStorage.getItem('coreSwiper') : 0,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
     simulateTouch: false,
     slideClass: 'page-slide',
     noSwipingClass: 'page-slide-stop',
-    speed: 1200,
+    speed: 1000,
     slideActiveClass: 'core-slide-active',
     /* shortSwipes: false, */
     threshold: SWIPE_SIZE,
@@ -517,7 +528,8 @@ function mainPageCore() {
                 spaceBetween: rem(3),
                 slidesPerView: 'auto',
                 mousewheel: false,
-                simulateTouch: false
+                simulateTouch: false,
+                followFinger: false
               },
               gallery: {
                 modules: [modules/* Mousewheel */.Gk, modules/* Grid */.rj],
@@ -570,6 +582,7 @@ function mainPageCore() {
         if (swiper.slides[swiper.activeIndex].dataset.animeDesktops) {
           swiper.slides[swiper.activeIndex].dataset.animeDesktop = 1;
         }
+        swiper.slides[swiper.activeIndex].style.zIndex = 50;
       },
       slideChangeTransitionEnd: swiper => {
         console.log('end', swiper.activeIndex);
@@ -869,6 +882,22 @@ function modalsHandler() {
     const t = classList.contains('modal') ? jquery_default()(ev.target) : jquery_default()(ev.target.closest('.modal'));
     t.removeClass('_opened').addClass('anime-over').removeClass('anime-start');
     html.removeClass('_lock');
+  });
+}
+function initFaq() {
+  const c = document.querySelector('.faq');
+  if (!c || window.innerWidth > 767) return;
+  const targets = c.querySelectorAll('.faq__c-body-el-target');
+  if (!targets) return;
+  let activeT = null;
+  targets.forEach(el => {
+    el.addEventListener('click', ev => {
+      if (activeT) {
+        activeT.classList.remove('_opened');
+      }
+      ev.target.closest('.faq__c-body-el').classList.add('_opened');
+      activeT = ev.target.closest('.faq__c-body-el');
+    });
   });
 }
 function initSwichers() {

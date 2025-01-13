@@ -83,11 +83,11 @@
             <!--  -->
             <section class="arch-heading">
                 <div class="ui-bg anime-height-bottom" data-anime-trigger="1">
-                    <img src="./assets/images/heading-main.webp" alt="">
+                    <img src="./assets/images/arch.webp" alt="">
                 </div>
                 <div class="container arch-heading__c col-wh">
                     <div class="ui-line anime-width-right" data-anime-delay="1s" data-anime-speed="1s"></div>
-                    <button class="btn-primary">
+                    <button class="btn-primary" data-modal="request">
                         <span class="btn-primary-anchor">
                             <span class="btn-primary-c">
                                 <span class="btn-primary-text col-wh anime-height-bottom" data-anime-trigger="2"
@@ -95,12 +95,7 @@
                                     оставить <br />
                                     заявку
                                 </span>
-                                <span class="ui-icon anime-height-top" data-anime-trigger="2" data-anime-delay="1s">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 12L6 18.9282L6 5.0718L18 12Z" stroke="#FFFEF8"
-                                            stroke-width="1.5" />
-                                    </svg>
+                                <span class="ui-icon _arrow-white-right anime-height-top" data-anime-trigger="2" data-anime-delay="1s">
 
                                 </span>
                             </span>
@@ -270,7 +265,7 @@
                     </div>
                     <div class="arch-follow__body">
                         <div class="arch-follow__body-img anime-height-bottom">
-                            <img src="./assets/images/heading-main.webp" alt="">
+                            <img src="./assets/images/arch-follow.webp" alt="">
                         </div>
                         <div class="arch-follow__body-text">
                             <div class="anime-translate-bottom tl3 txt-up">
@@ -329,7 +324,7 @@
                                 преимущества работы с нами
                             </p>
                         </div>
-                        <button class="btn-second">
+                        <a href="#" class="btn-second">
                             <span class="btn-second-text anime-height-top" data-anime-delay="1.5s">Познакомьтесь с
                                 ценами</span>
                             <span class="btn-second-circle anime-height-bottom" data-anime-delay="1.5s"> </span>
@@ -342,7 +337,7 @@
                                         stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </span>
-                        </button>
+                        </a>
                     </div>
                     <div class="swiper">
                         <ul class="swiper-wrapper">
@@ -350,7 +345,7 @@
                             <li class="swiper-slide anime-height-bottom">
                                 <div class=" arch-care__slide">
                                     <div class=" arch-care__slide-img">
-                                        <img src="./assets/images/contacts-mob.webp" alt="">
+                                        <img src="./assets/images/arch-care-1.webp" alt="">
                                     </div>
                                     <div class="arch-care__slide-text">
                                         <div class="tl3 txt-up anime-translate-bottom">
@@ -374,7 +369,7 @@
                             <li class="swiper-slide anime-height-bottom">
                                 <div class=" arch-care__slide">
                                     <div class=" arch-care__slide-img">
-                                        <img src="./assets/images/contacts-mob.webp" alt="">
+                                        <img src="./assets/images/arch-care-2.webp" alt="">
                                     </div>
                                     <div class="arch-care__slide-text">
                                         <div class="tl3 txt-up anime-translate-bottom">
@@ -397,7 +392,7 @@
                             <li class="swiper-slide anime-height-bottom">
                                 <div class=" arch-care__slide">
                                     <div class=" arch-care__slide-img">
-                                        <img src="./assets/images/contacts-mob.webp" alt="">
+                                        <img src="./assets/images/arch-care-3.webp" alt="">
                                     </div>
                                     <div class="arch-care__slide-text">
                                         <div class="tl3 txt-up anime-translate-bottom">
@@ -421,7 +416,7 @@
                             <li class="swiper-slide anime-height-bottom">
                                 <div class=" arch-care__slide">
                                     <div class=" arch-care__slide-img">
-                                        <img src="./assets/images/contacts-mob.webp" alt="">
+                                        <img src="./assets/images/arch-care-4.webp" alt="">
                                     </div>
                                     <div class="arch-care__slide-text">
                                         <div class="tl3 txt-up anime-translate-bottom">
@@ -457,7 +452,7 @@
         <ul class="swiper-wrapper swiper-clip anime-translate-t" data-anime-speed="1s">
             <li class="swiper-slide our-projects__c-main-slide swiper-clip _clip-both ">
                 <div class="ui-bg">
-                    <img src="./assets/images/heading-main.webp" alt="">
+                    <img src="./assets/images/heading-main.webp" alt="" class="anime-zoom" data-anime-trigger-desktop="2">
                 </div>
 
                 <div class="container our-projects__c-main-slide-body col-wh">
@@ -601,12 +596,40 @@
                     вопросы
                 </p>
             </div>
-            <div class="faq__c-left-img anime-height-top">
-                <img src="./assets/images/heading-main.webp" alt="">
+            <div class="faq__c-left-img anime-height-top desktop">
+                <img src="./assets/images/faq.webp" alt="">
 
             </div>
         </div>
         <ul class="faq__c-body">
+            <li class="faq__c-body-el anime-width-right" data-anime-delay=".5s">
+                <div class="faq__c-body-el-target ">
+                    <span class="txt14"> 01</span>
+                    <p class="txt-up txt22">вопрос</p>
+                    <span class="faq__c-body-el-target-circle">
+
+                    </span>
+                </div>
+                <div class="faq__c-body-el-body txt16">
+                    <div class="faq__c-body-el-body-data">
+                        ответ
+                    </div>
+                </div>
+            </li>
+            <li class="faq__c-body-el anime-width-right" data-anime-delay=".5s">
+                <div class="faq__c-body-el-target ">
+                    <span class="txt14"> 01</span>
+                    <p class="txt-up txt22">вопрос</p>
+                    <span class="faq__c-body-el-target-circle">
+
+                    </span>
+                </div>
+                <div class="faq__c-body-el-body txt16">
+                    <div class="faq__c-body-el-body-data">
+                        ответ
+                    </div>
+                </div>
+            </li>
             <li class="faq__c-body-el anime-width-right" data-anime-delay=".5s">
                 <div class="faq__c-body-el-target ">
                     <span class="txt14"> 01</span>
@@ -681,34 +704,47 @@
                 </button>
 
             </li>
-            <li class="our-services__grid-el anime-height-bottom" data-anime-delay=".4s">
+
+            <!-- первая карточка -->
+           <!--  <li class="our-services__grid-el anime-height-bottom" data-anime-delay=".3s">
                 <div class="our-services__grid-el-img">
-                    <img src="./assets/images/heading-main.webp" alt="">
+                    <img src="./assets/images/service-1.webp" alt="">
                 </div>
                 <p class="tl2 txt-up">Дизайн интерьера</p>
                 <p class="txt20">
                     Комплексная услуга по дизайну
                     интерьера
+                </p>
+            </li> -->
+
+
+            <li class="our-services__grid-el anime-height-bottom" data-anime-delay=".4s">
+                <div class="our-services__grid-el-img">
+                    <img src="./assets/images/service-2.webp" alt="">
+                </div>
+                <p class="tl2 txt-up">Авторский надзор</p>
+                <p class="txt20">
+                    Контроль реализации проекта 
                 </p>
             </li>
             <li class="our-services__grid-el anime-height-bottom" data-anime-delay=".5s">
                 <div class="our-services__grid-el-img">
-                    <img src="./assets/images/heading-main.webp" alt="">
+                    <img src="./assets/images/service-3.webp" alt="">
                 </div>
-                <p class="tl2 txt-up">Дизайн интерьера</p>
+                <p class="tl2 txt-up">Комплектация</p>
                 <p class="txt20">
-                    Комплексная услуга по дизайну
-                    интерьера
+                    Обеспечение материалами, мебелью,
+                    декором
                 </p>
             </li>
             <li class="our-services__grid-el anime-height-bottom" data-anime-delay=".6s">
                 <div class="our-services__grid-el-img">
-                    <img src="./assets/images/heading-main.webp" alt="">
+                    <img src="./assets/images/service-4.webp" alt="">
                 </div>
-                <p class="tl2 txt-up">Дизайн интерьера</p>
+                <p class="tl2 txt-up">Архитектура</p>
                 <p class="txt20">
-                    Комплексная услуга по дизайну
-                    интерьера
+                    Полный спектр архитектурного
+проектирования
                 </p>
             </li>
 
@@ -786,7 +822,7 @@
             </div>
         </div>
         <div class="request-form__grid-img anime-height-bottom">
-            <img src="./assets/images/heading-main.webp" alt="">
+            <img src="./assets/images/request-form.webp" alt="">
         </div>
         <div class="request-form__grid-right">
             <div class="tl2 anime-translate-top">
@@ -984,7 +1020,6 @@
 </div>
 
 <footer>
-    <!-- ой че за хуйня, а где футер? -->
     <!-- а нету  -->
 </footer>
     </div>
