@@ -126,7 +126,9 @@
 
             @include mobile {
                 font-size: 2.8rem;
-                padding: 0 0 2rem;
+                & p{
+                    padding: 0 0 2rem;
+                }
             }
         }
 

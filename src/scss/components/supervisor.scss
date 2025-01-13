@@ -142,9 +142,6 @@
 .supervisor-adv {
 
     & .container {
-
-
-
         position: relative;
 
         @include mobile {
@@ -154,10 +151,12 @@
 
         & .ui-line {
             position: absolute;
-            top: 23.2rem;
+            @include desktop{
+                top: 23.2rem;
+            }
 
             @include mobile {
-                top: 100%;
+                bottom: -6rem;
             }
         }
 
@@ -180,7 +179,7 @@
             @include mob-pad;
 
             @include mobile {
-                top: 95%;
+                top: 100%;
             }
         }
 
@@ -223,7 +222,7 @@
 
                     @include mobile {
                         grid-template-columns: 100%;
-                        grid-template-rows: 40dvh 13dvh;
+                        grid-template-rows: 40dvh 20dvh;
                         grid-template-areas:
                             'img'
                             'text';
@@ -244,7 +243,8 @@
                             align-self: flex-start;
                             grid-area: text;
                             height: 100%;
-                            padding-top: 0
+                            padding-top: 0;
+                            max-width: 50%
 
                         }
 

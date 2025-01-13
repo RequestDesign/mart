@@ -6,6 +6,14 @@
 
         &._arch {
             padding-bottom: 0;
+            & .two-side__grid-el-price{
+                padding-left:  $mobilePadding;
+                padding-right:  $mobilePadding;
+                &+.txt22{
+                    padding-left:  $mobilePadding;
+                    padding-right:  $mobilePadding;
+                }
+            }
         }
     }
 
@@ -50,7 +58,7 @@
             flex-direction: column;
             gap: 3.2rem;
             align-items: flex-start;
-            margin-top: 16.4rem;
+            /* margin-top: 16.4rem; */
             padding-left: $mobilePadding;
             padding-right: $mobilePadding;
         }

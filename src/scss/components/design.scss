@@ -23,7 +23,7 @@
         }
 
         @include mobile {
-            top: 39rem;
+            top: 38rem;
         }
 
     }
@@ -49,7 +49,7 @@
                 'we we'
                 'small small'
                 'price price';
-            padding-top: 33rem;
+            
         }
 
 
@@ -119,6 +119,7 @@
             position: relative;
 
             @include mobile {
+                gap: 0;
                 grid-template-columns: 100%;
             }
 
@@ -129,6 +130,9 @@
 
             &._ttl {
                 align-items: flex-start;
+                @include mobile{
+                    gap: 3rem;
+                }
 
                 & .txt14 {
                     margin-top: 2rem;
@@ -163,6 +167,9 @@
 
                 @include hover {
                     opacity: 1;
+                }
+                @include mobile{
+                    padding-right: 3rem;
                 }
 
 

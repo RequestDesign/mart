@@ -26,6 +26,7 @@
             @include mobile {
                 padding-right: $mobilePadding;
                 padding-left: $mobilePadding;
+               
             }
         }
 
@@ -72,6 +73,12 @@ object-fit: cover;
             justify-content: space-between;
             padding-top: 10.8rem;
             padding-bottom: 10.8rem;
+            @include mobile{
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+                gap: 3rem;
+               
+            }
 
         }
     }
@@ -88,7 +95,7 @@ object-fit: cover;
             bottom: 33%;
 
             @include mobile {
-                bottom: 30%;
+                bottom: 30rem;
 
             }
         }

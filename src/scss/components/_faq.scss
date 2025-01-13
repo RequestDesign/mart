@@ -2,11 +2,13 @@
     position: relative;
     padding-top: $headerGap;
     padding-bottom: $headerGap;
-    @include mobile{
-    padding-top: $headerGapMob;
-    padding-bottom: $headerGapMob;
 
-}
+    @include mobile {
+        padding-top: $headerGapMob;
+        padding-bottom: $headerGapMob;
+
+    }
+
     &__c {
         position: relative;
         min-height: 68dvh;
@@ -14,13 +16,13 @@
         grid-template-columns: 1fr 1fr;
         grid-template-areas: '. body';
         gap: 4.4rem;
-      
+
 
         @include mobile {
-     
+
 
             grid-template-columns: 100%;
-            grid-template-rows: 64rem auto;
+            grid-template-rows: min-content auto;
             grid-template-areas:
                 'left'
                 'body';
@@ -48,12 +50,24 @@
                 width: 100%;
                 overflow: hidden;
                 transition: grid .5s ease-in-out;
-                &:hover{
+
+                &:hover {
                     grid-template-rows: min-content 1fr;
-                    & .faq__c-body-el-target-circle{
+
+                    & .faq__c-body-el-target-circle {
                         transform: rotate(90deg);
                     }
                 }
+                @include mobile{
+                    &._opened{
+                        grid-template-rows: min-content 1fr;
+
+                        & .faq__c-body-el-target-circle {
+                            transform: rotate(90deg);
+                        }   
+                    }
+                }
+
                 &-target {
                     display: flex;
                     align-items: center;
@@ -71,15 +85,17 @@
                         background-position: 80% 50%;
                         background-repeat: no-repeat;
                         background-size: 2.4rem;
-                        transition:  transform .5s ease-in-out;
-                        @include mobile{
+                        transition: transform .5s ease-in-out;
+
+                        @include mobile {
                             width: 10.2rem;
                             height: 10.2rem;
                             background-size: 3.2rem;
                         }
                     }
                 }
-                &-body{
+
+                &-body {
                     overflow: hidden;
                     height: 100%;
                 }
@@ -97,6 +113,13 @@
                 display: flex;
                 flex-direction: column;
                 gap: 3rem;
+              
+
+                & .tl1 {
+                    flex-shrink: 0;
+                    padding-left: $mobilePadding;
+                    padding-right: $mobilePadding;
+                }
             }
 
             &-img {
@@ -112,7 +135,7 @@
                     position: relative;
                     width: auto;
                     padding: 0;
-                    
+
                 }
 
                 & img {

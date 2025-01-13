@@ -1,9 +1,9 @@
 .our-specialists {
 
 
-@include mobile{
-    padding-bottom: 0;
-}
+    @include mobile {
+        padding-bottom: 0;
+    }
 
     & .container {
         position: relative;
@@ -13,7 +13,7 @@
             max-height: 100%;
             padding-left: 0;
             padding-right: 0;
-            
+
         }
 
 
@@ -34,7 +34,7 @@
 
             @include mobile {
                 left: 5%;
-                bottom: 10%;
+                bottom: 0;
             }
         }
 
@@ -65,7 +65,7 @@
             @include mobile {
                 position: absolute;
                 z-index: 5;
-                top: 80%;
+                top: 83%;
                 right: 20%;
             }
         }

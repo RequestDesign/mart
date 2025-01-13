@@ -1,8 +1,3 @@
-.swiper-slide-active {
-    & .two-grid__c-cell-list-el {
-        border-bottom: 1px solid $black16;
-    }
-}
 
 .two-grid {
     position: relative;
@@ -24,8 +19,19 @@
                         transition: top 1s linear;
                     }
                 }
-                & .btn-primary{
-                   transform: translate(22rem, -2rem); 
+               
+
+                @include mobile{
+                    & .two-grid__c-cell:first-of-type{
+                       & .tl1{
+                        font-size: 6.3rem !important;
+                        margin-bottom: 5rem;
+                       }
+                    }
+                    & .ui-line{
+                        top: 30.8%;
+                    }
+                  
                 }
             }
         }
@@ -46,6 +52,7 @@
     }
 
     @include mobile {
+       
         &[data-anime-state='1'] {
             & .two-grid__c {
                 grid-template-rows: 40% 60% 0%;
@@ -67,6 +74,15 @@
 
 
             }
+            &._complects{
+                & .two-grid__c-cell-img {
+                    height: 100%;
+
+                }  
+                & .ui-line{
+                    top: 30.8%;
+                }
+            }
         }
 
         &[data-anime-state='2'] {
@@ -80,7 +96,7 @@
                 }
 
                 & .two-grid__c-cell-img {
-                    height: 22%;
+                    height: 34%;
 
                 }
 
@@ -89,6 +105,12 @@
                 }
 
 
+            }
+            &._complects{
+               
+                & .ui-line{
+                    top: 15%;
+                }
             }
         }
 
@@ -113,6 +135,16 @@
 
 
             }
+            &._complects{
+               
+                & .ui-line{
+                    top: 15%;
+                }
+                & .two-grid__c-cell-img {
+                    height: 34%;
+
+                }
+            }
         }
     }
 
@@ -121,7 +153,6 @@
         grid-template-columns: 1fr 1fr;
         gap: 4rem 4.4rem;
         margin-top: 0;
-
         transition: grid 1s linear;
 
         @include mobile {
@@ -231,6 +262,9 @@
                         width: 100%;
                         margin: 0;
                         transform: translate(0, 0);
+                        @include mobile{
+                            display: none;
+                        }
                     }
 
 

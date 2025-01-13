@@ -20,7 +20,10 @@
         bottom: 24.5rem;
 
         @include mobile {
-            bottom: 29.5rem;
+            bottom: 46rem;
+            margin: 0;
+            transform: translate(0, 0);
+
         }
 
     }

@@ -93,7 +93,7 @@
                 width: 100%;
 
                 @include mobile {
-                    bottom: 57rem;
+                    bottom: 20rem;
                 }
 
             }
@@ -104,7 +104,7 @@
                 left: 60%;
 
                 @include mobile {
-                    bottom: 68rem;
+                    bottom: 32rem;
                 }
 
             }
@@ -116,7 +116,7 @@
                 height: 100%;
 
                 & * {
-width: 100%;
+                    width: 100%;
                     object-fit: cover;
                 }
             }

@@ -23,7 +23,7 @@
         }
 
         @include mobile {
-            bottom: 13rem;
+            bottom: 23rem;
         }
 
     }
@@ -120,10 +120,10 @@
             grid-template-columns: 100%;
 
             & .ui-line {
-                width: calc(100% - $mobilePadding *2);
-                margin-left: $mobilePadding;
-                margin-right: $mobilePadding;
+                display: none;
             }
+
+            
 
         }
 
@@ -140,6 +140,7 @@
                     padding-left: $mobilePadding;
                     padding-right: $mobilePadding;
                 }
+               
             }
 
 
@@ -149,6 +150,7 @@
                 padding-top: 2.4rem;
                 padding-bottom: 1.2rem;
                 overflow: hidden;
+               
             }
 
             &-img {
@@ -156,9 +158,10 @@
                 height: 30dvh;
                 max-height: 35rem;
                 display: flex;
-                 & img{
+
+                & img {
                     object-fit: cover;
-                 }
+                }
 
                 @include mobile {
                     height: 50%;
