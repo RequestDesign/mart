@@ -497,7 +497,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: localStorage.getItem('coreSwiper') ? localStorage.getItem('coreSwiper') : 0,
+    initialSlide: localStorage.getItem('coreSwiper') ? localStorage.getItem('coreSwiper') : 3,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -636,9 +636,9 @@ function iniSwipers() {
   const ourSpecialists = document.querySelector('.our-specialists');
   if (ourSpecialists) {
     new swiper_swiper/* default */.Z(ourSpecialists.querySelector('.swiper'), {
-      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
+      modules: [modules/* Navigation */.W_, modules/* EffectCreative */.gI],
       slidesPerView: 1,
-      effect: 'fade',
+      effect: 'creative',
       speed: 100,
       followFinger: false,
       fadeEffect: {
@@ -648,32 +648,69 @@ function iniSwipers() {
       navigation: {
         prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
         nextEl: ourSpecialists.querySelector('.swiper-btn-next')
+      },
+      on: {
+        //пока работает, лучше не трогать
+        slidePrevTransitionStart: s => {
+          s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+          s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].style.zIndex = 50;
+        },
+        slidePrevTransitionEnd: s => {
+          s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1;
+        },
+        slideNextTransitionStart: s => {
+          s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+          s.slides[s.activeIndex].classList.add('swiper-clip-active');
+        }
       }
     });
   }
   const results = document.querySelector('.results');
   if (results) {
     const one = new swiper_swiper/* default */.Z(results.querySelector('.swiper'), {
-      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
-      effect: 'fade',
+      modules: [modules/* Navigation */.W_, modules/* EffectCreative */.gI],
+      slidesPerView: 1,
+      effect: 'creative',
       speed: 100,
       followFinger: false,
       fadeEffect: {
         crossFade: false
       },
+      simulateTouch: false,
       navigation: {
         prevEl: results.querySelector('.swiper-btn-prev'),
         nextEl: results.querySelector('.swiper-btn-next')
       },
-      slidesPerView: 1
+      on: {
+        //пока работает, лучше не трогать
+        slidePrevTransitionStart: s => {
+          s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+          s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].style.zIndex = 50;
+        },
+        slidePrevTransitionEnd: s => {
+          s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1;
+        },
+        slideNextTransitionStart: s => {
+          s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+          s.slides[s.activeIndex].classList.add('swiper-clip-active');
+        }
+      }
     });
   }
   const twoSlider = document.querySelector('.two-slider');
   if (twoSlider) {
     if (window.innerWidth < 768) {
       new swiper_swiper/* default */.Z(twoSlider.querySelector('.swiper'), {
-        modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
-        effect: window.innerWidth < 768 ? 'fade' : 'slide',
+        modules: [modules/* Navigation */.W_, modules/* EffectCreative */.gI],
+        effect: window.innerWidth < 768 ? 'creative' : 'slide',
         followFinger: false,
         speed: 100,
         preventInteractionOnTransition: true,
@@ -692,6 +729,27 @@ function iniSwipers() {
             swiper.slides.forEach((e, i) => {
               e.querySelector('.two-slider__slide-body-count').textContent = (i + 1).toString().padStart(2, '0');
             });
+          },
+          slidePrevTransitionStart: s => {
+            if (window.innerWidth < 769) {
+              s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+              s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+              s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled');
+              s.slides[s.activeIndex + 1].style.zIndex = 50;
+            }
+          },
+          slidePrevTransitionEnd: s => {
+            if (window.innerWidth < 769) {
+              s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled');
+              s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1;
+            }
+          },
+          slideNextTransitionStart: s => {
+            if (window.innerWidth < 769) {
+              s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+              s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+              s.slides[s.activeIndex].classList.add('swiper-clip-active');
+            }
           }
         }
         /*   breakpoints:{
@@ -726,25 +784,35 @@ function iniSwipers() {
       navigation: [modules/* Navigation */.W_],
       simulateTouch: false,
       followFinger: false,
-      spaceBetween: rem(4.4),
+      spaceBetween: rem(2),
       slidesPerView: 1.4,
       breakpoints: {
         768: {
-          slidesPerView: 4
+          slidesPerView: 4,
+          spaceBetween: rem(4.4)
         }
       },
       navigation: {
         prevEl: care.querySelector('.swiper-btn-prev'),
         nextEl: care.querySelector('.swiper-btn-next')
+      },
+      on: {
+        slideChange: s => {
+          if (s.activeIndex == s.slides.length - 1) {
+            care.querySelector('.swiper').style.transform = 'translate(-22rem, 0)';
+          } else {
+            care.querySelector('.swiper').style.transform = 'translate(-0, 0)';
+          }
+        }
       }
     });
   }
   const superAdv = document.querySelector('.supervisor-adv');
   if (superAdv) {
     const right = new swiper_swiper/* default */.Z(superAdv.querySelectorAll('.swiper')[1], {
-      modules: [modules/* EffectFade */.xW],
+      modules: [modules/* EffectCreative */.gI],
+      effect: 'creative',
       slidesPerView: 1,
-      effect: 'fade',
       speed: 100,
       initialSlide: 1,
       followFinger: false,
@@ -758,19 +826,37 @@ function iniSwipers() {
           s.slides.forEach((el, i) => {
             el.querySelector('.supervisor-adv__sliders-el-text-count').textContent = (i + 1).toString().padStart(2, '0');
           });
+        },
+        slidePrevTransitionStart: s => {
+          if (window.innerWidth > 768) {
+            s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+            s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+            s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled');
+            s.slides[s.activeIndex + 1].style.zIndex = 50;
+          }
+        },
+        slidePrevTransitionEnd: s => {
+          if (window.innerWidth > 768) {
+            s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled');
+            s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1;
+          }
+        },
+        slideNextTransitionStart: s => {
+          if (window.innerWidth > 768) {
+            s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+            s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+            s.slides[s.activeIndex].classList.add('swiper-clip-active');
+          }
         }
       }
     });
     const left = new swiper_swiper/* default */.Z(superAdv.querySelectorAll('.swiper')[0], {
-      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
+      modules: [modules/* Navigation */.W_, modules/* EffectCreative */.gI],
       slidesPerView: 1,
-      effect: 'fade',
-      speed: 100,
+      effect: 'creative',
+      speed: 1000,
       initialSlide: 0,
       followFinger: false,
-      fadeEffect: {
-        crossFade: false
-      },
       simulateTouch: false,
       navigation: {
         prevEl: superAdv.querySelector('.swiper-btn-prev'),
@@ -789,6 +875,22 @@ function iniSwipers() {
           s.slides.forEach((el, i) => {
             el.querySelector('.supervisor-adv__sliders-el-text-count').textContent = (i + 1).toString().padStart(2, '0');
           });
+        },
+        slidePrevTransitionStart: s => {
+          s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+          s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].style.zIndex = 50;
+          console.log(s.activeIndex + 1, 'f');
+        },
+        slidePrevTransitionEnd: s => {
+          s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1;
+          s.slides[s.activeIndex + 1].style.zIndex = '-1';
+        },
+        slideNextTransitionStart: s => {
+          s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+          s.slides[s.activeIndex].classList.add('swiper-clip-active');
         }
       }
     });
