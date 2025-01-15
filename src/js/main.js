@@ -1,7 +1,7 @@
 
 import $ from 'jquery'
 import Inputmask from 'inputmask'
-import { Navigation, Pagination, Grid, Autoplay, Mousewheel, EffectFade, EffectCreative } from 'swiper/modules';
+import { Navigation, Pagination, Grid, Autoplay, Mousewheel, EffectFade, EffectCreative, Manipulation } from 'swiper/modules';
 import Swiper from 'swiper';
 import Form from './utils/Form';
 import { rem } from './utils/constants'
@@ -184,16 +184,29 @@ function mainPageCore() {
         })
         slide.addEventListener('touchend', (ev) => {
             const end = ev.changedTouches[0].pageY
-            if (end > touchStart + SWIPE_SIZE && swiperSlider.activeIndex <= 0) {
-                swiperCore.mousewheel.enable()
-                swiperCore.allowTouchMove = true
-                swiperCore.slidePrev()
-            } else if (end + SWIPE_SIZE < touchStart && swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
-                swiperCore.mousewheel.enable()
-                swiperCore.allowTouchMove = true
-                swiperCore.slideNext()
+            console.log(1);
+            if (end > touchStart + SWIPE_SIZE) {
+                if (swiperSlider.activeIndex <= 0) {
+                    swiperCore.mousewheel.enable()
+                    swiperCore.allowTouchMove = true
+                    swiperCore.slidePrev()
+                } else {
+                    swiperSlider.slidePrev()
+                }
+            } else if (end + SWIPE_SIZE < touchStart) {
+                console.log(2);
+                if (swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
+                    console.log(4);
+                    swiperCore.mousewheel.enable()
+                    swiperCore.allowTouchMove = true
+                    swiperCore.slideNext()
+                } else {
+                    console.log(3);
+                    swiperSlider.slideNext()
+                }
             }
         })
+
         let wheelIsReady = true
         slide.addEventListener('wheel', (ev) => {
 
@@ -267,31 +280,38 @@ function mainPageCore() {
                     }
 
                     if (el.dataset.animeSlider) {
-                        const cfg = {
-                            default: {
-                                modules: [Mousewheel],
-                                direction: 'vertical',
-                                spaceBetween: rem(3),
-                                slidesPerView: 'auto',
-                                mousewheel: false,
-                                simulateTouch: false,
-                                followFinger: false
-                            },
-                            gallery: {
-                                modules: [Mousewheel, Grid],
-                                slidesPerGroup: 2,
-                                slidesPerView: 'auto',
-                                direction: 'vertical',
-                                grid: {
-                                    fill: 'row',
-                                },
-                                spaceBetween: rem(3),
-                                mousewheel: false,
-                                simulateTouch: false
+
+
+                        const slider = new Swiper(el.querySelector('.swiper'), {
+                            modules: [Mousewheel, Manipulation],
+                            direction: 'vertical',
+                            spaceBetween: rem(3),
+                            slidesPerView: 'auto',
+                            mousewheel: false,
+                            simulateTouch: false,
+                            followFinger: false,
+                            on: {
+                                init: (s) => {
+                                    if (el.dataset.animeSlider == 'services') {
+                                        if (window.innerWidth > 768) {
+                                            const slideTwo = s.slides[2].querySelector('.services__c-el-item').cloneNode(true)
+                                            const slideFour = s.slides[4].querySelector('.services__c-el-item').cloneNode(true)
+                                           
+                                            s.slides[1].append(slideTwo)
+                                            s.slides[3].append(slideFour)
+                                            
+                                            s.removeSlide(2)
+                                            s.removeSlide(3)
+
+                                            s.update()
+                                        }
+                                    }
+                                }
                             }
-                        }
-                        const slider = new Swiper(el.querySelector('.swiper'), cfg.default)
+
+                        })
                         sectionSlider(swiper, slider, el)
+
                     }
 
                     if (el.classList.contains('section-with-topper')) {
@@ -302,7 +322,8 @@ function mainPageCore() {
 
                 if (IS_MOBILE) {
 
-                    if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
+                    if (swiper.slides[swiper.activeIndex].dataset.animeSlider
+                        || swiper.slides[swiper.activeIndex].dataset.animeStates) {
                         swiper.mousewheel.disable()
                         swiper.allowTouchMove = false
                     }
@@ -317,9 +338,7 @@ function mainPageCore() {
             },
 
             slidePrevTransitionStart: (swiper) => {
-
                 swiper.slides[swiper.activeIndex + 1].classList.add('anime-over')
-
 
             },
             slideNextTransitionStart: (swiper) => {
@@ -332,7 +351,6 @@ function mainPageCore() {
                 swiper.slides[swiper.activeIndex - 1].classList.remove('anime-start')
             },
             slideChangeTransitionStart: (swiper) => {
-                console.log('start', swiper.activeIndex)
                 if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
                     swiper.slides[swiper.activeIndex].dataset.animeState = 1
                 }
@@ -340,14 +358,12 @@ function mainPageCore() {
                     swiper.slides[swiper.activeIndex].dataset.animeDesktop = 1
                 }
 
-                swiper.slides[swiper.activeIndex ].style.zIndex = 50
+                swiper.slides[swiper.activeIndex].style.zIndex = 50
             },
             slideChangeTransitionEnd: (swiper) => {
-                console.log('end', swiper.activeIndex);
                 swiper.slides[swiper.activeIndex].classList.remove('anime-over')
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
                 const activeSlide = swiper.slides[swiper.activeIndex]
-
 
                 if (swiper.slides[swiper.activeIndex - 1] && swiper.slides[swiper.activeIndex - 1].dataset.animeStates) {
                     swiper.slides[swiper.activeIndex - 1].dataset.animeState = 1
@@ -410,9 +426,9 @@ function iniSwipers() {
     const ourSpecialists = document.querySelector('.our-specialists')
     if (ourSpecialists) {
         new Swiper(ourSpecialists.querySelector('.swiper'), {
-            modules: [Navigation, EffectFade],
+            modules: [Navigation, EffectCreative],
             slidesPerView: 1,
-            effect: 'fade',
+            effect: 'creative',
             speed: 100,
 
             followFinger: false,
@@ -424,6 +440,27 @@ function iniSwipers() {
                 prevEl: ourSpecialists.querySelector('.swiper-btn-prev'),
                 nextEl: ourSpecialists.querySelector('.swiper-btn-next'),
 
+            },
+            on: {
+                //пока работает, лучше не трогать
+                slidePrevTransitionStart: (s) => {
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].style.zIndex = 50
+                },
+                slidePrevTransitionEnd: (s) => {
+
+                    s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1
+
+                },
+                slideNextTransitionStart: (s) => {
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                    s.slides[s.activeIndex].classList.add('swiper-clip-active')
+
+                }
             }
         })
 
@@ -434,19 +471,42 @@ function iniSwipers() {
     const results = document.querySelector('.results')
     if (results) {
         const one = new Swiper(results.querySelector('.swiper'), {
-            modules: [Navigation, EffectFade],
-            effect: 'fade',
+            modules: [Navigation, EffectCreative],
+            slidesPerView: 1,
+            effect: 'creative',
             speed: 100,
-            followFinger: false,
 
+            followFinger: false,
             fadeEffect: {
                 crossFade: false
             },
+            simulateTouch: false,
             navigation: {
                 prevEl: results.querySelector('.swiper-btn-prev'),
-                nextEl: results.querySelector('.swiper-btn-next')
+                nextEl: results.querySelector('.swiper-btn-next'),
+
             },
-            slidesPerView: 1,
+            on: {
+                //пока работает, лучше не трогать
+                slidePrevTransitionStart: (s) => {
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].style.zIndex = 50
+                },
+                slidePrevTransitionEnd: (s) => {
+
+                    s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1
+
+                },
+                slideNextTransitionStart: (s) => {
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                    s.slides[s.activeIndex].classList.add('swiper-clip-active')
+
+                }
+            }
 
         })
 
@@ -457,8 +517,8 @@ function iniSwipers() {
     if (twoSlider) {
         if (window.innerWidth < 768) {
             new Swiper(twoSlider.querySelector('.swiper'), {
-                modules: [Navigation, EffectFade,],
-                effect: window.innerWidth < 768 ? 'fade' : 'slide',
+                modules: [Navigation, EffectCreative,],
+                effect: window.innerWidth < 768 ? 'creative' : 'slide',
                 followFinger: false,
                 speed: 100,
                 preventInteractionOnTransition: true,
@@ -480,6 +540,27 @@ function iniSwipers() {
                                 .textContent = (i + 1).toString().padStart(2, '0')
                         })
                     },
+                    slidePrevTransitionStart: (s) => {
+                        if (window.innerWidth < 769) {
+                            s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                            s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                            s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled')
+                            s.slides[s.activeIndex + 1].style.zIndex = 50
+                        }
+                    },
+                    slidePrevTransitionEnd: (s) => {
+                        if (window.innerWidth < 769) {
+                            s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled')
+                            s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1
+                        }
+                    },
+                    slideNextTransitionStart: (s) => {
+                        if (window.innerWidth < 769) {
+                            s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                            s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                            s.slides[s.activeIndex].classList.add('swiper-clip-active')
+                        }
+                    }
                 }
                 /*   breakpoints:{
                       768:{
@@ -519,16 +600,27 @@ function iniSwipers() {
             navigation: [Navigation],
             simulateTouch: false,
             followFinger: false,
-            spaceBetween: rem(4.4),
+            spaceBetween: rem(2),
             slidesPerView: 1.4,
             breakpoints: {
                 768: {
-                    slidesPerView: 4
+                    slidesPerView: 4,
+                    spaceBetween: rem(4.4),
                 }
             },
             navigation: {
                 prevEl: care.querySelector('.swiper-btn-prev'),
                 nextEl: care.querySelector('.swiper-btn-next'),
+            },
+            on: {
+                slideChange: (s) => {
+                    if (s.activeIndex == s.slides.length - 1) {
+                        care.querySelector('.swiper').style.transform = 'translate(-22rem, 0)'
+                    }
+                    else {
+                        care.querySelector('.swiper').style.transform = 'translate(-0, 0)'
+                    }
+                }
             }
         })
     }
@@ -537,9 +629,9 @@ function iniSwipers() {
     if (superAdv) {
 
         const right = new Swiper(superAdv.querySelectorAll('.swiper')[1], {
-            modules: [EffectFade],
+            modules: [EffectCreative],
+            effect: 'creative',
             slidesPerView: 1,
-            effect: 'fade',
             speed: 100,
             initialSlide: 1,
             followFinger: false,
@@ -554,6 +646,29 @@ function iniSwipers() {
                         el.querySelector('.supervisor-adv__sliders-el-text-count')
                             .textContent = (i + 1).toString().padStart(2, '0')
                     })
+                },
+                slidePrevTransitionStart: (s) => {
+                    if (window.innerWidth > 768) {
+                        s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                        s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                        s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled')
+                        s.slides[s.activeIndex + 1].style.zIndex = 50
+                    }
+                },
+                slidePrevTransitionEnd: (s) => {
+                    if (window.innerWidth > 768) {
+                        s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled')
+                        s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1
+                    }
+
+                },
+                slideNextTransitionStart: (s) => {
+                    if (window.innerWidth > 768) {
+                        s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                        s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                        s.slides[s.activeIndex].classList.add('swiper-clip-active')
+                    }
+
                 }
             }
 
@@ -561,15 +676,12 @@ function iniSwipers() {
 
         })
         const left = new Swiper(superAdv.querySelectorAll('.swiper')[0], {
-            modules: [Navigation, EffectFade],
+            modules: [Navigation, EffectCreative],
             slidesPerView: 1,
-            effect: 'fade',
-            speed: 100,
+            effect: 'creative',
+            speed: 1000,
             initialSlide: 0,
             followFinger: false,
-            fadeEffect: {
-                crossFade: false
-            },
             simulateTouch: false,
             navigation: {
                 prevEl: superAdv.querySelector('.swiper-btn-prev'),
@@ -591,6 +703,24 @@ function iniSwipers() {
                         el.querySelector('.supervisor-adv__sliders-el-text-count')
                             .textContent = (i + 1).toString().padStart(2, '0')
                     })
+                },
+                slidePrevTransitionStart: (s) => {
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].style.zIndex = 50
+                    console.log(s.activeIndex + 1, 'f');
+                },
+                slidePrevTransitionEnd: (s) => {
+                    s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1
+                    s.slides[s.activeIndex + 1].style.zIndex = '-1'
+
+                },
+                slideNextTransitionStart: (s) => {
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                    s.slides[s.activeIndex].classList.add('swiper-clip-active')
+
                 }
             }
         })
@@ -715,15 +845,15 @@ function modalsHandler() {
     })
 }
 function initFaq() {
-    
+
     const c = document.querySelector('.faq')
     if (!c || window.innerWidth > 767) return
-    
+
     const targets = c.querySelectorAll('.faq__c-body-el-target')
     if (!targets) return
-    
+
     let activeT = null
-    
+
     targets.forEach((el) => {
         el.addEventListener('click', (ev) => {
             if (activeT) {

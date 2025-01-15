@@ -248,6 +248,11 @@
             padding-right: 0;
         }
     }
+    & .swiper{
+        @include mobile{
+            transition: transform .5s ease-in-out;
+        }
+    }
 
     &__top {
 

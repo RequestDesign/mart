@@ -2,28 +2,55 @@
     padding-bottom: 0;
 
     & .container {
-        height: 100%;
+        @include desktop {
+            height: 100% !important;
+            max-height: 100% !important;
+        }
     }
 
     &__c {
-      /*   @include desktop {
+        /*   @include desktop {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
         } */
 
 
+
         &-el {
             display: flex;
             flex-direction: column;
             gap: 1.6rem;
-            height: 90dvh;
+            height: calc(100dvh - 15rem);
+            max-height: 93rem;
+
+            @include desktop {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                &:last-of-type{
+                    margin-bottom: 3rem;
+                }
+            }
 
             &._text {
                 height: 15rem;
-                display: flex;
-                flex-direction: column;
-                gap: 3rem;
+                max-height: 15rem;
+                & *{
+                    line-height: 133%;
+                }
+                @include mobile{
+                    height: fit-content;
+                    max-height: 100%;
+                  
+                }
+                
+
+
+                & .tl1 {
+                    grid-column: 1;
+                    grid-row: 1 / span 2;
+                }
             }
 
 

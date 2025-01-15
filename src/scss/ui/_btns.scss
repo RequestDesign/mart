@@ -69,6 +69,28 @@
     }
 }
 
+
+.btn-hover{
+    @include hover{
+        & .btn-second{
+            & .btn-second-circle {
+                background-color: $black;
+            }
+    
+            & .ui-icon {
+                & svg {
+                    stroke: $white;
+    
+                }
+            }
+    
+            & .btn-second-text {
+                background-position: -3.5rem 0;
+            }  
+        }
+    }
+    
+}
 .btn-second {
     display: flex;
     gap: .8rem;
