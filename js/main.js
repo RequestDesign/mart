@@ -13,7 +13,7 @@ var jquery_default = /*#__PURE__*/__webpack_require__.n(jquery);
 var inputmask = __webpack_require__(382);
 var inputmask_default = /*#__PURE__*/__webpack_require__.n(inputmask);
 // EXTERNAL MODULE: ./node_modules/swiper/modules/index.mjs + 27 modules
-var modules = __webpack_require__(938);
+var modules = __webpack_require__(59);
 // EXTERNAL MODULE: ./node_modules/swiper/swiper.mjs + 1 modules
 var swiper_swiper = __webpack_require__(652);
 ;// CONCATENATED MODULE: ./src/js/utils/Form.js
@@ -454,14 +454,26 @@ function mainPageCore() {
     });
     slide.addEventListener('touchend', ev => {
       const end = ev.changedTouches[0].pageY;
-      if (end > touchStart + SWIPE_SIZE && swiperSlider.activeIndex <= 0) {
-        swiperCore.mousewheel.enable();
-        swiperCore.allowTouchMove = true;
-        swiperCore.slidePrev();
-      } else if (end + SWIPE_SIZE < touchStart && swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
-        swiperCore.mousewheel.enable();
-        swiperCore.allowTouchMove = true;
-        swiperCore.slideNext();
+      console.log(1);
+      if (end > touchStart + SWIPE_SIZE) {
+        if (swiperSlider.activeIndex <= 0) {
+          swiperCore.mousewheel.enable();
+          swiperCore.allowTouchMove = true;
+          swiperCore.slidePrev();
+        } else {
+          swiperSlider.slidePrev();
+        }
+      } else if (end + SWIPE_SIZE < touchStart) {
+        console.log(2);
+        if (swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
+          console.log(4);
+          swiperCore.mousewheel.enable();
+          swiperCore.allowTouchMove = true;
+          swiperCore.slideNext();
+        } else {
+          console.log(3);
+          swiperSlider.slideNext();
+        }
       }
     });
     let wheelIsReady = true;
@@ -497,7 +509,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: localStorage.getItem('coreSwiper') ? localStorage.getItem('coreSwiper') : 3,
+    initialSlide: localStorage.getItem('coreSwiper') ? localStorage.getItem('coreSwiper') : 0,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -521,30 +533,30 @@ function mainPageCore() {
             sectionState(swiper, el);
           }
           if (el.dataset.animeSlider) {
-            const cfg = {
-              default: {
-                modules: [modules/* Mousewheel */.Gk],
-                direction: 'vertical',
-                spaceBetween: rem(3),
-                slidesPerView: 'auto',
-                mousewheel: false,
-                simulateTouch: false,
-                followFinger: false
-              },
-              gallery: {
-                modules: [modules/* Mousewheel */.Gk, modules/* Grid */.rj],
-                slidesPerGroup: 2,
-                slidesPerView: 'auto',
-                direction: 'vertical',
-                grid: {
-                  fill: 'row'
-                },
-                spaceBetween: rem(3),
-                mousewheel: false,
-                simulateTouch: false
+            const slider = new swiper_swiper/* default */.Z(el.querySelector('.swiper'), {
+              modules: [modules/* Mousewheel */.Gk, modules/* Manipulation */.bi],
+              direction: 'vertical',
+              spaceBetween: rem(3),
+              slidesPerView: 'auto',
+              mousewheel: false,
+              simulateTouch: false,
+              followFinger: false,
+              on: {
+                init: s => {
+                  if (el.dataset.animeSlider == 'services') {
+                    if (window.innerWidth > 768) {
+                      const slideTwo = s.slides[2].querySelector('.services__c-el-item').cloneNode(true);
+                      const slideFour = s.slides[4].querySelector('.services__c-el-item').cloneNode(true);
+                      s.slides[1].append(slideTwo);
+                      s.slides[3].append(slideFour);
+                      s.removeSlide(2);
+                      s.removeSlide(3);
+                      s.update();
+                    }
+                  }
+                }
               }
-            };
-            const slider = new swiper_swiper/* default */.Z(el.querySelector('.swiper'), cfg.default);
+            });
             sectionSlider(swiper, slider, el);
           }
           if (el.classList.contains('section-with-topper')) {
@@ -552,7 +564,7 @@ function mainPageCore() {
           }
         });
         if (IS_MOBILE) {
-          if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
+          if (swiper.slides[swiper.activeIndex].dataset.animeSlider || swiper.slides[swiper.activeIndex].dataset.animeStates) {
             swiper.mousewheel.disable();
             swiper.allowTouchMove = false;
           }
@@ -575,7 +587,6 @@ function mainPageCore() {
         swiper.slides[swiper.activeIndex - 1].classList.remove('anime-start');
       },
       slideChangeTransitionStart: swiper => {
-        console.log('start', swiper.activeIndex);
         if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
           swiper.slides[swiper.activeIndex].dataset.animeState = 1;
         }
@@ -585,7 +596,6 @@ function mainPageCore() {
         swiper.slides[swiper.activeIndex].style.zIndex = 50;
       },
       slideChangeTransitionEnd: swiper => {
-        console.log('end', swiper.activeIndex);
         swiper.slides[swiper.activeIndex].classList.remove('anime-over');
         swiper.slides[swiper.activeIndex].classList.add('anime-start');
         const activeSlide = swiper.slides[swiper.activeIndex];
