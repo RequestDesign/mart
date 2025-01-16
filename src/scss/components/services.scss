@@ -6,17 +6,20 @@
             height: 100% !important;
             max-height: 100% !important;
         }
+
+        @include mobile {
+            height: calc(100dvh - 12rem);
+        }
+
     }
 
     &__c {
+
         /*   @include desktop {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
         } */
-
-
-
         &-el {
             display: flex;
             flex-direction: column;
@@ -28,24 +31,30 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 3rem;
-                &:last-of-type{
+
+                &:last-of-type {
                     margin-bottom: 3rem;
                 }
+            }
+
+            @include mobile {
+                max-height: unset;
+                height: calc(100dvh - 23rem);
             }
 
             &._text {
                 height: 15rem;
                 max-height: 15rem;
-                & *{
+
+                & * {
                     line-height: 133%;
                 }
-                @include mobile{
+
+                @include mobile {
                     height: fit-content;
                     max-height: 100%;
-                  
-                }
-                
 
+                }
 
                 & .tl1 {
                     grid-column: 1;
