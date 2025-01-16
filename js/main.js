@@ -533,10 +533,12 @@ function mainPageCore() {
             sectionState(swiper, el);
           }
           if (el.dataset.animeSlider) {
-            const slider = new swiper_swiper/* default */.Z(el.querySelector('.swiper'), {
+            const t = el.querySelector('.swiper');
+            const slider = new swiper_swiper/* default */.Z(t, {
               modules: [modules/* Mousewheel */.Gk, modules/* Manipulation */.bi],
               direction: 'vertical',
               spaceBetween: rem(3),
+              speed: 1000,
               slidesPerView: 'auto',
               mousewheel: false,
               simulateTouch: false,
@@ -553,6 +555,13 @@ function mainPageCore() {
                       s.removeSlide(3);
                       s.update();
                     }
+                  }
+                },
+                slideChangeTransitionStart: s => {
+                  if (s.activeIndex == s.slides.length - 1) {
+                    t.classList.add('_last');
+                  } else {
+                    t.classList.remove('_last');
                   }
                 }
               }
