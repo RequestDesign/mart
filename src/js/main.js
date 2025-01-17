@@ -32,11 +32,15 @@ $(function () {
 
     if (document.querySelector('.heading-main')) {
 
-        document.querySelector('header')
+        document.querySelector('.header')
             .classList.add('_animation')
         setTimeout(() => {
             mainPageCore()
             iniSwipers()
+            setTimeout(() => {
+                document.querySelector('.header')
+                .classList.remove('_animation')
+            }, 500);
         }, 3000);
     } else {
         mainPageCore()
@@ -68,7 +72,7 @@ function mainPageCore() {
             e.classList.add('page-slide')
             e.addEventListener('stateChange', () => {
                 const activeSlide = e
-
+console.log(activeSlide.dataset.animeHeader);
                 /* хэндлер на покраску хэдера */
                 if (!activeSlide.dataset.animeHeader) {
                     whiteHeader(false)
@@ -152,7 +156,7 @@ function mainPageCore() {
 
                 } else {
                     slide.dataset.animeState--
-
+                    ev.currentTarget.dispatchEvent(coreSlideStateEvent)
                 }
             } else if (end + SWIPE_SIZE < touchStart) {
                 if (slide.dataset.animeState >= slide.dataset.animeStates) {
@@ -166,14 +170,14 @@ function mainPageCore() {
 
                 } else {
                     slide.dataset.animeState++
-
+                    ev.currentTarget.dispatchEvent(coreSlideStateEvent)
                 }
 
             }
 
             touchStart = 0
 
-            ev.currentTarget.dispatchEvent(coreSlideStateEvent)
+          
 
         })
 
@@ -206,7 +210,7 @@ function mainPageCore() {
 
                     } else {
                         slide.dataset.animeDesktop++
-
+                        ev.currentTarget.dispatchEvent(coreSlideStateEvent)
                     }
 
                 } else if (ev.deltaY < 0) {
@@ -221,12 +225,12 @@ function mainPageCore() {
 
                     } else {
                         slide.dataset.animeDesktop--
-
+                        ev.currentTarget.dispatchEvent(coreSlideStateEvent)
                     }
 
                 }
 
-                ev.currentTarget.dispatchEvent(coreSlideStateEvent)
+              
             })
         }
 
