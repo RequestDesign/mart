@@ -329,6 +329,7 @@ const HTML = jquery_default()('html'),
   SWIPE_SIZE = 100,
   IS_MOBILE = window.innerWidth < 768;
 jquery_default()(function () {
+  HTML.addClass('_page-ready');
   document.querySelectorAll('[data-anime-delay],[data-anime-speed]').forEach(el => {
     if (el.dataset.animeDelay) {
       el.style.animationDelay = el.dataset.animeDelay;
@@ -338,11 +339,19 @@ jquery_default()(function () {
     }
   });
   dropDowns();
-  iniSwipers();
-  mainPageCore();
   initForms();
   modalsHandler();
   initFaq();
+  if (document.querySelector('.heading-main')) {
+    document.querySelector('header').classList.add('_animation');
+    setTimeout(() => {
+      mainPageCore();
+      iniSwipers();
+    }, 3000);
+  } else {
+    mainPageCore();
+    iniSwipers();
+  }
 });
 function mainPageCore() {
   const main = document.querySelector('.main-swiper.swiper');
@@ -1008,6 +1017,7 @@ function dropDowns() {
         } else {
           e.currentTarget.classList.remove('_opened');
           e.currentTarget.closest('.drop-down-container').classList.remove('_opened');
+          e.currentTarget.closest('.drop-down-container').classList.remove('swiper-slide-active');
           HTML.removeClass('_lock');
         }
       });
