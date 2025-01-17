@@ -348,8 +348,69 @@ function mainPageCore() {
   const main = document.querySelector('.main-swiper.swiper');
   if (!main) return;
   const wrapper = main.querySelector('.swiper-wrapper');
+  const header = document.querySelector('.header');
+  function whiteHeader(boolean) {
+    if (boolean) {
+      header.classList.add('_white');
+    } else {
+      header.classList.remove('_white');
+    }
+  }
+  const coreSlideStateEvent = new CustomEvent('stateChange');
   wrapper.querySelectorAll('section').forEach(e => {
     e.classList.add('page-slide');
+    e.addEventListener('stateChange', () => {
+      const activeSlide = e;
+
+      /* хэндлер на покраску хэдера */
+      if (!activeSlide.dataset.animeHeader) {
+        whiteHeader(false);
+      } else {
+        const {
+          animeHeader
+        } = activeSlide.dataset;
+        if (animeHeader == 0) {
+          whiteHeader(true);
+        } else if (window.innerWidth < 769) {
+          if (activeSlide.dataset.animeState >= animeHeader) {
+            whiteHeader(true);
+          } else {
+            whiteHeader(false);
+          }
+        } else if (window.innerWidth > 769) {
+          if (activeSlide.dataset.animeDesktop >= animeHeader) {
+            whiteHeader(true);
+          } else {
+            whiteHeader(false);
+          }
+        }
+      }
+      /* хардкор контактов */
+      if (activeSlide.classList.contains('contacts') && window.innerWidth < 769) {
+        switch (activeSlide.dataset.animeState) {
+          case '1':
+            whiteHeader(true);
+            break;
+          case '2':
+            whiteHeader(false);
+            break;
+          case '3':
+            whiteHeader(false);
+            break;
+          default:
+            break;
+        }
+      }
+      /* хэндлер на видос */
+      if (activeSlide.dataset.isvideo) {
+        const v = activeSlide.querySelector('video');
+        if (activeSlide.dataset.animeDesktop == 2 || activeSlide.dataset.animeState == 2) {
+          v.play();
+        } else {
+          v.pause();
+        }
+      }
+    });
   });
   let touchStart = 0;
   function sectionState(swiper, slide) {
@@ -384,17 +445,7 @@ function mainPageCore() {
         }
       }
       touchStart = 0;
-      console.log('isvdeo');
-      if (slide.dataset.isvideo) {
-        const v = slide.querySelector('video');
-        if (slide.dataset.animeState == 2) {
-          console.log('play');
-          v.play();
-        } else {
-          console.log('pause');
-          v.pause();
-        }
-      }
+      ev.currentTarget.dispatchEvent(coreSlideStateEvent);
     });
     if (slide.dataset.animeDesktops) {
       let wheelIsReady = true;
@@ -430,14 +481,7 @@ function mainPageCore() {
             slide.dataset.animeDesktop--;
           }
         }
-        if (slide.dataset.isvideo) {
-          const v = slide.querySelector('video');
-          if (slide.dataset.animeDesktop == 2 || slide.dataset.animeState == 2) {
-            v.play();
-          } else {
-            v.pause();
-          }
-        }
+        ev.currentTarget.dispatchEvent(coreSlideStateEvent);
       });
     }
   }
@@ -454,7 +498,6 @@ function mainPageCore() {
     });
     slide.addEventListener('touchend', ev => {
       const end = ev.changedTouches[0].pageY;
-      console.log(1);
       if (end > touchStart + SWIPE_SIZE) {
         if (swiperSlider.activeIndex <= 0) {
           swiperCore.mousewheel.enable();
@@ -464,14 +507,11 @@ function mainPageCore() {
           swiperSlider.slidePrev();
         }
       } else if (end + SWIPE_SIZE < touchStart) {
-        console.log(2);
         if (swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
-          console.log(4);
           swiperCore.mousewheel.enable();
           swiperCore.allowTouchMove = true;
           swiperCore.slideNext();
         } else {
-          console.log(3);
           swiperSlider.slideNext();
         }
       }
@@ -572,6 +612,7 @@ function mainPageCore() {
             sectionTopper(el);
           }
         });
+        const activeSlide = swiper.slides[swiper.activeIndex];
         if (IS_MOBILE) {
           if (swiper.slides[swiper.activeIndex].dataset.animeSlider || swiper.slides[swiper.activeIndex].dataset.animeStates) {
             swiper.mousewheel.disable();
@@ -581,6 +622,28 @@ function mainPageCore() {
           if (swiper.slides[swiper.activeIndex].dataset.animeSlider || swiper.slides[swiper.activeIndex].dataset.animeDesktops) {
             swiper.mousewheel.disable();
             swiper.allowTouchMove = false;
+          }
+        }
+        if (!activeSlide.dataset.animeHeader) {
+          whiteHeader(false);
+        } else {
+          const {
+            animeHeader
+          } = activeSlide.dataset;
+          if (animeHeader == 0) {
+            whiteHeader(true);
+          } else if (window.innerWidth > 769) {
+            if (activeSlide.dataset.animeState >= animeHeader) {
+              whiteHeader(true);
+            } else {
+              whiteHeader(false);
+            }
+          } else if (window.innerWidth < 769) {
+            if (activeSlide.dataset.animeDesktop >= animeHeader) {
+              whiteHeader(true);
+            } else {
+              whiteHeader(false);
+            }
           }
         }
       },
@@ -596,13 +659,15 @@ function mainPageCore() {
         swiper.slides[swiper.activeIndex - 1].classList.remove('anime-start');
       },
       slideChangeTransitionStart: swiper => {
-        if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
-          swiper.slides[swiper.activeIndex].dataset.animeState = 1;
+        const activeSlide = swiper.slides[swiper.activeIndex];
+        if (activeSlide.dataset.animeStates) {
+          activeSlide.dataset.animeState = 1;
         }
-        if (swiper.slides[swiper.activeIndex].dataset.animeDesktops) {
-          swiper.slides[swiper.activeIndex].dataset.animeDesktop = 1;
+        if (activeSlide.dataset.animeDesktops) {
+          activeSlide.dataset.animeDesktop = 1;
         }
         swiper.slides[swiper.activeIndex].style.zIndex = 50;
+        activeSlide.dispatchEvent(coreSlideStateEvent);
       },
       slideChangeTransitionEnd: swiper => {
         swiper.slides[swiper.activeIndex].classList.remove('anime-over');
