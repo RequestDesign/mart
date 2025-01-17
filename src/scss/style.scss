@@ -30,6 +30,10 @@ html {
   margin: 0;
   padding: 0;
   user-select: none;
+  opacity: 0;
+  &._page-ready{
+    opacity: 1;
+  }
 
   @media (min-width: 1920px) {
     font-size: 10px;

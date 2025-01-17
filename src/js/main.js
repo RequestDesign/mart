@@ -11,6 +11,7 @@ const HTML = $('html'),
     SWIPE_SIZE = 100,
     IS_MOBILE = window.innerWidth < 768
 $(function () {
+    HTML.addClass('_page-ready')
     document.querySelectorAll('[data-anime-delay],[data-anime-speed]')
         .forEach((el) => {
             if (el.dataset.animeDelay) {
@@ -25,11 +26,25 @@ $(function () {
         })
 
     dropDowns()
-    iniSwipers()
-    mainPageCore()
     initForms()
     modalsHandler()
     initFaq()
+
+    if (document.querySelector('.heading-main')) {
+
+        document.querySelector('header')
+            .classList.add('_animation')
+        setTimeout(() => {
+            mainPageCore()
+            iniSwipers()
+        }, 3000);
+    } else {
+        mainPageCore()
+        iniSwipers()
+    }
+
+
+
 
 })
 function mainPageCore() {
@@ -37,13 +52,83 @@ function mainPageCore() {
     const main = document.querySelector('.main-swiper.swiper')
     if (!main) return
     const wrapper = main.querySelector('.swiper-wrapper')
+    const header = document.querySelector('.header')
+    function whiteHeader(boolean) {
+        if (boolean) {
+            header.classList.add('_white')
+        } else {
+            header.classList.remove('_white')
+
+        }
+    }
+    const coreSlideStateEvent = new CustomEvent('stateChange')
 
     wrapper.querySelectorAll('section')
         .forEach((e) => {
             e.classList.add('page-slide')
+            e.addEventListener('stateChange', () => {
+                const activeSlide = e
+
+                /* хэндлер на покраску хэдера */
+                if (!activeSlide.dataset.animeHeader) {
+                    whiteHeader(false)
+                } else {
+                    const { animeHeader } = activeSlide.dataset
+                    if (animeHeader == 0) {
+                        whiteHeader(true)
+                    } else if (window.innerWidth < 769) {
+                        if (activeSlide.dataset.animeState >= animeHeader) {
+                            whiteHeader(true)
+                        } else {
+                            whiteHeader(false)
+                        }
+                    } else if (window.innerWidth > 769) {
+
+                        if (activeSlide.dataset.animeDesktop >= animeHeader) {
+                            whiteHeader(true)
+                        } else {
+                            whiteHeader(false)
+                        }
+                    }
+
+                }
+                /* хардкор контактов */
+                if (activeSlide.classList.contains('contacts') && window.innerWidth < 769) {
+                    switch (activeSlide.dataset.animeState) {
+                        case '1':
+                            whiteHeader(true)
+                            break;
+                        case '2':
+                            whiteHeader(false)
+                            break;
+                        case '3':
+                            whiteHeader(false)
+
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                }
+                /* хэндлер на видос */
+                if (activeSlide.dataset.isvideo) {
+                    const v = activeSlide.querySelector('video')
+                    if (activeSlide.dataset.animeDesktop == 2 || activeSlide.dataset.animeState == 2) {
+
+                        v.play()
+                    } else {
+
+                        v.pause()
+                    }
+                }
+
+            })
         })
 
     let touchStart = 0
+
+
 
     function sectionState(swiper, slide) {
         /**
@@ -88,19 +173,7 @@ function mainPageCore() {
 
             touchStart = 0
 
-            console.log('isvdeo');
-            if (slide.dataset.isvideo) {
-                const v = slide.querySelector('video')
-                if (slide.dataset.animeState == 2) {
-                    console.log('play');
-
-                    v.play()
-                } else {
-                    console.log('pause');
-
-                    v.pause()
-                }
-            }
+            ev.currentTarget.dispatchEvent(coreSlideStateEvent)
 
         })
 
@@ -116,9 +189,6 @@ function mainPageCore() {
                 setTimeout(() => {
                     wheelIsReady = true
                 }, 1000);
-
-
-
 
                 if (ev.deltaY > 0) {
                     /*  console.log("Прокрутка вниз"); */
@@ -156,17 +226,7 @@ function mainPageCore() {
 
                 }
 
-                if (slide.dataset.isvideo) {
-                    const v = slide.querySelector('video')
-                    if (slide.dataset.animeDesktop == 2 || slide.dataset.animeState == 2) {
-
-                        v.play()
-                    } else {
-
-                        v.pause()
-                    }
-                }
-
+                ev.currentTarget.dispatchEvent(coreSlideStateEvent)
             })
         }
 
@@ -184,7 +244,7 @@ function mainPageCore() {
         })
         slide.addEventListener('touchend', (ev) => {
             const end = ev.changedTouches[0].pageY
-            console.log(1);
+
             if (end > touchStart + SWIPE_SIZE) {
                 if (swiperSlider.activeIndex <= 0) {
                     swiperCore.mousewheel.enable()
@@ -194,19 +254,19 @@ function mainPageCore() {
                     swiperSlider.slidePrev()
                 }
             } else if (end + SWIPE_SIZE < touchStart) {
-                console.log(2);
+
                 if (swiperSlider.activeIndex >= swiperSlider.slides.length - 1) {
-                    console.log(4);
+
                     swiperCore.mousewheel.enable()
                     swiperCore.allowTouchMove = true
                     swiperCore.slideNext()
                 } else {
-                    console.log(3);
+
                     swiperSlider.slideNext()
                 }
             }
         })
-     
+
         let wheelIsReady = true
         slide.addEventListener('wheel', (ev) => {
 
@@ -280,7 +340,7 @@ function mainPageCore() {
                     }
 
                     if (el.dataset.animeSlider) {
-const t = el.querySelector('.swiper')
+                        const t = el.querySelector('.swiper')
 
                         const slider = new Swiper(t, {
                             modules: [Mousewheel, Manipulation],
@@ -297,10 +357,10 @@ const t = el.querySelector('.swiper')
                                         if (window.innerWidth > 768) {
                                             const slideTwo = s.slides[2].querySelector('.services__c-el-item').cloneNode(true)
                                             const slideFour = s.slides[4].querySelector('.services__c-el-item').cloneNode(true)
-                                           
+
                                             s.slides[1].append(slideTwo)
                                             s.slides[3].append(slideFour)
-                                            
+
                                             s.removeSlide(2)
                                             s.removeSlide(3)
 
@@ -308,10 +368,10 @@ const t = el.querySelector('.swiper')
                                         }
                                     }
                                 },
-                                slideChangeTransitionStart: (s)=>{
-                                    if(s.activeIndex == s.slides.length - 1){
-                                      t.classList.add('_last')
-                                    }else{
+                                slideChangeTransitionStart: (s) => {
+                                    if (s.activeIndex == s.slides.length - 1) {
+                                        t.classList.add('_last')
+                                    } else {
                                         t.classList.remove('_last')
                                     }
                                 }
@@ -326,7 +386,7 @@ const t = el.querySelector('.swiper')
                         sectionTopper(el)
                     }
                 })
-
+                const activeSlide = swiper.slides[swiper.activeIndex]
 
                 if (IS_MOBILE) {
 
@@ -342,6 +402,30 @@ const t = el.querySelector('.swiper')
                         swiper.mousewheel.disable()
                         swiper.allowTouchMove = false
                     }
+                }
+
+
+                if (!activeSlide.dataset.animeHeader) {
+                    whiteHeader(false)
+                } else {
+                    const { animeHeader } = activeSlide.dataset
+
+                    if (animeHeader == 0) {
+                        whiteHeader(true)
+                    } else if (window.innerWidth > 769) {
+                        if (activeSlide.dataset.animeState >= animeHeader) {
+                            whiteHeader(true)
+                        } else {
+                            whiteHeader(false)
+                        }
+                    } else if (window.innerWidth < 769) {
+                        if (activeSlide.dataset.animeDesktop >= animeHeader) {
+                            whiteHeader(true)
+                        } else {
+                            whiteHeader(false)
+                        }
+                    }
+
                 }
             },
 
@@ -359,15 +443,18 @@ const t = el.querySelector('.swiper')
                 swiper.slides[swiper.activeIndex - 1].classList.remove('anime-start')
             },
             slideChangeTransitionStart: (swiper) => {
-                if (swiper.slides[swiper.activeIndex].dataset.animeStates) {
-                    swiper.slides[swiper.activeIndex].dataset.animeState = 1
+                const activeSlide = swiper.slides[swiper.activeIndex]
+                if (activeSlide.dataset.animeStates) {
+                    activeSlide.dataset.animeState = 1
                 }
-                if (swiper.slides[swiper.activeIndex].dataset.animeDesktops) {
-                    swiper.slides[swiper.activeIndex].dataset.animeDesktop = 1
+                if (activeSlide.dataset.animeDesktops) {
+                    activeSlide.dataset.animeDesktop = 1
                 }
 
                 swiper.slides[swiper.activeIndex].style.zIndex = 50
+                activeSlide.dispatchEvent(coreSlideStateEvent)
             },
+
             slideChangeTransitionEnd: (swiper) => {
                 swiper.slides[swiper.activeIndex].classList.remove('anime-over')
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
@@ -396,6 +483,9 @@ const t = el.querySelector('.swiper')
                     swiper.mousewheel.disable()
                     swiper.allowTouchMove = false
                 }
+
+
+
 
 
 
@@ -765,11 +855,15 @@ function dropDowns() {
                     e.currentTarget.classList.add('_opened')
                     e.currentTarget.closest('.drop-down-container')
                         .classList.add('_opened')
+                  
                     HTML.addClass('_lock')
                 } else {
                     e.currentTarget.classList.remove('_opened')
                     e.currentTarget.closest('.drop-down-container')
                         .classList.remove('_opened')
+                    e.currentTarget.closest('.drop-down-container')
+                        .classList.remove('swiper-slide-active')
+                  
                     HTML.removeClass('_lock')
                 }
 

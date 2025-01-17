@@ -5,40 +5,151 @@
     width: 100%;
     z-index: 100;
 
+    &._animation {
+        & .header__c-logo {
+            animation: anime-header__c-logo 4s ease-in-out forwards;
+
+            &-top path {
+
+                &:first-of-type {
+                    animation: anime-header__c-logo-svg-path 1s ease-in-out forwards;
+                }
+
+            }
+
+            &-middle path {
+                animation: anime-header__c-logo-svg-path-rev 2s ease-in-out forwards;
+            }
+
+            &-bottom path {
+                animation: anime-header__c-logo-svg-path-rev 2s ease-in-out forwards;
+            }
+
+            & svg {
+                fill: $black;
+                overflow: hidden;
+            }
+        }
+
+        & .header__c {
+            color: $white;
+
+            &-phone svg {
+                fill: $white;
+            }
+        }
+
+        & .header__c-opener,
+        & .header__c-modal,
+        & .header__c-phone {
+            animation: anime-header-visible 4s ease-in-out forwards;
+
+        }
+    }
+
+    &._white {
+
+
+        & .header__c-logo svg {
+            fill: $white
+        }
+
+        & .header__c {
+            color: $white;
+
+            &-phone svg {
+                fill: $white;
+            }
+        }
+
+        & .header__c-opener span {
+            background-color: $white;
+        }
+    }
+
     &._opened {
         @include mobile {
-            height: 100dvh;
-            background-color: $bg;
+
 
             & .header__c {
-                grid-template-rows: min-content 1fr;
+
+
+                color: $black !important;
+
+                &-phone svg {
+                    fill: $black !important;
+                }
+
+                &-modal {
+                    transform: translateX(100%);
+                }
+
+                &-nav {
+                    &-el {
+                        & span {
+                            animation: translate-left 1s ease-in-out forwards;
+                        }
+                    }
+
+                    &-phone {
+
+                        &-top {
+                            animation: translate-top 1s ease-in-out forwards;
+                        }
+
+                        &-bottom {
+                            animation: translate-bottom 1s ease-in-out forwards;
+                        }
+                    }
+
+                    & .btn-primary-text {
+                        animation: height-top 1s ease-in-out forwards;
+                    }
+
+                    & .ui-icon._arrow-black-right {
+                        animation: height-bottom 1s ease-in-out forwards;
+                    }
+
+                    & .btn-primary-circle {
+                        animation: height-bottom 1s ease-in-out forwards;
+                    }
+
+                    &::after {
+                        width: 100vw;
+                    }
+                }
             }
-            & .header__c-opener{
+
+            & .header__c-logo svg {
+                fill: $black !important;
+            }
+
+            & .header__c-opener {
                 gap: 1.5rem;
 
                 & span {
                     opacity: 0;
                     width: 4.7rem;
                     margin-left: 1.5rem;
-                    background-color: $black;
-    
+                    background-color: $black !important;
+
                     &:first-of-type {
                         opacity: 1;
                         transform: rotate(45deg);
                         transform-origin: left top;
                     }
-    
+
                     &:last-of-type {
                         opacity: 1;
                         transform: rotate(-45deg);
                         transform-origin: left bottom;
-    
-    
+
+
                     }
                 }
             }
-                
-           
+
+
         }
 
     }
@@ -46,6 +157,7 @@
     &__c {
         display: flex;
         padding-top: 2rem;
+        transition: color .5s linear;
 
         @include mobile {
             padding: 0;
@@ -54,7 +166,10 @@
             grid-template-columns: min-content auto min-content;
             grid-template-rows: min-content 0fr;
             height: 100%;
-            &-opener{
+            position: relative;
+
+
+            &-opener {
                 margin-left: 2rem;
                 display: flex;
                 flex-direction: column;
@@ -64,9 +179,8 @@
                 align-items: center;
                 justify-content: center;
                 position: relative;
+                z-index: 5;
                 transition: all .5s;
-
-
 
                 & span {
                     display: block;
@@ -86,10 +200,16 @@
 
         &-modal {
             @include mobile {
-                height: 100%;
+                height: 100dvh;
+                width: 100dvw;
+                background-color: $bg;
+                position: absolute;
+                z-index: 4;
+                top: 0;
+                left: -100%;
+                transition: transform .5s ease-in-out;
                 overflow: hidden;
-                grid-column: 1 / span 3;
-                grid-row: 2;
+
 
                 &-wrp {
                     overflow: auto;
@@ -106,12 +226,13 @@
             @include mobile {
                 flex-direction: column;
                 position: relative;
-                padding: 2rem 2rem 10rem;
+                padding: 14rem 2rem 10rem;
 
                 &::after {
                     content: '';
                     position: absolute;
-                    width: 100vw;
+                    width: 0vw;
+                    transition: width 1s ease-in-out 1s;
                     left: 0;
                     bottom: 0;
                     height: 2px;
@@ -128,12 +249,51 @@
                     margin-top: 20rem;
                 }
 
+                &-el {
+                    width: fit-content;
+                    overflow: hidden;
+
+                    & span {
+                        display: block;
+                        transform: translateX(-150%);
+                    }
+                }
+
+                &-phone {
+                    height: fit-content;
+                    width: fit-content;
+                    overflow: hidden;
+
+                    &-top {
+                        transform: translateY(-150%);
+                    }
+
+                    &-bottom {
+                        transform: translateY(150%);
+                    }
+                }
+
+                & .btn-primary-text {
+                    clip-path: inset(100% 0 0% 0);
+                    
+                }
+
+                & .ui-icon._arrow-black-right {
+                    clip-path: inset(0% 0 100% 0);
+
+                }
+
+                & .btn-primary-circle {
+                    clip-path: inset(0% 0 100% 0);
+
+                }
 
             }
 
             &-phone {
                 display: flex;
                 flex-direction: column;
+
             }
         }
 
@@ -145,7 +305,18 @@
             justify-content: center;
             align-items: center;
             margin: auto;
-            margin-left: 12rem;
+            margin-left: 20rem;
+
+            @include mobile {
+                position: relative;
+                z-index: 5;
+            }
+
+            & svg {
+                transition: fill .5s linear;
+                fill: $black;
+            }
+
             &-top {
                 height: 3.5rem;
             }
@@ -157,8 +328,10 @@
             &-bottom {
                 height: 1rem;
             }
+
             @include mobile {
                 margin: auto;
+
                 &-top {
                     height: 4.4rem;
                 }
@@ -175,9 +348,79 @@
 
         &-phone {
             margin-top: .9rem;
-            @include mobile{
+
+            @include mobile {
+                position: relative;
+                z-index: 5;
+            }
+
+            & svg {
+                transition: fill .5s linear;
+                fill: $black;
+            }
+
+            @include mobile {
                 margin-right: 2rem;
             }
         }
+    }
+}
+
+@keyframes anime-header-visible {
+    0% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 0;
+
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes anime-header__c-logo {
+    0% {
+        transform: translateY(50dvh);
+    }
+
+    70% {
+        transform: translateY(50dvh);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+@keyframes anime-header__c-logo-svg-path {
+    0% {
+        transform: translateY(-120%);
+    }
+
+    100% {
+
+        transform: translateY(0);
+
+    }
+}
+
+@keyframes anime-header__c-logo-svg-path-rev {
+    0% {
+        transform: translateY(120%);
+    }
+
+    50% {
+        transform: translateY(120%);
+    }
+
+    100% {
+
+        transform: translateY(0);
+
     }
 }
