@@ -576,7 +576,7 @@
         </main>
         <div class="modal modal-request modal-closer ">
     <div class="modal__c container">
-        <button class="modal__c-closer modal-closer">
+        <button class="modal__c-closer modal-closer anime-height-bottom" data-anime-delay="1s">
         </button>
 
         <div class="tl1 txt-up anime-translate-top">
@@ -674,7 +674,7 @@
 
 <div class="modal modal-call modal-closer ">
     <div class="modal__c container">
-        <button class="modal__c-closer modal-closer">
+        <button class="modal__c-closer modal-closer anime-height-bottom" data-anime-delay="1s">
         </button>
 
         <div class="tl1 txt-up anime-translate-top">
@@ -725,6 +725,36 @@
         <div class="modal__c-img desktop anime-height-bottom" data-anime-delay="1s">
             <img src="./assets/images/heading-main.webp">
         </div>
+    </div>
+</div>
+
+
+<!-- что бы открыть, триггерни на чем угодно что имеет data-modal='thanks' клик -->
+<!-- $([data-modal='thanks']).trigger('click') -->
+<div class="modal modal-thanks modal-closer ">
+    <div class="modal__c container">
+        <button class="modal__c-closer modal-closer anime-height-bottom" data-anime-delay="1s">
+        </button>
+
+        <div class="modal-thanks__top">
+            <div class="anime-translate-top tl1 txt-up">
+                <p class="anime-translate-t" data-anime-delay="1s">
+                    спасибо за заявку!
+                </p>
+            </div>
+            <div class="anime-translate-top txt20 ">
+                <p class="anime-translate-t" data-anime-delay="1s">
+                    Форма успешно отправлена, <br>
+                    наш менеджер свяжется с Вами в течение часа!
+                </p>
+            </div>
+        </div>
+
+        <picture class="modal-thanks__img anime-height-top" data-anime-delay="1s">
+            <source media="(max-width:48em )" srcset="./assets/images/thanks-mob.png">
+            <img src="./assets/images/thanks.webp">
+        </picture>
+
     </div>
 </div>
 
