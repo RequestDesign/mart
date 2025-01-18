@@ -23,7 +23,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 6rem;
-       
+
 
         @include mobile {
             grid-template-columns: 100%;
@@ -37,7 +37,7 @@
             background-size: 80%;
             background-repeat: no-repeat;
             position: absolute;
-            top: 0;
+            top: -5rem;
             right: 0;
             transform: translateY(-100%);
             opacity: .7;
@@ -47,6 +47,7 @@
             }
 
             @include mobile {
+                top: 0;
                 width: 8rem;
                 height: 8rem;
             }
@@ -86,7 +87,7 @@
 
                 & .btn-second {
                     flex-shrink: 0;
-                    
+
                 }
             }
 
@@ -108,6 +109,51 @@
             height: 100%;
 
             & img {
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+
+    &-thanks {
+        & .modal__c {
+            grid-template-columns: 100%;
+            @include mobile{
+                height: calc(100% - 5rem);
+                margin-top: 13rem;
+            }
+        }
+
+        &__top {
+            display: flex;
+            justify-content: space-between;
+          
+
+            @include mobile {
+                flex-direction: column;
+                gap: 3rem;
+               
+            }
+
+            & .txt20 {
+                text-align: right;
+
+                @include mobile {
+                    text-align: left;
+                }
+            }
+        }
+
+        &__img {
+            display: flex;
+            @include mobile{
+                margin-top: auto;
+                align-self: flex-end;
+                width: calc(100% + $mobilePadding + $mobilePadding );
+                transform: translateX(-$mobilePadding);
+            }
+
+            & * {
                 object-fit: cover;
                 object-position: center;
             }
