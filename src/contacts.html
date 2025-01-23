@@ -12,7 +12,7 @@
         <include src="./components/_header.html"></include>
         <main class="swiper-wrapper">
             <!--  -->
-            <section class="contacts" data-anime-header="0" data-anime-states="3" data-anime-desktops="2">
+            <section class="contacts" itemscope itemtype="http://schema.org/ContactPage" data-anime-header="0" data-anime-states="3" data-anime-desktops="2">
                 <div class="contacts-top ">
                     <div class="contacts-top__wrp">
                         <div class="ui-line anime-width-right" data-anime-trigger="1" data-anime-trigger-desktop="1"
@@ -37,7 +37,7 @@
                             <div class="contacts-top__c-text col-wh">
                                 <div class="tl1 txt-up anime-translate-top" data-anime-trigger="1"
                                     data-anime-trigger-desktop="1" data-anime-delay="1s">
-                                    <h1 class=" anime-translate-t">Контакты</h1>
+                                    <h1 class=" anime-translate-t" itemprop="headline">Контакты</h1>
                                 </div>
                                 <div class="txt20 anime-translate-bottom" data-anime-trigger="1"
                                     data-anime-trigger-desktop="1" data-anime-delay="1s">
@@ -58,19 +58,19 @@
                 <!--  -->
                 <div class="contacts-info ">
                     <ul class="container contacts-info__c">
-                        <li class="contacts-info__c-el">
+                        <li class="contacts-info__c-el" temprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                             <p class="contacts-info__c-el-top  txt14 txt-up col-black40 anime-height-bottom"
                                 data-anime-trigger="2" data-anime-delay="1s">наш офис</p>
                             <p class="contacts-info__c-el-middle tl3 txt-up  anime-height-bottom" data-anime-trigger="2"
-                                data-anime-delay="1s">Санкт-петербург</p>
+                                data-anime-delay="1s" itemprop="addressLocality">Санкт-петербург</p>
                             <p class="contacts-info__c-el-bottom txt16  anime-height-top" data-anime-trigger="2"
-                                data-anime-delay="1s">Набережная Мартынова, 62</p>
+                                data-anime-delay="1s" itemprop="streetAddress">Набережная Мартынова, 62</p>
                         </li>
                         <li class="contacts-info__c-el">
                             <p class="contacts-info__c-el-top txt14 txt-up col-black40  anime-height-bottom"
                                 data-anime-trigger="2" data-anime-delay="1s">Телефон</p>
                             <p class="contacts-info__c-el-middle tl3 txt-up  anime-height-bottom" data-anime-trigger="2"
-                                data-anime-delay="1s">8 963 77 9999 2</p>
+                                data-anime-delay="1s" itemprop="telephone">8 963 77 9999 2</p>
                             <p class="contacts-info__c-el-bottom txt16 col-black40  anime-height-top"
                                 data-anime-trigger="2" data-anime-delay="1s">По всей России</p>
                         </li>
@@ -78,7 +78,7 @@
                             <p class="contacts-info__c-el-top txt14 txt-up col-black40  anime-height-bottom"
                                 data-anime-trigger="2" data-anime-delay="1s">Почта</p>
                             <p class="contacts-info__c-el-middle tl3 txt-up  anime-height-bottom" data-anime-trigger="2"
-                                data-anime-delay="1s">HELLO@MART-DA.RU</p>
+                                data-anime-delay="1s" itemprop="email">HELLO@MART-DA.RU</p>
                             <p class="contacts-info__c-el-bottom txt16 col-black40  anime-height-top"
                                 data-anime-trigger="2" data-anime-delay="1s">В любое время</p>
                         </li>
@@ -116,13 +116,19 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="contacts-info__c-el">
+                        <li class="contacts-info__c-el" itemprop="openingHoursSpecification" itemscope itemtype="http://schema.org/OpeningHoursSpecification">
                             <p class="contacts-info__c-el-top txt14 txt-up col-black40  anime-height-bottom"
                                 data-anime-trigger="2" data-anime-delay="1s">режим работы</p>
                             <p class="contacts-info__c-el-middle tl3 txt-up  anime-height-bottom" data-anime-trigger="2"
                                 data-anime-delay="1s">пн-пт</p>
                             <p class="contacts-info__c-el-bottom txt16 col-black40  anime-height-top"
-                                data-anime-trigger="2" data-anime-delay="1s">11:00 - 20:00</p>
+                                data-anime-trigger="2" data-anime-delay="1s" itemprop="opens" datetime="09:00">
+                                <time itemprop="opens" datetime="11:00">11:00</time> 
+                                -  
+                                <time itemprop="closes" datetime="20:00">20:00</time>
+                            </p>
+                            <meta itemprop="dayOfWeek" content="Monday" /> -
+                            <meta itemprop="dayOfWeek" content="Friday" />
                         </li>
                         <li class="contacts-info__c-el _social">
                             <div class="request-form__grid-form-social">

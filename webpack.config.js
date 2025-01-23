@@ -113,10 +113,10 @@ function processHtmlLoader(content, loaderContext) {
       return `${p1}="${p2}.webp"`;
     }
   );
- /*  newContent = newContent.replace(
+  newContent = newContent.replace(
     /<img/g,
     '<img loading=\'lazy\''
-  ); */
+  );
   return newContent;
 }
 
