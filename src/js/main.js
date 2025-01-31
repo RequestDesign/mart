@@ -39,7 +39,7 @@ $(function () {
             iniSwipers()
             setTimeout(() => {
                 document.querySelector('.header')
-                .classList.remove('_animation')
+                    .classList.remove('_animation')
             }, 500);
         }, 3000);
     } else {
@@ -72,7 +72,7 @@ function mainPageCore() {
             e.classList.add('page-slide')
             e.addEventListener('stateChange', () => {
                 const activeSlide = e
-console.log(activeSlide.dataset.animeHeader);
+                console.log(activeSlide.dataset.animeHeader);
                 /* хэндлер на покраску хэдера */
                 if (!activeSlide.dataset.animeHeader) {
                     whiteHeader(false)
@@ -177,7 +177,7 @@ console.log(activeSlide.dataset.animeHeader);
 
             touchStart = 0
 
-          
+
 
         })
 
@@ -230,7 +230,7 @@ console.log(activeSlide.dataset.animeHeader);
 
                 }
 
-              
+
             })
         }
 
@@ -506,20 +506,65 @@ function iniSwipers() {
     const ourProjects = document.querySelector('.our-projects');
 
     if (ourProjects) {
+        const filters = ourProjects.querySelectorAll('input[name="projectsFilter"]'),
+            allSlides = ourProjects.querySelectorAll('.swiper-slide')
+        function applyFilter(sw, category) {
+
+            let slides = [];
+            console.log(slides);
+            if (category == 'on') {
+                slides = allSlides
+            } else {
+                slides = Array.from(allSlides).filter((e)=>{
+                    return e.hasAttribute('data-' + category)
+                })
+               
+            }
+          
+            console.log(slides);
+            sw.wrapperEl.innerHTML = ''
+            slides.forEach((slide) => {
+                sw.wrapperEl.appendChild(slide);
+            });
+
+            sw.update();
+            sw.slideTo(0);
+
+        }
+
         new Swiper(ourProjects.querySelector('.swiper'), {
-            modules: [Navigation, EffectFade],
+            modules: [Navigation, EffectCreative],
             slidesPerView: 1,
             simulateTouch: false,
-            effect: 'fade',
-            speed: 100,
+            /* effect: 'fade', */
+            effect: 'creative',
+            creativeEffect: {},
+            speed: 1000,
             followFinger: false,
             touchMoveStopPropagation: true,
+            
             fadeEffect: {
                 crossFade: false
             },
             navigation: {
                 prevEl: ourProjects.querySelector('.swiper-btn-prev'),
                 nextEl: ourProjects.querySelector('.swiper-btn-next')
+            },
+            on: {
+                init: (sw) => {
+
+                    if (!filters.length || filters.length < 1) return
+                    filters.forEach(filter => {
+                        filter.addEventListener('change', () => {
+                                applyFilter(sw, filter.value);
+                           
+                        });
+                    });
+
+                },
+                slideChange: (s) => {
+                    console.log(s.activeIndex);
+                }
             }
 
         })
@@ -859,7 +904,7 @@ function dropDowns() {
                     e.currentTarget.classList.add('_opened')
                     e.currentTarget.closest('.drop-down-container')
                         .classList.add('_opened')
-                  
+
                     HTML.addClass('_lock')
                 } else {
                     e.currentTarget.classList.remove('_opened')
@@ -867,7 +912,7 @@ function dropDowns() {
                         .classList.remove('_opened')
                     e.currentTarget.closest('.drop-down-container')
                         .classList.remove('swiper-slide-active')
-                  
+
                     HTML.removeClass('_lock')
                 }
 
