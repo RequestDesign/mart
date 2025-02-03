@@ -244,6 +244,7 @@
 
                         @include mobile {
                             align-self: flex-start;
+                            justify-content: flex-start;
                             grid-area: text;
                             height: 100%;
                             padding-top: 0;

@@ -18,6 +18,35 @@
 
             }
         }
+        &._detail{
+            & .location__c{
+                grid-template-areas:
+                'year btn'
+                'big big'
+                'dnk dnk'
+                'object object';
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 24rem 48rem auto auto;
+            }
+            &[data-anime-state='1'] {
+                & .location__c {
+                    grid-template-rows: 24rem 48rem auto auto;
+                }
+            }
+    
+            &[data-anime-state='2'] {
+                & .location__c {
+                    grid-template-rows: 0rem 48rem auto auto;
+    
+                }
+            }
+            & .location__c-small{
+                display: none;
+            }
+            & .location__c-year{
+                padding: 0;
+            }
+        }
     }
 
     &__c {

@@ -13,6 +13,15 @@
     transition: transform 1s ease-in-out;
     transform: translateY(0);
 
+    @include mobile {
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        overflow: auto;
+    }
+
     &._opened {
         transform: translateY(100%);
 
@@ -27,6 +36,15 @@
 
         @include mobile {
             grid-template-columns: 100%;
+ 
+                padding-top: 10rem;
+            padding-bottom: 10rem;
+            gap: 6rem 0;
+            flex-shrink: 0;
+            &>*{
+               grid-column: 1; 
+               flex-shrink: 0;
+            }
         }
 
         &-closer {
@@ -47,7 +65,7 @@
             }
 
             @include mobile {
-                top: 0;
+                top: 8rem;
                 width: 8rem;
                 height: 8rem;
             }
@@ -118,7 +136,8 @@
     &-thanks {
         & .modal__c {
             grid-template-columns: 100%;
-            @include mobile{
+
+            @include mobile {
                 height: calc(100% - 5rem);
                 margin-top: 13rem;
             }
@@ -127,12 +146,12 @@
         &__top {
             display: flex;
             justify-content: space-between;
-          
+
 
             @include mobile {
                 flex-direction: column;
                 gap: 3rem;
-               
+
             }
 
             & .txt20 {
@@ -146,7 +165,8 @@
 
         &__img {
             display: flex;
-            @include mobile{
+
+            @include mobile {
                 margin-top: auto;
                 align-self: flex-end;
                 width: calc(100% + $mobilePadding + $mobilePadding );

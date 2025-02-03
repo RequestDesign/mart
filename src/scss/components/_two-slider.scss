@@ -126,6 +126,11 @@
         padding-bottom: 5.6rem;
         position: relative;
         z-index: 5;
+        @include mobile{
+            & .tl1{
+                font-size:5.3rem !important ;
+            }
+        }
 
         & .ui-line {
             bottom: 0;
@@ -136,7 +141,7 @@
 
             @include mobile {
 
-                transform: translate(-18rem, 65vh);
+                transform: translate(-18rem, 62vh);
             }
         }
     }
@@ -178,7 +183,7 @@
 
         @include mobile {
             grid-template-columns: 100%;
-            grid-template-rows: 60rem auto;
+            grid-template-rows: 33dvh auto;
 
             & .two-slider__slide-body-count span {
                 clip-path: inset(100% 0 0% 0);

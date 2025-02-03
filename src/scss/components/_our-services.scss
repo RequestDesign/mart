@@ -85,6 +85,9 @@
 
             @include mobile {
                 height: 100%;
+                &:nth-child(4){
+                    padding-bottom: 15rem;
+                }
 
                 & .txt20 {
                     font-size: 2.8rem;
@@ -108,7 +111,7 @@
             &-img {
                 display: flex;
                 height: 60dvh;
-                max-height: 52rem;
+                max-height: 50rem;
                 flex-shrink: 0;
 
 

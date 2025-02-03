@@ -227,13 +227,13 @@
             }
 
             & .btn-primary {
-                transform: translate(22rem, 15rem);
+                transform: translate(19rem, -5rem);
 
                 @include mobile {
                     position: absolute;
                     top: 0;
                     right: 0;
-                    transform: translate(-22rem, 13.5rem);
+                    transform: translate(-19rem, 10.5rem);
                 }
 
             }

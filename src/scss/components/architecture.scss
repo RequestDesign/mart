@@ -115,7 +115,7 @@
             transform: translateY(10rem);
 
             @include mobile {
-            transform: translateY(0);
+                transform: translateY(0);
 
                 margin-left: 12rem;
             }
@@ -144,7 +144,7 @@
         }
 
         & .ui-line {
-            bottom: 7.5rem;
+            top: 9rem;
         }
 
         & .btn-primary {
@@ -248,8 +248,9 @@
             padding-right: 0;
         }
     }
-    & .swiper{
-        @include mobile{
+
+    & .swiper {
+        @include mobile {
             transition: transform .5s ease-in-out;
         }
     }
@@ -305,6 +306,9 @@
         @include mobile {
             padding-left: $mobilePadding;
 
+            & .swiper-slide {
+                overflow: visible;
+            }
 
             & .swiper-slide-active {
 
@@ -348,6 +352,15 @@
             @include mobile {
                 opacity: 0;
                 transition: opacity .5s ease-in-out;
+                position: relative;
+
+                & .txt20 {
+                    position: absolute;
+                    top: 5rem;
+                    left: 0;
+                    width: 90vw;
+
+                }
             }
         }
 

@@ -26,7 +26,7 @@
             @include mobile {
                 padding-right: $mobilePadding;
                 padding-left: $mobilePadding;
-               
+
             }
         }
 
@@ -55,7 +55,7 @@
 
             & img {
                 object-position: right;
-object-fit: cover;
+                object-fit: cover;
             }
 
         }
@@ -73,11 +73,12 @@ object-fit: cover;
             justify-content: space-between;
             padding-top: 10.8rem;
             padding-bottom: 10.8rem;
-            @include mobile{
+
+            @include mobile {
                 padding-top: 5rem;
                 padding-bottom: 5rem;
                 gap: 3rem;
-               
+
             }
 
         }
@@ -95,7 +96,7 @@ object-fit: cover;
             bottom: 33%;
 
             @include mobile {
-                bottom: 30rem;
+                bottom: 0rem;
 
             }
         }
@@ -135,11 +136,52 @@ object-fit: cover;
                     grid-template-columns: 100%;
                 }
 
+                
             }
 
         }
     }
+    &._price {
+        @include desktop {
+            & .banner__c-body-footer {
 
+                &>.txt16 {
+                    grid-column: 1;
+                }
+
+                & .btn-primary {
+                    grid-column: 2;
+                }
+
+                gap: 2.4rem;
+                margin-bottom: 6rem;
+
+                & .btn-primary {
+                    transform: translate(23rem, -3rem);
+                }
+            }
+
+            & .ui-line {
+                bottom: 8%;
+            }
+        }
+        @include mobile{
+            padding-top: 0;
+
+            & .banner__c-body-footer {
+                & .btn-primary {
+                    transform: translate(51rem, -4rem);
+                }
+                &>.txt16 {
+                   max-width: 48%;
+                }
+                &>.txt16:first-of-type {
+                    max-width: 100%;
+                 }
+            }
+           
+        }
+    }
     &._rev {
         & .banner__c {
 
@@ -164,6 +206,7 @@ object-fit: cover;
                 & .banner__c-body-footer {
                     width: 50%;
                 }
+
                 & .btn-primary {
                     transform: translate(53rem, 0rem);
                 }
