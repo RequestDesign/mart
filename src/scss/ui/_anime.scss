@@ -710,7 +710,9 @@
 
 .anime-over {
     & .anime-zoom {
-        animation: zoomIn 1s ease-in-out forwards;
+        animation: zoomIn 1s ease-in-out ;
+        animation-duration: .3s !important;
+        animation-delay: 0s !important;
     }
 
 

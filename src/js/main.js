@@ -562,8 +562,24 @@ function iniSwipers() {
                     });
 
                 },
-                slideChange: (s) => {
-                    console.log(s.activeIndex);
+               
+                slidePrevTransitionStart: (s) => {
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].style.zIndex = 50
+                },
+                slidePrevTransitionEnd: (s) => {
+
+                    s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1
+
+                },
+                slideNextTransitionStart: (s) => {
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                    s.slides[s.activeIndex].classList.add('swiper-clip-active')
+
                 }
             }
 

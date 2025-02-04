@@ -15,7 +15,7 @@
         &[data-anime-desktop='2'] {
             & .swiper-navigation {
                 opacity: 1;
-                margin-bottom: 32.4rem;
+                margin-bottom: 20dvh;
                 transform: translate(-50%, 0);
             }
 
@@ -28,11 +28,11 @@
             }
 
             & .our-projects__c-main-slide-body {
-                margin-bottom: 32.4rem;
+                margin-bottom: 20dvh;
             }
 
             & .ui-line {
-                margin-bottom: 38.7rem;
+                margin-bottom: 26dvh;
             }
 
 
@@ -247,9 +247,12 @@
 
                     & .btn-primary {
                         left: 21rem;
-                        top: -3rem;
                         position: absolute;
                         transition: opacity 1s linear;
+                        @include desktop{
+                            bottom: 20rem;
+
+                        }
 
 
 
@@ -265,7 +268,7 @@
                         width: 100%;
                         display: flex;
                         justify-content: space-between;
-                        align-items: center;
+                        align-items: flex-end;
 
                         @include mobile {
                             max-width: 50%;

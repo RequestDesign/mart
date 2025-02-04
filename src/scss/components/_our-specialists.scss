@@ -7,6 +7,9 @@
 
     & .container {
         position: relative;
+        &.swiper{
+            overflow: visible;
+        }
 
 
         @include mobile {
