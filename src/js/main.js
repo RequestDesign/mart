@@ -312,9 +312,9 @@ function mainPageCore() {
         effect: 'creative',
         creativeEffect: {},
         initialSlide:
-            localStorage.getItem('coreSwiper')
+          new URLSearchParams(window.location.search).get('slide')
                 ?
-                localStorage.getItem('coreSwiper')
+              new URLSearchParams(window.location.search).get('slide')
                 :
                 0,
         followFinger: false,
