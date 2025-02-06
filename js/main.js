@@ -373,7 +373,7 @@ function mainPageCore() {
     e.classList.add('page-slide');
     e.addEventListener('stateChange', () => {
       const activeSlide = e;
-      console.log(activeSlide.dataset.animeHeader);
+
       /* хэндлер на покраску хэдера */
       if (!activeSlide.dataset.animeHeader) {
         whiteHeader(false);
@@ -563,7 +563,7 @@ function mainPageCore() {
     direction: 'vertical',
     effect: 'creative',
     creativeEffect: {},
-    initialSlide: localStorage.getItem('coreSwiper') ? localStorage.getItem('coreSwiper') : 0,
+    initialSlide: new URLSearchParams(window.location.search).get('slide') ? new URLSearchParams(window.location.search).get('slide') : 0,
     followFinger: false,
     slidesPerView: 1,
     mousewheel: true,
@@ -680,7 +680,8 @@ function mainPageCore() {
         if (activeSlide.dataset.animeDesktops) {
           activeSlide.dataset.animeDesktop = 1;
         }
-        swiper.slides[swiper.activeIndex].style.zIndex = 50;
+
+        /*    swiper.slides[swiper.activeIndex].style.zIndex = 50 */
         activeSlide.dispatchEvent(coreSlideStateEvent);
       },
       slideChangeTransitionEnd: swiper => {
@@ -714,12 +715,34 @@ function mainPageCore() {
 function iniSwipers() {
   const ourProjects = document.querySelector('.our-projects');
   if (ourProjects) {
+    const filters = ourProjects.querySelectorAll('input[name="projectsFilter"]'),
+      allSlides = ourProjects.querySelectorAll('.swiper-slide');
+    function applyFilter(sw, category) {
+      let slides = [];
+      console.log(slides);
+      if (category == 'on') {
+        slides = allSlides;
+      } else {
+        slides = Array.from(allSlides).filter(e => {
+          return e.hasAttribute('data-' + category);
+        });
+      }
+      console.log(slides);
+      sw.wrapperEl.innerHTML = '';
+      slides.forEach(slide => {
+        sw.wrapperEl.appendChild(slide);
+      });
+      sw.update();
+      sw.slideTo(0);
+    }
     new swiper_swiper/* default */.Z(ourProjects.querySelector('.swiper'), {
-      modules: [modules/* Navigation */.W_, modules/* EffectFade */.xW],
+      modules: [modules/* Navigation */.W_, modules/* EffectCreative */.gI],
       slidesPerView: 1,
       simulateTouch: false,
-      effect: 'fade',
-      speed: 100,
+      /* effect: 'fade', */
+      effect: 'creative',
+      creativeEffect: {},
+      speed: 1000,
       followFinger: false,
       touchMoveStopPropagation: true,
       fadeEffect: {
@@ -728,6 +751,31 @@ function iniSwipers() {
       navigation: {
         prevEl: ourProjects.querySelector('.swiper-btn-prev'),
         nextEl: ourProjects.querySelector('.swiper-btn-next')
+      },
+      on: {
+        init: sw => {
+          if (!filters.length || filters.length < 1) return;
+          filters.forEach(filter => {
+            filter.addEventListener('change', () => {
+              applyFilter(sw, filter.value);
+            });
+          });
+        },
+        slidePrevTransitionStart: s => {
+          s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+          s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].style.zIndex = 50;
+        },
+        slidePrevTransitionEnd: s => {
+          s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1;
+        },
+        slideNextTransitionStart: s => {
+          s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+          s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+          s.slides[s.activeIndex].classList.add('swiper-clip-active');
+        }
       }
     });
   }
@@ -805,22 +853,18 @@ function iniSwipers() {
   }
   const twoSlider = document.querySelector('.two-slider');
   if (twoSlider) {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 769) {
       new swiper_swiper/* default */.Z(twoSlider.querySelector('.swiper'), {
         modules: [modules/* Navigation */.W_, modules/* EffectCreative */.gI],
-        effect: window.innerWidth < 768 ? 'creative' : 'slide',
+        effect: 'creative',
         followFinger: false,
         speed: 100,
-        preventInteractionOnTransition: true,
-        fadeEffect: {
-          crossFade: false
-        },
         navigation: {
           prevEl: twoSlider.querySelector('.swiper-btn-prev'),
           nextEl: twoSlider.querySelector('.swiper-btn-next')
         },
-        slidesPerView: 2,
-        slidesPerGroup: 2,
+        slidesPerView: 1,
+        slidesPerGroup: 1,
         spaceBetween: rem(8),
         on: {
           init: swiper => {
@@ -828,26 +872,20 @@ function iniSwipers() {
               e.querySelector('.two-slider__slide-body-count').textContent = (i + 1).toString().padStart(2, '0');
             });
           },
+          //пока работает, лучше не трогать
           slidePrevTransitionStart: s => {
-            if (window.innerWidth < 769) {
-              s.slides[s.activeIndex].classList.remove('swiper-clip-active');
-              s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
-              s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled');
-              s.slides[s.activeIndex + 1].style.zIndex = 50;
-            }
+            s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+            s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+            s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled');
           },
           slidePrevTransitionEnd: s => {
-            if (window.innerWidth < 769) {
-              s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled');
-              s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1;
-            }
+            s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled');
+            s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1;
           },
           slideNextTransitionStart: s => {
-            if (window.innerWidth < 769) {
-              s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
-              s.slides[s.activeIndex].classList.remove('swiper-clip-active');
-              s.slides[s.activeIndex].classList.add('swiper-clip-active');
-            }
+            s.slides[s.activeIndex].classList.remove('swiper-clip-disabled');
+            s.slides[s.activeIndex].classList.remove('swiper-clip-active');
+            s.slides[s.activeIndex].classList.add('swiper-clip-active');
           }
         }
         /*   breakpoints:{
