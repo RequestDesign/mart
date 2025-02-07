@@ -312,9 +312,9 @@ function mainPageCore() {
         effect: 'creative',
         creativeEffect: {},
         initialSlide:
-          new URLSearchParams(window.location.search).get('slide')
+            new URLSearchParams(window.location.search).get('slide')
                 ?
-              new URLSearchParams(window.location.search).get('slide')
+                new URLSearchParams(window.location.search).get('slide')
                 :
                 0,
         followFinger: false,
@@ -454,8 +454,10 @@ function mainPageCore() {
                 if (activeSlide.dataset.animeDesktops) {
                     activeSlide.dataset.animeDesktop = 1
                 }
-
-                /*    swiper.slides[swiper.activeIndex].style.zIndex = 50 */
+                if (window.innerWidth < 768) {
+                    swiper.slides[swiper.activeIndex].style.zIndex = 50
+                    //костыль против бага с перектыием одного слайда другим
+                }
                 activeSlide.dispatchEvent(coreSlideStateEvent)
             },
 
@@ -562,7 +564,7 @@ function iniSwipers() {
                     });
 
                 },
-               
+
                 slidePrevTransitionStart: (s) => {
                     s.slides[s.activeIndex].classList.remove('swiper-clip-active')
                     s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
@@ -684,7 +686,7 @@ function iniSwipers() {
                 effect: 'creative',
                 followFinger: false,
                 speed: 100,
-               
+
                 navigation: {
                     prevEl: twoSlider.querySelector('.swiper-btn-prev'),
                     nextEl: twoSlider.querySelector('.swiper-btn-next'),
@@ -700,25 +702,25 @@ function iniSwipers() {
                                 .textContent = (i + 1).toString().padStart(2, '0')
                         })
                     },
-                     //пока работает, лучше не трогать
-                slidePrevTransitionStart: (s) => {
-                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
-                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
-                    s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled')
-                   
-                },
-                slidePrevTransitionEnd: (s) => {
+                    //пока работает, лучше не трогать
+                    slidePrevTransitionStart: (s) => {
+                        s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                        s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                        s.slides[s.activeIndex + 1].classList.add('swiper-clip-disabled')
 
-                    s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled')
-                    s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1
+                    },
+                    slidePrevTransitionEnd: (s) => {
 
-                },
-                slideNextTransitionStart: (s) => {
-                    s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
-                    s.slides[s.activeIndex].classList.remove('swiper-clip-active')
-                    s.slides[s.activeIndex].classList.add('swiper-clip-active')
+                        s.slides[s.activeIndex + 1].classList.remove('swiper-clip-disabled')
+                        s.slides[s.activeIndex + 1].style.zIndex = s.activeIndex + 1
 
-                }
+                    },
+                    slideNextTransitionStart: (s) => {
+                        s.slides[s.activeIndex].classList.remove('swiper-clip-disabled')
+                        s.slides[s.activeIndex].classList.remove('swiper-clip-active')
+                        s.slides[s.activeIndex].classList.add('swiper-clip-active')
+
+                    }
                 }
                 /*   breakpoints:{
                       768:{

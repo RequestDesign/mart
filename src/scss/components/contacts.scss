@@ -164,12 +164,14 @@
                     display: flex;
                     flex-direction: row;
                     padding: 6rem 1rem 0 0;
-
+                    @include mobile {
+                       padding-top: 8rem;
+                    }
                     & .btn-second {
                         transform: translate(-4rem, -4rem);
 
                         @include mobile {
-                            transform: translate(-7rem, -5rem);
+                            transform: translate(-7rem, -7rem);
                         }
                     }
                 }

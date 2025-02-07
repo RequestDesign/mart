@@ -127,6 +127,22 @@
 .arch-follow {
     @include desktop {
         padding-bottom: 4rem;
+
+        & .arch-follow__body-text::after {
+            opacity: 0;
+        }
+
+        &.anime-start {
+            & .arch-follow__body-text::after {
+                opacity: 1;
+            }
+        }
+        &.anime-over{
+            & .arch-follow__body-text::after {
+                transition-delay: 0;
+                opacity: 0;
+            }  
+        }
     }
 
     & .container {}
@@ -144,7 +160,7 @@
         }
 
         & .ui-line {
-            top: 9rem;
+            top: 9.5rem;
         }
 
         & .btn-primary {
@@ -227,8 +243,25 @@
             height: 100%;
             gap: 5rem;
 
+            @include desktop {
+                position: relative;
+
+                &::after {
+                    content: '';
+                    background-color: rgba(20, 14, 10, 0.16);
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    width: 1px;
+                    height: 100%;
+                    transform: translateY(-11rem);
+                    transition: opacity .5s linear 2s;
+                }
+            }
+
             @include mobile {
                 grid-template-columns: 100%;
+                gap: 3rem;
             }
 
             &-price {

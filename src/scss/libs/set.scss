@@ -125,7 +125,7 @@
 
             @include desktop {
                 height: calc(100dvh - 15rem);
-                max-height: 93rem;
+                max-height: 81rem; //на этом размере окно не меняет размер
             }
         }
     }

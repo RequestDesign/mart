@@ -51,6 +51,11 @@
             display: flex;
             gap: 2.6rem;
             align-items: center;
+            position: relative;
+            padding-bottom: 2rem;
+            & .ui-line{
+                bottom: 1rem;
+            }
 
             &-count {
                 height: 7rem;

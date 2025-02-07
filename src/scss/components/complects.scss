@@ -42,7 +42,7 @@
         height: fit-content;
 
         @include mobile {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr .6fr;
             grid-template-areas:
                 'ttl btn'
                 '. .'

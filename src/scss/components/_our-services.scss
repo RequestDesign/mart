@@ -6,6 +6,13 @@
     }
 
     & .container {
+        @include desktop{
+
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: min-content auto;
+        }
+
         @include mobile {
             height: 100%;
 
@@ -15,7 +22,7 @@
 
         & .ui-line {
             position: absolute;
-            top: 91%;
+            bottom: 6%;
 
             @include mobile {
                 top: 96%;
@@ -24,6 +31,12 @@
     }
 
     @include mobile {
+        &[data-anime-state='1'] {
+
+            & .our-services__grid {
+                grid-template-rows: 1fr 1fr;
+            }
+        }
         &[data-anime-state='2'] {
 
             & .our-services__grid {
@@ -63,8 +76,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4.4rem;
-        height: 70dvh;
-        max-height: 74rem;
+        height: 100%;
 
         @include mobile {
             grid-template-columns: 1fr 1fr;
@@ -72,7 +84,7 @@
             transition: grid .5s linear;
             overflow: hidden;
             height: unset;
-            max-height: unset;
+            gap: 4.4rem 2rem;
 
         }
 
@@ -85,9 +97,10 @@
 
             @include mobile {
                 height: 100%;
-                &:nth-child(4){
+
+               /*  &:nth-child(4) {
                     padding-bottom: 15rem;
-                }
+                } */
 
                 & .txt20 {
                     font-size: 2.8rem;
@@ -110,8 +123,7 @@
 
             &-img {
                 display: flex;
-                height: 60dvh;
-                max-height: 50rem;
+                height: 81%;
                 flex-shrink: 0;
 
 

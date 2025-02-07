@@ -22,10 +22,12 @@
 
         & .ui-line {
             position: absolute;
-            top: 42%;
+            @include desktop{
+                top: 42%;
+            }
 
             @include mobile {
-                top: 100%;
+                bottom: 2rem;
             }
         }
 
@@ -37,7 +39,7 @@
 
             @include mobile {
                 left: 5%;
-                bottom: 0;
+                bottom: 3rem;
             }
         }
 

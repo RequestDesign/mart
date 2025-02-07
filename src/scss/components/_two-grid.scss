@@ -19,6 +19,9 @@
                         transition: top 1s linear;
                     }
                 }
+                & .two-grid__c-cell .btn-primary {
+                    transform: translate(19rem, 1rem);
+                }
                
 
                 @include mobile{
@@ -64,12 +67,12 @@
                 }
 
                 & .two-grid__c-cell-img {
-                    height: 88%;
+                    height: 95%;
 
                 }
 
                 & .ui-line {
-                    top: 24.8%;
+                    top: 17rem;
                 }
 
 
@@ -96,7 +99,7 @@
                 }
 
                 & .two-grid__c-cell-img {
-                    height: 34%;
+                    height: 24dvh;
 
                 }
 
@@ -125,7 +128,7 @@
                 }
 
                 & .two-grid__c-cell-img {
-                    height: 22%;
+                    height: 24dvh;
 
                 }
 

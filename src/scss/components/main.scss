@@ -9,7 +9,7 @@
 
 
         @include mobile {
-            top: 42.5rem;
+            top: 29.5rem;
             left: 0rem;
             margin: 0;
             transform: translate(0, 0);
@@ -35,7 +35,7 @@
         @include mobile {
             height: 100%;
             width: 100%;
-            padding-top: 30rem;
+            padding-top: 23rem;
         }
 
         & .btn-primary {

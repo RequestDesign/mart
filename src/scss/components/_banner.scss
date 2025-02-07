@@ -91,12 +91,17 @@
                 gap: 0;
             }
         }
+        &._rev {
+            & .ui-line{
+                bottom: -5rem;
+            }
+        }
 
         & .ui-line {
             bottom: 33%;
 
             @include mobile {
-                bottom: 0rem;
+                bottom: 27rem;
 
             }
         }

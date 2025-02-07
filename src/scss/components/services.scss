@@ -71,6 +71,9 @@
                 position: relative;
                 box-sizing: border-box;
                 padding: 6.8rem;
+                @include mobile{
+                    padding-bottom: 18rem;
+                }
 
                 &-img {
                     position: absolute;

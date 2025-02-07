@@ -3,6 +3,9 @@
 
     @include mobile {
         padding-top: 16rem;
+        & .container{
+            position: relative;
+        }
 
     }
 
@@ -127,6 +130,7 @@
         position: relative;
         z-index: 5;
         @include mobile{
+            position: unset;
             & .tl1{
                 font-size:5.3rem !important ;
             }
@@ -264,12 +268,15 @@
 
     & .swiper-nav {
         position: absolute;
-        top: 2rem;
-        left: 24%;
         z-index: 3;
+        left: 24%;
+        @include desktop{
+        top: 2rem;
+
+        }
 
         @include mobile {
-            top: 100%;
+            bottom: -3rem;
             left: 0;
             transform: translateY(-100%);
         }
