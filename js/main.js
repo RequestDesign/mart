@@ -680,8 +680,11 @@ function mainPageCore() {
         if (activeSlide.dataset.animeDesktops) {
           activeSlide.dataset.animeDesktop = 1;
         }
+        if (window.innerWidth < 768) {
+          swiper.slides[swiper.activeIndex].style.zIndex = 50;
+          //костыль против бага с перектыием одного слайда другим
+        }
 
-        /*    swiper.slides[swiper.activeIndex].style.zIndex = 50 */
         activeSlide.dispatchEvent(coreSlideStateEvent);
       },
       slideChangeTransitionEnd: swiper => {
