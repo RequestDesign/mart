@@ -3,6 +3,9 @@
     @include mobile{
         padding-bottom: 0;
     }
+    & .swiper{
+        overflow: visible;
+    }
 
     &__c {
         height: 100%;
@@ -12,6 +15,9 @@
             flex-direction: column;
             gap: 20rem;
             height: 70dvh;
+            @include mobile{
+                height: 84dvh;
+            }
            
 
             &-list {
@@ -23,7 +29,7 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr ;
                     grid-template-rows: 1fr 1fr;
-                    gap: 8rem;
+                    gap: 0 8rem;
                     border-bottom: 1px solid $black16;
                 }
 

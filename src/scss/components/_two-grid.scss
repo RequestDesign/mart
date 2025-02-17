@@ -16,7 +16,7 @@
         
                     @include mobile {
                         top: 31.8%;
-                        transition: top 1s linear;
+                        transition: top 1s ease-in-out;
                     }
                 }
                 & .two-grid__c-cell .btn-primary {
@@ -49,7 +49,7 @@
 
             @include mobile {
                 top: 31.8%;
-                transition: top 1s linear;
+                transition: top 1s ease-in-out;
             }
         }
     }
@@ -62,7 +62,7 @@
 
 
                 & .tl1 {
-                    transition: font-size 1s linear;
+                    transition: font-size 1s ease-in-out;
                     font-size: 6.3rem;
                 }
 
@@ -72,7 +72,7 @@
                 }
 
                 & .ui-line {
-                    top: 17rem;
+                    top: 13%;
                 }
 
 
@@ -93,7 +93,7 @@
                 grid-template-rows: 23% 80% 0%;
 
                 & .tl1 {
-                    transition: font-size 1s linear;
+                    transition: font-size 1s ease-in-out;
                     font-size: 4.4rem;
 
                 }
@@ -104,7 +104,7 @@
                 }
 
                 & .ui-line {
-                    top: 16%;
+                    top: 13%;
                 }
 
 
@@ -122,7 +122,7 @@
                 grid-template-rows: 23% 80% 0%;
 
                 & .tl1 {
-                    transition: font-size 1s linear;
+                    transition: font-size 1s ease-in-out;
                     font-size: 4.4rem;
 
                 }
@@ -133,7 +133,7 @@
                 }
 
                 & .ui-line {
-                    top: 16%;
+                    top: 13%;
                 }
 
 
@@ -156,7 +156,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 4rem 4.4rem;
         margin-top: 0;
-        transition: grid 1s linear;
+        transition: grid 1s ease-in-out;
 
         @include mobile {
             display: grid;
@@ -293,7 +293,7 @@
 
                 @include mobile {
                     flex-shrink: 0;
-                    transition: height 1s linear;
+                    transition: height 1s ease-in-out;
                 }
 
                 & img {

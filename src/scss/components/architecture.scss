@@ -160,7 +160,10 @@
         }
 
         & .ui-line {
-            top: 9.5rem;
+            top: 13rem;
+            @include mobile{
+                top: 9.5rem;
+            }
         }
 
         & .btn-primary {

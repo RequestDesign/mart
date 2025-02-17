@@ -5,6 +5,8 @@
         padding-top: 16rem;
         & .container{
             position: relative;
+            padding-left: 0;
+            padding-right: 0;
         }
 
     }
@@ -104,9 +106,15 @@
     & .swiper {
         height: 50vh;
         width: 100%;
+        position: relative;
+        z-index: 4;
 
         @include mobile {
             height: 68vh;
+            & .ui-line{
+                display: block;
+                top: 98%;
+            }
         }
 
         & .swiper-wrapper {
@@ -127,25 +135,26 @@
         display: flex;
         justify-content: space-between;
         padding-bottom: 5.6rem;
-        position: relative;
+        position: relative !important;
         z-index: 5;
         @include mobile{
-            position: unset;
+            position: relative ;
+            @include mobPad();
             & .tl1{
                 font-size:5.3rem !important ;
             }
         }
 
         & .ui-line {
-            bottom: 0;
+            display: none;
         }
 
         & .btn-primary {
             transform: translate(-27rem, 5rem);
-
+     
             @include mobile {
 
-                transform: translate(-18rem, 62vh);
+                transform: translate(-18rem, 66dvh);
             }
         }
     }
@@ -250,6 +259,7 @@
 
             @include mobile {
                 justify-content: flex-start;
+                @include mobPad();
 
                 & .txt16 {
                     max-width: 50%;
@@ -277,7 +287,7 @@
 
         @include mobile {
             bottom: -3rem;
-            left: 0;
+            left: $mobilePadding;
             transform: translateY(-100%);
         }
     }

@@ -55,7 +55,8 @@
 
         & .txt20 {
             grid-area: txt;
-            @include desktop{
+
+            @include desktop {
                 width: 55rem;
             }
         }
@@ -71,4 +72,101 @@
             }
         }
     }
+}
+
+.about-spec {
+    @include mobile {
+        padding-bottom: 8rem;
+    }
+    & .container {
+        position: relative;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 30% 70%;
+
+        @include mobile {
+            height: 100%;
+            grid-template-rows: minmax(44rem, 35%) 65%;
+            padding-left: 0;
+            padding-right: 0;
+
+        }
+    }
+
+    &__top {
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4.6rem;
+        z-index: 3;
+
+        @include mobile {
+            position: unset;
+            flex-direction: column;
+            gap: 3.2rem;
+            margin-bottom: 6.4rem;
+            @include mobPad;
+
+            & .ui-line {
+                display: none;
+            }
+        }
+
+        & .ui-line {
+            top: 14rem;
+        }
+
+        & .swiper-nav {
+            position: absolute;
+            bottom: 0;
+
+
+            @include desktop {
+                right: 32rem;
+
+            }
+
+            @include mobile {
+                bottom: -3rem;
+                left: 0;
+            }
+        }
+    }
+
+    & .swiper {
+        width: 100%;
+        height: 100%;
+        & .swiper-wrapper{
+            padding:  0 $mobilePadding 0; 
+        }
+    }
+
+    &__slide {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 80% 8% 8%;
+        gap: 2%;
+        height: 100%;
+
+        @include mobile {
+            grid-template-rows: 70% 10% max-content;
+
+        }
+
+        &-img {
+            display: flex;
+
+            & img {
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        & .tl3,
+        & .txt20 {
+            height: 100%;
+        }
+    }
+
 }

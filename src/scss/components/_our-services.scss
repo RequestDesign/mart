@@ -10,7 +10,7 @@
 
             display: grid;
             grid-template-columns: 100%;
-            grid-template-rows: min-content auto;
+            grid-template-rows: 20% 80%;
         }
 
         @include mobile {
@@ -22,7 +22,7 @@
 
         & .ui-line {
             position: absolute;
-            bottom: 6%;
+            bottom: 8%;
 
             @include mobile {
                 top: 96%;
@@ -75,6 +75,7 @@
     &__grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 100%;
         gap: 4.4rem;
         height: 100%;
 
@@ -92,12 +93,12 @@
             display: flex;
             flex-direction: column;
             gap: 2.4rem;
-            height: 100%;
-            overflow: hidden;
+           /*  height: 100%;
+             */
 
             @include mobile {
                 height: 100%;
-
+                overflow: hidden;
                /*  &:nth-child(4) {
                     padding-bottom: 15rem;
                 } */
@@ -123,7 +124,8 @@
 
             &-img {
                 display: flex;
-                height: 81%;
+              
+              height:80%;
                 flex-shrink: 0;
 
 

@@ -3,13 +3,6 @@
 
     @include mobile {
         padding-top: $sectionGapMobile;
-
-        & .message__c {
-            transition: grid .5s linear;
-            gap: 2.4rem;
-            grid-template-rows: min-content 12rem 17rem min-content 0rem;
-        }
-
         &.core-slide-active {
             &[data-anime-state='1'] {
 
@@ -86,9 +79,6 @@
         display: grid;
         grid-template-columns: .5fr 1fr 1fr .5fr;
         gap: 3rem 4.4rem;
-   
-
-
         grid-template-areas:
             'btn heading heading heading'
             '. exp mission .'
@@ -97,17 +87,21 @@
         position: relative;
 
         @include desktop{
+           /*  grid-template-rows:  min-content 5rem auto 4rem; */
             grid-template-rows:  min-content min-content minmax(40dvh, 40rem) 4rem;
-            height: fit-content !important;
-            margin-bottom: 0 !important;
+           
+
         }
 
         @include mobile {
-            padding-top: 20rem;
+         
+            padding-top: 8dvh;
             box-sizing: border-box;
-            grid-template-columns: .5fr 1fr;
             grid-auto-rows: auto;
-            gap: 4.8rem 3.2rem;
+            transition: grid .5s ease-in-out;
+            gap: 0 3.2rem;
+            grid-template-rows: min-content 12rem 17rem min-content 0rem;
+            grid-template-columns: .5fr 1fr;
             grid-template-areas:
                 'heading heading'
                 'exp exp'
@@ -115,6 +109,9 @@
                 'small big'
                 'text text'
                 'btn-small btn-small';
+                &>*+*{
+                    margin-top: 1.8rem;
+                }
         }
 
         & .ui-line {
@@ -123,25 +120,28 @@
             left: 0;
 
             @include mobile {
-                top: 34rem;
+                top: 26rem;
             }
         }
 
         &-heading {
             grid-area: heading;
+            @include mobile{
+                margin-bottom: 3rem;
+            }
 
         }
 
         & .btn-primary {
             grid-area: btn;
             width: fit-content;
-            transform: translate(23rem, 1rem);
+            transform: translate(11rem, 11rem);
 
             @include mobile {
                 position: absolute;
                 top: 0;
                 right: 0;
-                transform: translate(-21rem, 19rem);
+                transform: translate(-21rem, 14rem);
             }
         }
 
@@ -197,12 +197,12 @@
 
                 &-top {
                     opacity: 0;
-                    transition: opacity .5s linear, transform .5s linear;
+                    transition: opacity .5s ease-in-out, transform .5s ease-in-out;
                 }
 
                 &-bottom {
                     opacity: 0;
-                    transition: opacity .5s linear, transform .5s linear;
+                    transition: opacity .5s ease-in-out, transform .5s ease-in-out;
 
                 }
 

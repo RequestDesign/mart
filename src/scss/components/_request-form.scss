@@ -64,7 +64,7 @@
             }
 
             & .request-form__grid {
-                grid-template-rows: 0rem 0rem 20dvh 57rem;
+                grid-template-rows: 0rem 0rem 20dvh 54rem;
             }
 
             & .request-form__grid-right {
@@ -246,7 +246,7 @@
             justify-content: space-between;
 
             @include mobile {
-                margin-top: 5rem;
+                margin-top: 2rem;
                 gap: 5rem;
                 padding-left: $mobilePadding;
                 padding-right: $mobilePadding;

@@ -58,6 +58,9 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+            @include desktop{
+                margin-top: 23rem;
+            }
 
             @include mobile {
                 flex-direction: column;

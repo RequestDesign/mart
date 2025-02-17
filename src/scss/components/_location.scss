@@ -14,7 +14,7 @@
 
         &[data-anime-state='2'] {
             & .location__c {
-                grid-template-rows: auto 0 46rem;
+                grid-template-rows: auto 0 26dvh;
 
             }
         }
@@ -82,7 +82,7 @@
                 'small dnk'
                 'big big'
                 'object object';
-            transition: grid .5s linear;
+            transition: grid .5s ease-in-out;
 
 
         }
@@ -139,10 +139,11 @@
             grid-area: big;
             display: flex;
             height: 100%;
+            overflow: hidden;
 
             @include mobile {
                 max-height: unset;
-                height: 43rem;
+               
             }
 
             & img {

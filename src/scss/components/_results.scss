@@ -5,10 +5,13 @@
         gap: 4.4rem;
 
         @include mobile {
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: 100%;
+            grid-template-rows: 50% 50%;
+            height: 100%;
+            /*  display: flex;
+            flex-direction: column; */
             gap: 5rem;
-          
+
         }
 
         &-info {
@@ -19,7 +22,7 @@
             @include mobile {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 3.2rem;
+                gap: 2.2rem;
 
 
 
@@ -31,6 +34,7 @@
             &-head {
                 @include mobile {
                     grid-column: 1 / span 2;
+                    font-size: 5.3rem;
                 }
             }
 
@@ -61,7 +65,8 @@
                 width: fit-content;
                 transform: translateX(calc(-100% - 5rem));
                 z-index: 3;
-                &:last-of-type{
+
+                &:last-of-type {
                     left: 100%;
                 }
             }
@@ -76,7 +81,8 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 4.4rem;
-                @include mobile{
+
+                @include mobile {
                     gap: 2rem;
                 }
 

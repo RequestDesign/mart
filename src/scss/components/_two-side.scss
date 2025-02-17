@@ -6,12 +6,14 @@
 
         &._arch {
             padding-bottom: 0;
-            & .two-side__grid-el-price{
-                padding-left:  $mobilePadding;
-                padding-right:  $mobilePadding;
-                &+.txt22{
-                    padding-left:  $mobilePadding;
-                    padding-right:  $mobilePadding;
+
+            & .two-side__grid-el-price {
+                padding-left: $mobilePadding;
+                padding-right: $mobilePadding;
+
+                &+.txt22 {
+                    padding-left: $mobilePadding;
+                    padding-right: $mobilePadding;
                 }
             }
         }
@@ -61,6 +63,7 @@
             /* margin-top: 16.4rem; */
             padding-left: $mobilePadding;
             padding-right: $mobilePadding;
+            margin-bottom: 3.2rem;
         }
     }
 
@@ -76,8 +79,15 @@
 
         &[data-anime-state='2'] {
             & .two-side__grid {
-                grid-template-rows: 0fr .7fr .4fr 0fr;
+                grid-template-rows: 0fr .7fr .3fr 0fr;
 
+                & .two-side__grid-el-text {
+                    padding-top: 0;
+                }
+
+                & .two-side__grid-el:nth-child(2) {
+                    padding-bottom: 3rem;
+                }
 
             }
 
@@ -104,14 +114,14 @@
         grid-template-rows: 100%;
         gap: 4.4rem;
         height: 100%;
-       /*  height: 62dvh;
+        /*  height: 62dvh;
         max-height: 60rem; */
 
         @include mobile {
             height: 100%;
             grid-template-columns: 100%;
             grid-template-rows: 60% 40% 0% 0%;
-            transition: grid .6s linear;
+            transition: grid .6s ease-in-out;
             gap: 0;
             max-height: 100%;
         }
@@ -122,9 +132,17 @@
             gap: 2.4rem;
             height: 100%;
             position: relative;
+            transition: padding .6s ease-in-out;
 
             @include mobile {
                 overflow: hidden;
+                flex-shrink: 0;
+
+
+                &>* {
+                    flex-shrink: 0;
+                }
+
             }
 
             &-price {
@@ -146,12 +164,14 @@
                 @include mobile {
                     &._grid {
                         display: grid;
-                        grid-template-columns: 1fr 1fr;
+                        grid-template-columns: .7fr .4fr;
+                        height: 100%;
                     }
 
                     height: fit-content;
                     padding: 4rem $mobilePadding 0;
                     box-sizing: border-box;
+                    transition: padding .6s ease-in-out;
 
                     &+.two-side__grid-el-text {
                         padding: 0 $mobilePadding;
@@ -165,7 +185,9 @@
                     margin-bottom: 15rem;
 
                     @include mobile {
-                        margin-bottom: 8rem;
+                        margin-bottom: 34rem;
+                        margin-left: 14rem;
+
                     }
 
                 }

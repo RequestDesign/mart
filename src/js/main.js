@@ -31,6 +31,11 @@ $(function () {
     initFaq()
 
     if (document.querySelector('.heading-main')) {
+        //////////////////
+        // mainPageCore()
+        // iniSwipers()
+        // return
+        //////////////////
 
         document.querySelector('.header')
             .classList.add('_animation')
@@ -459,9 +464,11 @@ function mainPageCore() {
                     //костыль против бага с перектыием одного слайда другим
                 }
                 activeSlide.dispatchEvent(coreSlideStateEvent)
+
             },
 
             slideChangeTransitionEnd: (swiper) => {
+
                 swiper.slides[swiper.activeIndex].classList.remove('anime-over')
                 swiper.slides[swiper.activeIndex].classList.add('anime-start')
                 const activeSlide = swiper.slides[swiper.activeIndex]
@@ -631,6 +638,27 @@ function iniSwipers() {
 
 
 
+    }
+
+    
+    const ourSpecialistsAbout = document.querySelector('.about-spec')
+    if (ourSpecialistsAbout) {
+        new Swiper(ourSpecialistsAbout.querySelector('.swiper'), {
+            modules: [Navigation],
+            spaceBetween: rem(3),
+            followFinger: false,
+            simulateTouch: false,
+            slidesPerView: 1.5,
+            breakpoints: {
+                768: {
+                    slidesPerView: 4
+                }
+            },
+            navigation: {
+                prevEl: ourSpecialistsAbout.querySelector('.swiper-btn-prev'),
+                nextEl: ourSpecialistsAbout.querySelector('.swiper-btn-next')
+            }
+        })
     }
 
     const results = document.querySelector('.results')
