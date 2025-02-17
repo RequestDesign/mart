@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>design.html</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>design.html</title>
+
+  <link rel="preload" href="./assets/fonts/Circe.woff2" as="font" type="font/woff2" crossorigin="">
+  <link rel="preload" href="./assets/fonts/Forum.woff2" as="font" type="font/woff2" crossorigin="">
+  <style>
+    @font-face {
+        font-family: 'Circe';
+        src: local('Circe'),
+        url('./assets/fonts/Circe.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+
+
+    @font-face {
+        font-family: 'Forum';
+        src: local('Forum'),
+        url('./assets/fonts/Forum.woff2') format('woff2');
+
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+</style>
 <script defer src="js/swiper.js"></script><script defer src="js/jquery.js"></script><script defer src="js/inputmask.js"></script><script defer src="js/main.js"></script><link href="css/main.css" rel="stylesheet"></head>
+
 
 <body>
     <div class="wrapper  main-swiper swiper">
@@ -18,37 +43,43 @@
         </button>
         <div class="header__c-modal">
             <div class="header__c-modal-wrp">
-                <nav class="header__c-nav txt14">
-                    <a class=" header__c-nav-el txt-up" href="#">
-                        <span data-anime-delay=".5s">
+                <nav class="header__c-nav txt14" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+                    <meta itemprop="about" itemscope="" itemtype="http://schema.org/ItemList">
+                    <div itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList" class=" header__c-nav-el txt-up">
+                        <a itemprop="url" href="/services.html" data-anime-delay=".5s" style="animation-delay: 0.5s;">
                             услуги
-                        </span>
-                    </a>
-                    <a class="header__c-nav-el txt-up" href="#">
-                        <span data-anime-delay=".6s">
+                        </a>
+                        <meta itemprop="name" content="услуги">
+                    </div>
+                    <div itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList" class="header__c-nav-el txt-up">
+                        <a itemprop="url" href="/prices.html" data-anime-delay=".6s" style="animation-delay: 0.6s;">
                             цены
-                        </span>
-                    </a>
-                    <a class="header__c-nav-el txt-up" href="#">
-                        <span data-anime-delay=".7s">
+                        </a>
+                        <meta itemprop="name" content="цены">
+                    </div>
+                    <div itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList" class="header__c-nav-el txt-up">
+                        <a itemprop="url" href="/projects.html" data-anime-delay=".7s" style="animation-delay: 0.7s;">
                             проекты
-                        </span>
-                    </a>
-                    <a class="header__c-nav-el txt-up" href="#">
-                        <span data-anime-delay=".8s">
+                        </a>
+                        <meta itemprop="name" content="проекты">
+                    </div>
+                    <div itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList" class="header__c-nav-el txt-up">
+                        <a itemprop="url" href="/about.html" data-anime-delay=".8s" style="animation-delay: 0.8s;">
                             о нас
-                        </span>
-                    </a>
-                    <a class="header__c-nav-el txt-up" href="#">
-                        <span data-anime-delay=".9s">
+                        </a>
+                        <meta itemprop="name" content="о нас">
+                    </div>
+                    <div itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList" class="header__c-nav-el txt-up">
+                        <a itemprop="url" href="/contacts.html" data-anime-delay=".9s" style="animation-delay: 0.9s;">
                             контакты
-                        </span>
-                    </a>
-                    <a href="tel:1488" class="header__c-nav-phone mobile">
-                        <span class="header__c-nav-phone-top tl2 txt-up" data-anime-delay="1s">
-                            +7 963 77 9999 2
-                        </span>
-                        <span class="header__c-nav-phone-bottom col-black40 txt16 _14" data-anime-delay="1s">
+                        </a>
+                        <meta itemprop="name" content="контакты">
+                    </div>
+                    <a href="tel:3228" class="header__c-nav-phone mobile">
+                        <span class="header__c-nav-phone-top tl2 txt-up" data-anime-delay="1s" style="animation-delay: 1s;">
+                            8 000 000 00 00
+                         </span>
+                        <span class="header__c-nav-phone-bottom col-black40 txt16 _14" data-anime-delay="1s" style="animation-delay: 1s;">
                             Санкт-Петербург
                         </span>
                     </a>
@@ -56,14 +87,14 @@
                     <button class="mobile btn-primary _black" data-modal="request">
                         <span class="btn-primary-anchor">
                             <span class="btn-primary-c">
-                                <span class="btn-primary-text " data-anime-delay="1.5s">
+                                <span class="btn-primary-text " data-anime-delay="1.5s" style="animation-delay: 1.5s;">
                                     оставить <br>
                                     заявку
                                 </span>
-                                <span class="ui-icon _arrow-black-right " data-anime-delay="1.5s">
+                                <span class="ui-icon _arrow-black-right " data-anime-delay="1.5s" style="animation-delay: 1.5s;">
                                 </span>
                             </span>
-                            <span class="btn-primary-circle " data-anime-delay="1.2s"></span>
+                            <span class="btn-primary-circle " data-anime-delay="1.2s" style="animation-delay: 1.2s;"></span>
                         </span>
                     </button>
 
@@ -71,7 +102,7 @@
             </div>
 
         </div>
-        <div class="header__c-logo">
+        <a href="/main.html" class="header__c-logo">
             <svg class="header__c-logo-top" viewBox="0 0 140 35" xmlns="http://www.w3.org/2000/svg">
                 <path d="M38.5139 34.2671V34.6744H31.1519V34.2671C31.2465 34.2331 31.456 34.2018 31.6876 33.9821C32.0927 33.6016 32.5664 32.7158 32.6308 30.5383L32.6368 3.74351L18.7922 34.6744H18.226L2.95684 3.69348L3.18896 30.3598C3.19497 30.5098 3.19714 30.6419 3.19714 30.7633C3.23731 31.6528 3.34821 32.3155 3.49133 32.8068C3.86996 34.1015 4.48167 34.2027 4.66305 34.2671V34.6744H0V34.2779C0 34.2779 1.145 34.2049 1.37617 31.8335C1.37858 31.8246 1.37859 31.8139 1.38027 31.8048C1.43078 31.4709 1.46494 31.0904 1.47889 30.6618L1.82433 4.11493C1.73364 1.14812 0.753396 0.909048 0.525836 0.830552V0.478749H6.19872L19.9969 29.34L32.7973 0.478516H38.2205V0.830303C38.1197 0.864526 37.8844 0.964327 37.6326 1.26443C37.3848 1.55711 37.1289 2.08767 36.9978 3.06647L37.0348 30.4943C37.0993 32.6608 37.5688 33.5503 37.972 33.9325C38.2056 34.1575 38.4194 34.2331 38.5139 34.2671ZM51.3458 20.2882L57.9398 5.40292L63.9648 20.2884L51.3458 20.2882ZM74.6715 33.8126C74.2888 33.4786 73.8353 32.8697 73.3152 31.7425C73.3133 31.739 59.881 0.478516 59.881 0.478516H58.8635L48.8345 23.0709L48.3226 24.2639L45.5577 30.7065C45.3988 31.1258 45.222 31.5381 45.0278 31.9424C45.0259 31.9479 45.0218 31.9532 45.0199 31.9603L44.9917 32.0249C44.7579 32.5766 44.2705 33.2789 44.2705 33.2789C43.5953 34.163 43.0327 34.2259 42.7002 34.2673V34.6742H47.8978V34.2673C47.7794 34.2585 47.3741 34.1948 47.0758 33.8983H47.0739C46.683 33.5161 46.4834 32.6534 47.3741 30.6245L50.9978 21.317H64.4041L68.1997 30.6247C68.256 30.7551 68.3104 30.882 68.3568 31.0016C68.359 31.0033 68.359 31.0052 68.359 31.0052C69.0419 32.7108 68.8766 33.4931 68.5322 33.8646C68.2298 34.1934 67.8122 34.2405 67.6912 34.2671V34.6742H75.6207V34.2673C75.385 34.2386 75.0686 34.1608 74.6715 33.8126ZM91.1756 18.0036H85.9672V1.31707H91.0536C97.059 1.31707 100.013 4.28938 100.013 9.73981C100.013 15.0191 97.2375 18.0036 91.1756 18.0036ZM105.171 30.8733C104.277 29.8455 96.1879 18.6041 96.1879 18.6041C101.568 17.4664 104.723 13.6131 104.697 9.66036C104.663 4.49951 100.182 0.478998 91.2913 0.478998H80.2984V0.830786C80.397 0.864768 80.6369 0.920058 80.8849 1.20939C81.2031 1.57746 81.7913 2.27291 81.8617 3.83756L81.6265 30.5476C81.556 32.6859 81.0864 33.5611 80.6855 33.938C80.4516 34.1577 80.251 34.2456 80.1495 34.2671V34.6744H87.456V34.2671C87.3588 34.2429 87.1421 34.1577 86.9082 33.9325C86.5053 33.5503 86.0358 32.6608 85.9713 30.4943L85.9672 19.0506H90.1588C90.663 19.0447 91.1673 19.0345 91.6714 19.02C91.6714 19.02 92.4103 19.895 92.9903 20.6957L102.053 32.9664C102.797 33.8926 104.333 34.6505 105.507 34.6505H109.949V34.1979C109.949 34.1979 109.153 33.9514 108.267 33.4819C107.416 33.0303 106.553 32.4614 105.171 30.8733ZM139.217 4.19366H138.675C138.675 4.19366 138.194 1.86679 133.544 1.53797L126.035 1.36446L126.083 30.6534C126.163 32.6752 126.604 33.5343 126.986 33.9165H126.988C127.228 34.1541 127.443 34.2314 127.538 34.2671V34.6744H120.309V34.2671C120.405 34.2312 120.622 34.1541 120.859 33.9165C121.252 33.5288 121.698 32.6467 121.768 30.5479L121.77 1.41926L114.232 1.53797C109.582 1.86679 109.096 4.19366 109.096 4.19366H108.559V0.478998H139.217V4.19366Z"></path>
             </svg>
@@ -84,7 +115,7 @@
                 <path d="M0.101873 0.715385H5.56261V1.40612H0.971874V4.66236H4.83255V5.35278H0.971586V9.13991H5.71146V9.83062H0.101562L0.101873 0.715385ZM6.83493 8.63009L7.37631 8.07497C8.08646 8.80089 9.09553 9.2732 10.1979 9.2732C11.6259 9.2732 12.5105 8.577 12.5105 7.55708C12.5105 6.48696 11.7403 6.14651 10.7877 5.75152L9.3264 5.14591C8.45283 4.79161 7.33768 4.19957 7.33768 2.85275C7.33768 1.50651 8.58654 0.5495 10.2674 0.5495C11.4426 0.5495 12.4225 1.03853 13.0507 1.65308L12.5672 2.18224C11.984 1.62914 11.2242 1.27281 10.2674 1.27281C9.0364 1.27281 8.21363 1.87409 8.21363 2.80399C8.21363 3.8066 9.15199 4.18398 9.88651 4.47971L11.3416 5.07783C12.452 5.53225 13.3918 6.11679 13.3918 7.49823C13.3918 8.90938 12.1412 9.99681 10.1866 9.99681C8.77136 9.99681 7.6363 9.44631 6.83493 8.63009ZM17.4046 1.40612H14.3334V0.715385H21.3458V1.40612H18.2746V9.83062H17.4046V1.40612ZM25.2403 9.15578C27.7778 9.15578 28.9296 7.59546 28.9296 5.24258C28.9296 2.89027 27.7781 1.39081 25.2403 1.39081H23.8578V9.15578H25.2403ZM22.9877 0.715385H25.317C28.3403 0.715385 29.8349 2.4396 29.8349 5.24258C29.8349 8.04613 28.3403 9.83062 25.3452 9.83062H22.9877V0.715385ZM34.5258 9.35053C37.5595 6.49475 39.1432 4.86922 39.1432 3.36314C39.1432 2.29273 38.5211 1.48055 37.1581 1.48055C36.3148 1.48055 35.5714 1.96324 35.0033 2.60347L34.4791 2.13895C35.2208 1.37177 36.0667 0.816077 37.2499 0.816077C38.9641 0.816077 39.9907 1.81726 39.9907 3.33718C39.9907 5.06456 38.294 6.73942 35.7785 9.20599C36.3035 9.1731 36.8684 9.13991 37.3824 9.13991H40.4619V9.83062H34.5258V9.35053ZM46.5767 5.37616C46.5767 2.71225 45.7551 1.47506 44.5059 1.47506C43.2568 1.47506 42.4355 2.71224 42.4355 5.37586C42.4355 8.04007 43.2568 9.33725 44.5059 9.33725C45.7551 9.33725 46.5767 8.04036 46.5767 5.37616ZM41.5934 5.37586C41.5934 2.42689 42.6613 0.816077 44.5059 0.816077C46.3503 0.816077 47.4181 2.4295 47.4181 5.37616C47.4181 8.32571 46.3503 9.99711 44.5062 9.99711C42.6613 9.99711 41.5934 8.32541 41.5934 5.37586ZM48.5169 9.15578H50.7377V2.0948H49.0218V1.57114C49.8288 1.44448 50.4418 1.24021 50.9151 0.982561H51.5834V9.15578H53.6211V9.83093H48.5169V9.15578ZM58.1827 3.58242C58.1827 3.15541 58.2181 2.42633 58.2481 1.99961H58.1887C57.9501 2.39084 57.6815 2.73735 57.4132 3.15138L54.8073 6.60294H60.3711V7.25672H53.8443V6.76395L58.1521 0.981982H58.9948V9.83062H58.1827V3.58242Z"></path>
             </svg>
 
-        </div>
+        </a>
         <a href="tel:1488" class="header__c-phone txt14">
             <span class="desktop">+ 7 000 000 00 00</span>
 
@@ -297,7 +328,7 @@
                     комплекс
                     услуг, начиная с первичной консультации, заканчивая декорированием и фотофиксацией
                 </p>
-                <button class="btn-second mobile">
+                <a href="/about.html" class="btn-second mobile">
                     <span class="btn-second-text anime-height-top" data-anime-delay="1s">подробнее о нас</span>
                     <span class="btn-second-circle anime-height-bottom" data-anime-delay="1s"> </span>
                     <span class="ui-icon anime-height-bottom" data-anime-delay="1s">
@@ -306,7 +337,7 @@
                             <path d="M3.5 12H20.33" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </span>
-                </button>
+                </a>
             </div>
         </div>
 
@@ -389,13 +420,16 @@
                     <span class="btn-primary-circle anime-height-bottom" data-anime-delay="1.5s"></span>
                 </span>
             </button>
-            <div class="ui-line _black anime-width-right" data-anime-delay="1s"></div>
+            <div class="ui-line desktop _black anime-width-right" data-anime-delay="1s"></div>
         </div>
         <div class="swiper">
             <div class="swiper-nav anime-height-top" data-anime-delay="1s">
                 <button class="swiper-btn swiper-btn-prev"></button>
                 <button class="swiper-btn swiper-btn-next"></button>
             </div>
+            
+            <div class="ui-line mobile _black anime-width-right" data-anime-delay="1s"></div>
+
             <ul class="swiper-wrapper">
                 <li class="swiper-slide two-slider__slide">
                     <div class="two-slider__slide-img anime-height-top" data-anime-swiper-mob="">
@@ -567,7 +601,7 @@
                 <p class="anime-translate-t" data-anime-delay=".1"> все услуги</p>
             </div>
             <div class="our-services__top-body">
-                <button class="btn-second">
+                <a href="/prices.html" class="btn-second">
                     <span class="btn-second-text anime-height-top" data-anime-delay="1s">Познакомьтесь с ценами</span>
                     <span class="btn-second-circle anime-height-bottom" data-anime-delay="1s"> </span>
                     <span class="ui-icon anime-height-bottom" data-anime-delay="1s">
@@ -576,7 +610,7 @@
                             <path d="M3.5 12H20.33" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </span>
-                </button>
+                </a>
                 <div class="txt22 anime-translate-bottom">
                     <p class="anime-translate-t" data-anime-delay=".2">
                         *по каждой услуге Вы получаете договоры, акты и закрывающие документы
@@ -598,7 +632,7 @@
                     способами
                 </p>
 
-                <button class="btn-primary _black desktop">
+                <button class="btn-primary _black desktop" data-modal="request">
                     <span class="btn-primary-anchor">
                         <span class="btn-primary-c">
                             <span class="btn-primary-text anime-height-bottom" data-anime-delay="1s">

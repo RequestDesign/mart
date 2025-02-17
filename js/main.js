@@ -343,6 +343,12 @@ jquery_default()(function () {
   modalsHandler();
   initFaq();
   if (document.querySelector('.heading-main')) {
+    //////////////////
+    // mainPageCore()
+    // iniSwipers()
+    // return
+    //////////////////
+
     document.querySelector('.header').classList.add('_animation');
     setTimeout(() => {
       mainPageCore();
@@ -815,6 +821,25 @@ function iniSwipers() {
           s.slides[s.activeIndex].classList.remove('swiper-clip-active');
           s.slides[s.activeIndex].classList.add('swiper-clip-active');
         }
+      }
+    });
+  }
+  const ourSpecialistsAbout = document.querySelector('.about-spec');
+  if (ourSpecialistsAbout) {
+    new swiper_swiper/* default */.Z(ourSpecialistsAbout.querySelector('.swiper'), {
+      modules: [modules/* Navigation */.W_],
+      spaceBetween: rem(3),
+      followFinger: false,
+      simulateTouch: false,
+      slidesPerView: 1.5,
+      breakpoints: {
+        768: {
+          slidesPerView: 4
+        }
+      },
+      navigation: {
+        prevEl: ourSpecialistsAbout.querySelector('.swiper-btn-prev'),
+        nextEl: ourSpecialistsAbout.querySelector('.swiper-btn-next')
       }
     });
   }
