@@ -640,25 +640,55 @@ function iniSwipers() {
 
     }
 
-    
+
     const ourSpecialistsAbout = document.querySelector('.about-spec')
     if (ourSpecialistsAbout) {
-        new Swiper(ourSpecialistsAbout.querySelector('.swiper'), {
-            modules: [Navigation],
-            spaceBetween: rem(3),
-            followFinger: false,
-            simulateTouch: false,
-            slidesPerView: 1.5,
-            breakpoints: {
-                768: {
-                    slidesPerView: 4
+        if (window.innerWidth < 768) {
+
+            new Swiper(ourSpecialistsAbout.querySelector('.swiper'), {
+                modules: [Navigation],
+                spaceBetween: rem(3),
+                followFinger: false,
+                simulateTouch: false,
+                slidesPerView: 1.5,
+                breakpoints: {
+                    768: {
+                        slidesPerView: 4
+                    }
+                },
+                navigation: {
+                    prevEl: ourSpecialistsAbout.querySelector('.swiper-btn-prev'),
+                    nextEl: ourSpecialistsAbout.querySelector('.swiper-btn-next')
                 }
-            },
-            navigation: {
-                prevEl: ourSpecialistsAbout.querySelector('.swiper-btn-prev'),
-                nextEl: ourSpecialistsAbout.querySelector('.swiper-btn-next')
-            }
-        })
+            })
+        } else {
+            const next = ourSpecialistsAbout.querySelector('.swiper-btn-next'),
+                prev = ourSpecialistsAbout.querySelector('.swiper-btn-prev')
+            prev.setAttribute('disabled', true)
+            ourSpecialistsAbout.dataset.kostil = 1
+            next.addEventListener('click', (ev) => {
+                if (ourSpecialistsAbout.dataset.kostil < 3) {
+                    ourSpecialistsAbout.dataset.kostil++
+                    prev.removeAttribute('disabled')
+                    if(ourSpecialistsAbout.dataset.kostil >= 3){
+                        ev.currentTarget.setAttribute('disabled', true)
+                    }
+                }
+
+            })
+            prev.addEventListener('click', (ev) => {
+                if (ourSpecialistsAbout.dataset.kostil > 1) {
+                    ourSpecialistsAbout.dataset.kostil--
+                    next.removeAttribute('disabled')
+                    if(ourSpecialistsAbout.dataset.kostil <= 1){
+                        ev.currentTarget.setAttribute('disabled', true)
+
+                    }
+                }
+            })
+
+
+        }
     }
 
     const results = document.querySelector('.results')
