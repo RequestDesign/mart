@@ -344,9 +344,9 @@ jquery_default()(function () {
   initFaq();
   if (document.querySelector('.heading-main')) {
     //////////////////
-    // mainPageCore()
-    // iniSwipers()
-    // return
+    mainPageCore();
+    iniSwipers();
+    return;
     //////////////////
 
     document.querySelector('.header').classList.add('_animation');
@@ -826,22 +826,56 @@ function iniSwipers() {
   }
   const ourSpecialistsAbout = document.querySelector('.about-spec');
   if (ourSpecialistsAbout) {
-    new swiper_swiper/* default */.Z(ourSpecialistsAbout.querySelector('.swiper'), {
-      modules: [modules/* Navigation */.W_],
-      spaceBetween: rem(3),
-      followFinger: false,
-      simulateTouch: false,
-      slidesPerView: 1.5,
-      breakpoints: {
-        768: {
-          slidesPerView: 4
+    if (window.innerWidth < 768) {
+      new swiper_swiper/* default */.Z(ourSpecialistsAbout.querySelector('.swiper'), {
+        modules: [modules/* Navigation */.W_],
+        spaceBetween: rem(3),
+        followFinger: false,
+        simulateTouch: false,
+        slidesPerView: 1.5,
+        breakpoints: {
+          768: {
+            slidesPerView: 4
+          }
+        },
+        navigation: {
+          prevEl: ourSpecialistsAbout.querySelector('.swiper-btn-prev'),
+          nextEl: ourSpecialistsAbout.querySelector('.swiper-btn-next')
+        },
+        on: {
+          slideChange: s => {
+            if (s.activeIndex == s.slides.length - 1) {
+              ourSpecialistsAbout.querySelector('.swiper').style.transform = 'translate(-22rem, 0)';
+            } else {
+              ourSpecialistsAbout.querySelector('.swiper').style.transform = 'translate(-0, 0)';
+            }
+          }
         }
-      },
-      navigation: {
-        prevEl: ourSpecialistsAbout.querySelector('.swiper-btn-prev'),
-        nextEl: ourSpecialistsAbout.querySelector('.swiper-btn-next')
-      }
-    });
+      });
+    } else {
+      const next = ourSpecialistsAbout.querySelector('.swiper-btn-next'),
+        prev = ourSpecialistsAbout.querySelector('.swiper-btn-prev');
+      prev.setAttribute('disabled', true);
+      ourSpecialistsAbout.dataset.kostil = 1;
+      next.addEventListener('click', ev => {
+        if (ourSpecialistsAbout.dataset.kostil < 3) {
+          ourSpecialistsAbout.dataset.kostil++;
+          prev.removeAttribute('disabled');
+          if (ourSpecialistsAbout.dataset.kostil >= 3) {
+            ev.currentTarget.setAttribute('disabled', true);
+          }
+        }
+      });
+      prev.addEventListener('click', ev => {
+        if (ourSpecialistsAbout.dataset.kostil > 1) {
+          ourSpecialistsAbout.dataset.kostil--;
+          next.removeAttribute('disabled');
+          if (ourSpecialistsAbout.dataset.kostil <= 1) {
+            ev.currentTarget.setAttribute('disabled', true);
+          }
+        }
+      });
+    }
   }
   const results = document.querySelector('.results');
   if (results) {
