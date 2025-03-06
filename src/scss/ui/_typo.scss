@@ -8,6 +8,7 @@
 
   @include mobile {
     font-size: 6.3rem;
+    line-height: 110%;
   }
 
 }
@@ -53,6 +54,7 @@
 
   @include mobile {
     font-size: 3.2rem;
+    line-height: 142%;
   }
 }
 
@@ -61,11 +63,13 @@
   font-family: Circe;
   font-size: 2rem;
   font-weight: 400;
-  line-height: 120%;
+  line-height: 128%;
 
   @include mobile {
     font-size: 3.2rem;
-    &._14{
+    line-height: 128%;
+
+    &._14 {
       font-size: 2.8rem;
     }
   }
@@ -110,11 +114,13 @@
   }
 
 }
-.txt{
-  &-up{
+
+.txt {
+  &-up {
     text-transform: uppercase;
   }
-  &-center{
+
+  &-center {
     text-align: center;
   }
 }

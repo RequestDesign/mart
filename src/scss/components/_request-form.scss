@@ -75,10 +75,6 @@
 
     }
 
-    @include desktop {
-       
-    }
-
 
     &__grid {
         display: grid;
@@ -158,6 +154,9 @@
                 gap: 1.6rem;
                 margin-top: auto;
                 position: relative;
+                @include mobile{
+                    gap: 3.2rem;
+                }
 
                 &-text {
                     grid-column: 1 / span 4;
@@ -181,7 +180,7 @@
                     }
 
                     @include mobile {
-                        padding: 3.6rem;
+                        padding: 3rem;
                     }
 
 

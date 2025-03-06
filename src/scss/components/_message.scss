@@ -3,11 +3,12 @@
 
     @include mobile {
         padding-top: $sectionGapMobile;
+
         &.core-slide-active {
             &[data-anime-state='1'] {
 
                 & .message__c {
-                    grid-template-rows: min-content 12rem 17rem min-content 0rem;
+                    grid-template-rows: min-content 12rem 20rem min-content 0rem;
 
                 }
             }
@@ -37,6 +38,13 @@
                         }
 
                     }
+
+                    & .message__c-small,
+                    & .message__c-big {
+                        @include mobile {
+                            margin-top: 9.2rem;
+                        }
+                    }
                 }
             }
 
@@ -44,7 +52,12 @@
 
                 & .message__c {
                     grid-template-rows: min-content 0rem 0rem min-content 50rem;
-
+                    & .message__c-small,
+                    & .message__c-big {
+                        @include mobile {
+                            margin-top: 9.2rem;
+                        }
+                    }
                     & .message__c-text-top {
                         transform: translateY(-100%);
                         opacity: 0;
@@ -86,21 +99,19 @@
             'small big text btn-small';
         position: relative;
 
-        @include desktop{
-           /*  grid-template-rows:  min-content 5rem auto 4rem; */
-            grid-template-rows:  min-content min-content minmax(40dvh, 40rem) 4rem;
-           
-
+        @include desktop {
+            /*  grid-template-rows:  min-content 5rem auto 4rem; */
+            grid-template-rows: auto min-content minmax(40dvh, 40rem) 4rem;
         }
 
         @include mobile {
-         
+
             padding-top: 8dvh;
             box-sizing: border-box;
             grid-auto-rows: auto;
             transition: grid .5s ease-in-out;
             gap: 0 3.2rem;
-            grid-template-rows: min-content 12rem 17rem min-content 0rem;
+            grid-template-rows: min-content 12rem 20rem min-content 0rem;
             grid-template-columns: .5fr 1fr;
             grid-template-areas:
                 'heading heading'
@@ -109,9 +120,10 @@
                 'small big'
                 'text text'
                 'btn-small btn-small';
-                &>*+*{
-                    margin-top: 1.8rem;
-                }
+
+            &>*+* {
+                margin-top: 1.8rem;
+            }
         }
 
         & .ui-line {
@@ -126,8 +138,14 @@
 
         &-heading {
             grid-area: heading;
-            @include mobile{
-                margin-bottom: 3rem;
+            @include desktop{
+                padding-bottom: 5rem;
+                align-self: flex-end;
+            }
+
+            @include mobile {
+                margin-bottom: 0;
+                margin-top: 0;
             }
 
         }
@@ -151,10 +169,10 @@
 
             @include mobile {
                 display: flex;
-                align-items: center
+                align-items: flex-end;
+                height: 100%;
+                margin-top: 0;
             }
-
-            ;
         }
 
         &-mission {
@@ -165,6 +183,9 @@
         &-small {
             grid-area: small;
             display: flex;
+            transition: margin .5s ease-in-out;
+            margin-top: 0;
+
 
             & img {
                 object-fit: cover;
@@ -175,6 +196,8 @@
         &-big {
             grid-area: big;
             display: flex;
+            transition: margin .5s ease-in-out;
+            margin-top: 0;
 
             & img {
                 object-fit: cover;
@@ -194,6 +217,10 @@
                 display: grid;
                 grid-template-rows: 100% 100%;
                 grid-template-columns: 100%;
+                & .txt20{
+                    font-size: 2.8rem;
+                    line-height: 120%;
+                }
 
                 &-top {
                     opacity: 0;
@@ -203,6 +230,7 @@
                 &-bottom {
                     opacity: 0;
                     transition: opacity .5s ease-in-out, transform .5s ease-in-out;
+                   
 
                 }
 

@@ -47,7 +47,11 @@
 
         @include mobile {
             gap: 3.2rem;
-            width: 25rem;
+            width: 18rem;
+            & .ui-icon{
+                width: 3.2rem;
+                height: 3.2rem;
+            }
           
         }
 

@@ -111,6 +111,7 @@
 
         @include mobile {
             height: 68vh;
+            transition:  transform .5s linear;
             & .ui-line{
                 display: block;
                 top: 98%;

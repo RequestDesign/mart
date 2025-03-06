@@ -16,10 +16,7 @@
     }
 }
 .section {
-    @include desktop{
-
-       
-    }
+  
     &-with-topper {
         position: relative;
         width: 100%;
@@ -34,6 +31,9 @@
                 & .section-with-topper__main {
                     cursor: pointer;
                 }
+            }
+            & .btn-second{
+                margin-top: auto;
             }
         }
         
@@ -62,7 +62,8 @@
             clip-path: inset(0% 0 0% 0);
 
             @include mobile {
-                padding-top: $sectionGapMobile;
+                padding-top: calc($sectionGapMobile + 6.4rem);
+                padding-bottom: 9rem;
             }
         }
 

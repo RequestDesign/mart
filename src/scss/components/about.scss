@@ -90,7 +90,9 @@
                     clip-path: inset(0% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(0% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -104,7 +106,9 @@
                     transition: clip-path .5s ease-in-out;
                     clip-path: inset(0% 0 100% 0);
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(100% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -118,7 +122,9 @@
                     transition: clip-path .5s ease-in-out;
                     clip-path: inset(0% 0 100% 0);
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(100% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -136,7 +142,9 @@
                     clip-path: inset(0% 0 100% 0);
                     transition: clip-path .5s ease-in-out;
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(100% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -150,7 +158,9 @@
                     transition: clip-path .5s ease-in-out;
                     clip-path: inset(0% 0 0% 0);
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(0% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -164,7 +174,9 @@
                     transition: clip-path .5s ease-in-out;
                     clip-path: inset(0% 0 100% 0);
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(100% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -181,7 +193,9 @@
                     clip-path: inset(0% 0 100% 0);
                     transition: clip-path .5s ease-in-out;
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(100% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -195,7 +209,9 @@
                     transition: clip-path .5s ease-in-out;
                     clip-path: inset(0% 0 100% 0);
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(100% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -209,7 +225,9 @@
                     transition: clip-path .5s ease-in-out;
                     clip-path: inset(0% 0 0% 0);
                 }
-                & .tl3, & .txt20{
+
+                & .tl3,
+                & .txt20 {
                     clip-path: inset(0% 0 0% 0);
                     transition: clip-path .5s ease-in-out;
                 }
@@ -270,7 +288,7 @@
 
             @include mobile {
                 bottom: -3rem;
-                left: 0;
+                left: 1.5rem;
             }
         }
     }
@@ -278,6 +296,9 @@
     & .swiper {
         width: 100%;
         height: 100%;
+        @include mobile{
+            transition: transform .5s  ease-in-out;
+        }
 
         & .swiper-wrapper {
             padding: 0 $mobilePadding 0;
@@ -331,7 +352,15 @@
         }
 
         @include mobile {
-            grid-template-rows: 70% 10% max-content;
+            grid-template-rows: 70% min-content max-content;
+
+            &.swiper-slide-active {
+
+                & .tl3,
+                & .txt20 {
+                    opacity: 1;
+                }
+            }
 
         }
 
@@ -347,6 +376,11 @@
         & .tl3,
         & .txt20 {
             height: fit-content;
+            transition: opacity .5s linear;
+
+            @include mobile {
+                opacity: 0;
+            }
         }
     }
 

@@ -171,7 +171,7 @@
 
 
             &-opener {
-                margin-left: 2rem;
+                margin-left: $mobilePadding;
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
@@ -361,7 +361,7 @@
             }
 
             @include mobile {
-                margin-right: 2rem;
+                margin-right: $mobilePadding;
             }
         }
     }

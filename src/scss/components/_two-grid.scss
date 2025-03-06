@@ -1,61 +1,63 @@
-
 .two-grid {
     position: relative;
 
     @include mobile {
         padding-bottom: 0;
+
     }
 
 
-        &._complects {
-            & .container {
-                padding-top: 10rem;
-                & .ui-line {
-                    top: 17rem;
-                    left: 0;
-        
-                    @include mobile {
-                        top: 31.8%;
-                        transition: top 1s ease-in-out;
-                    }
-                }
-                & .two-grid__c-cell .btn-primary {
-                    transform: translate(19rem, 1rem);
-                }
-               
+    &._complects {
+        & .container {
+            padding-top: 10rem;
 
-                @include mobile{
-                    & .two-grid__c-cell:first-of-type{
-                       & .tl1{
-                        font-size: 6.3rem !important;
-                        margin-bottom: 5rem;
-                       }
-                    }
-                    & .ui-line{
-                        top: 30.8%;
-                    }
-                  
+            & .ui-line {
+                top: 17rem;
+                left: 0;
+
+                @include mobile {
+                    top: 31.8%;
+                    transition: top 1s ease-in-out;
                 }
             }
+
+            & .two-grid__c-cell .btn-primary {
+                transform: translate(19rem, 1rem);
+            }
+
+
+            @include mobile {
+                & .two-grid__c-cell:first-of-type {
+                    & .tl1 {
+                        font-size: 6.3rem !important;
+                        margin-bottom: 5rem;
+                    }
+                }
+
+                & .ui-line {
+                    top: 30.8%;
+                }
+
+            }
         }
-  
+    }
+
 
     & .container {
         position: relative;
 
         & .ui-line {
-            top: 14rem;
-            left: 0;
-
-            @include mobile {
-                top: 31.8%;
+            @include desktop {
+                top: 14rem;
+                left: 0;
                 transition: top 1s ease-in-out;
             }
+
         }
     }
 
     @include mobile {
-       
+
         &[data-anime-state='1'] {
             & .two-grid__c {
                 grid-template-rows: 40% 60% 0%;
@@ -68,21 +70,19 @@
 
                 & .two-grid__c-cell-img {
                     height: 95%;
-
-                }
-
-                & .ui-line {
-                    top: 13%;
+max-height: 100rem;
                 }
 
 
             }
-            &._complects{
+
+            &._complects {
                 & .two-grid__c-cell-img {
                     height: 100%;
 
-                }  
-                & .ui-line{
+                }
+
+                & .ui-line {
                     top: 30.8%;
                 }
             }
@@ -99,19 +99,17 @@
                 }
 
                 & .two-grid__c-cell-img {
-                    height: 24dvh;
-
+                    height: 21dvh;
+                    max-height: 32rem;
                 }
 
-                & .ui-line {
-                    top: 13%;
-                }
 
 
             }
-            &._complects{
-               
-                & .ui-line{
+
+            &._complects {
+
+                & .ui-line {
                     top: 15%;
                 }
             }
@@ -128,21 +126,22 @@
                 }
 
                 & .two-grid__c-cell-img {
-                    height: 24dvh;
+                    height: 21dvh;
+                    max-height: 32rem;
 
                 }
 
-                & .ui-line {
-                    top: 13%;
-                }
+
 
 
             }
-            &._complects{
-               
-                & .ui-line{
+
+            &._complects {
+
+                & .ui-line {
                     top: 15%;
                 }
+
                 & .two-grid__c-cell-img {
                     height: 34%;
 
@@ -170,6 +169,17 @@
             gap: 0;
 
 
+        }
+
+        &-heading {
+            @include mobile {
+                position: relative;
+
+                & .ui-line {
+                    top: 66%;
+                }
+
+            }
         }
 
         &-cell {
@@ -260,14 +270,15 @@
                     gap: 1.6rem;
                     position: relative;
 
+              
+
                     & .ui-line {
-                        top: 100% !important;
+                        top: 90% !important;
                         width: 100%;
                         margin: 0;
                         transform: translate(0, 0);
-                        @include mobile{
-                            display: none;
-                        }
+
+                        
                     }
 
 
@@ -293,7 +304,8 @@
 
                 @include mobile {
                     flex-shrink: 0;
-                    transition: height 1s ease-in-out;
+                    transition: height 1s ease-in-out,  max-height 1s ease-in-out;
+                   
                 }
 
                 & img {

@@ -11,6 +11,7 @@ const HTML = $('html'),
     SWIPE_SIZE = 100,
     IS_MOBILE = window.innerWidth < 768
 $(function () {
+
     HTML.addClass('_page-ready')
     document.querySelectorAll('[data-anime-delay],[data-anime-speed]')
         .forEach((el) => {
@@ -32,9 +33,9 @@ $(function () {
 
     if (document.querySelector('.heading-main')) {
         //////////////////
-        // mainPageCore()
-        // iniSwipers()
-        // return
+        mainPageCore()
+        iniSwipers()
+        return
         //////////////////
 
         document.querySelector('.header')
@@ -659,6 +660,17 @@ function iniSwipers() {
                 navigation: {
                     prevEl: ourSpecialistsAbout.querySelector('.swiper-btn-prev'),
                     nextEl: ourSpecialistsAbout.querySelector('.swiper-btn-next')
+                },
+                on: {
+
+                    slideChange: (s) => {
+                        if (s.activeIndex == s.slides.length - 1) {
+                            ourSpecialistsAbout.querySelector('.swiper').style.transform = 'translate(-22rem, 0)'
+                        }
+                        else {
+                            ourSpecialistsAbout.querySelector('.swiper').style.transform = 'translate(-0, 0)'
+                        }
+                    }
                 }
             })
         } else {
@@ -670,7 +682,7 @@ function iniSwipers() {
                 if (ourSpecialistsAbout.dataset.kostil < 3) {
                     ourSpecialistsAbout.dataset.kostil++
                     prev.removeAttribute('disabled')
-                    if(ourSpecialistsAbout.dataset.kostil >= 3){
+                    if (ourSpecialistsAbout.dataset.kostil >= 3) {
                         ev.currentTarget.setAttribute('disabled', true)
                     }
                 }
@@ -680,7 +692,7 @@ function iniSwipers() {
                 if (ourSpecialistsAbout.dataset.kostil > 1) {
                     ourSpecialistsAbout.dataset.kostil--
                     next.removeAttribute('disabled')
-                    if(ourSpecialistsAbout.dataset.kostil <= 1){
+                    if (ourSpecialistsAbout.dataset.kostil <= 1) {
                         ev.currentTarget.setAttribute('disabled', true)
 
                     }

@@ -41,6 +41,7 @@
 
             & .our-services__grid {
                 grid-template-rows: 0fr 1fr;
+                gap: 0 3.2rem;
             }
         }
     }
@@ -54,6 +55,7 @@
         @include mobile {
             grid-template-columns: 100%;
             gap: 1.6rem;
+            margin-top: 10rem;
         }
 
         &-body {
@@ -63,7 +65,7 @@
 
             @include mobile {
                 flex-direction: column-reverse;
-                gap: 8rem;
+                gap: 4rem;
 
                 & .btn-second {
                     margin: 2rem 0 6rem;
@@ -82,7 +84,7 @@
         @include mobile {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
-            transition: grid .5s linear;
+            transition: grid .5s ease-in-out, gap .5s ease-in-out;
             overflow: hidden;
             height: unset;
             gap: 4.4rem 2rem;

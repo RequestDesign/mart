@@ -64,6 +64,12 @@
             padding-left: $mobilePadding;
             padding-right: $mobilePadding;
             margin-bottom: 3.2rem;
+            transition: gap .5s ease-in-out;
+            & .txt22 {
+                transition: max-height .5s ease-in-out;
+                max-height: 100%;
+                overflow: hidden;
+            }
         }
     }
 
@@ -72,14 +78,14 @@
 
         &[data-anime-state='1'] {
             & .two-side__grid {
-                grid-template-rows: .6fr .4fr 0fr 0fr;
+                grid-template-rows: .6fr 38rem 0fr 0fr;
 
             }
         }
 
         &[data-anime-state='2'] {
             & .two-side__grid {
-                grid-template-rows: 0fr .7fr .3fr 0fr;
+                grid-template-rows: 0fr 58rem 1fr 0fr;
 
                 & .two-side__grid-el-text {
                     padding-top: 0;
@@ -99,10 +105,14 @@
         &[data-anime-state='3'] {
             & .two-side__top {
                 margin-top: 0;
+                gap: 0;
+                & .txt22{
+                    max-height: 0;
+                }
             }
 
             & .two-side__grid {
-                grid-template-rows: 0fr 0fr .4fr .6fr;
+                grid-template-rows: 0fr 0rem .4fr .6fr;
 
             }
         }
@@ -164,7 +174,7 @@
                 @include mobile {
                     &._grid {
                         display: grid;
-                        grid-template-columns: .7fr .4fr;
+                        grid-template-columns: .5fr .5fr;
                         height: 100%;
                     }
 
@@ -177,6 +187,11 @@
                         padding: 0 $mobilePadding;
                     }
 
+                    & .txt20 {
+                        font-size: 2.8rem;
+                        line-height: 120%;
+                    }
+
                 }
 
                 & .btn-primary {
@@ -185,8 +200,8 @@
                     margin-bottom: 15rem;
 
                     @include mobile {
-                        margin-bottom: 34rem;
-                        margin-left: 14rem;
+                        margin-bottom: 41rem;
+                        margin-left: 16rem;
 
                     }
 

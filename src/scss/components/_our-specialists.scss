@@ -61,7 +61,7 @@
             padding-left: 2.5rem;
             padding-right: 2.5rem;
             box-sizing: border-box;
-            margin-bottom: 4rem;
+            margin-bottom: 4.8rem;
         }
 
         & .btn-primary {
@@ -70,7 +70,7 @@
             @include mobile {
                 position: absolute;
                 z-index: 5;
-                top: 83%;
+                top: 85%;
                 right: 20%;
             }
         }
